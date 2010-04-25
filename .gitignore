@@ -1,0 +1,8 @@
+.DS_Store
+build
+build/revision
+*.xcodeproj/*.pbxuser
+*.xcodeproj/*.perspectivev3
+*.xcodeproj/*.mode1v3
+*.xcodeproj/*.tm_build_errors
+*.tmproj
