@@ -15,12 +15,12 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		3F00E83211849EF500339848 /* JONTUBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F00E82611849EF500339848 /* JONTUBus.m */; };
+		3F00E83311849EF500339848 /* JONTUBusEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F00E82811849EF500339848 /* JONTUBusEngine.m */; };
+		3F00E83411849EF500339848 /* JONTUBusRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F00E82A11849EF500339848 /* JONTUBusRoute.m */; };
+		3F00E83511849EF500339848 /* JONTUBusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F00E82C11849EF500339848 /* JONTUBusStop.m */; };
+		3F00E83611849EF500339848 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F00E83011849EF500339848 /* RegexKitLite.m */; };
 		3F98A7B21184912C00877969 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F98A7B11184912C00877969 /* libicucore.dylib */; };
-		3F98A8BD118494E500877969 /* JONTUBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F98A8B1118494E500877969 /* JONTUBus.m */; };
-		3F98A8BE118494E500877969 /* JONTUBusEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F98A8B3118494E500877969 /* JONTUBusEngine.m */; };
-		3F98A8BF118494E500877969 /* JONTUBusRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F98A8B5118494E500877969 /* JONTUBusRoute.m */; };
-		3F98A8C0118494E500877969 /* JONTUBusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F98A8B7118494E500877969 /* JONTUBusStop.m */; };
-		3F98A8C1118494E500877969 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F98A8BB118494E500877969 /* RegexKitLite.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,19 +36,19 @@
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3F00E82511849EF500339848 /* JONTUBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JONTUBus.h; path = JONTUBusCore/JONTUBusCore/JONTUBus.h; sourceTree = SOURCE_ROOT; };
+		3F00E82611849EF500339848 /* JONTUBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JONTUBus.m; path = JONTUBusCore/JONTUBusCore/JONTUBus.m; sourceTree = SOURCE_ROOT; };
+		3F00E82711849EF500339848 /* JONTUBusEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JONTUBusEngine.h; path = JONTUBusCore/JONTUBusCore/JONTUBusEngine.h; sourceTree = SOURCE_ROOT; };
+		3F00E82811849EF500339848 /* JONTUBusEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JONTUBusEngine.m; path = JONTUBusCore/JONTUBusCore/JONTUBusEngine.m; sourceTree = SOURCE_ROOT; };
+		3F00E82911849EF500339848 /* JONTUBusRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JONTUBusRoute.h; path = JONTUBusCore/JONTUBusCore/JONTUBusRoute.h; sourceTree = SOURCE_ROOT; };
+		3F00E82A11849EF500339848 /* JONTUBusRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JONTUBusRoute.m; path = JONTUBusCore/JONTUBusCore/JONTUBusRoute.m; sourceTree = SOURCE_ROOT; };
+		3F00E82B11849EF500339848 /* JONTUBusStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JONTUBusStop.h; path = JONTUBusCore/JONTUBusCore/JONTUBusStop.h; sourceTree = SOURCE_ROOT; };
+		3F00E82C11849EF500339848 /* JONTUBusStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JONTUBusStop.m; path = JONTUBusCore/JONTUBusCore/JONTUBusStop.m; sourceTree = SOURCE_ROOT; };
+		3F00E82D11849EF500339848 /* NSXMLParserDelegateFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSXMLParserDelegateFix.h; path = JONTUBusCore/JONTUBusCore/NSXMLParserDelegateFix.h; sourceTree = SOURCE_ROOT; };
+		3F00E82F11849EF500339848 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = JONTUBusCore/JONTUBusCore/RegexKitLite/RegexKitLite.h; sourceTree = SOURCE_ROOT; };
+		3F00E83011849EF500339848 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = JONTUBusCore/JONTUBusCore/RegexKitLite/RegexKitLite.m; sourceTree = SOURCE_ROOT; };
+		3F00E83111849EF500339848 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SynthesizeSingleton.h; path = JONTUBusCore/JONTUBusCore/SynthesizeSingleton.h; sourceTree = SOURCE_ROOT; };
 		3F98A7B11184912C00877969 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		3F98A8B0118494E500877969 /* JONTUBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JONTUBus.h; path = ../../Development/JONTUBusCore/JONTUBusCore/JONTUBus.h; sourceTree = SOURCE_ROOT; };
-		3F98A8B1118494E500877969 /* JONTUBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JONTUBus.m; path = ../../Development/JONTUBusCore/JONTUBusCore/JONTUBus.m; sourceTree = SOURCE_ROOT; };
-		3F98A8B2118494E500877969 /* JONTUBusEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JONTUBusEngine.h; path = ../../Development/JONTUBusCore/JONTUBusCore/JONTUBusEngine.h; sourceTree = SOURCE_ROOT; };
-		3F98A8B3118494E500877969 /* JONTUBusEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JONTUBusEngine.m; path = ../../Development/JONTUBusCore/JONTUBusCore/JONTUBusEngine.m; sourceTree = SOURCE_ROOT; };
-		3F98A8B4118494E500877969 /* JONTUBusRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JONTUBusRoute.h; path = ../../Development/JONTUBusCore/JONTUBusCore/JONTUBusRoute.h; sourceTree = SOURCE_ROOT; };
-		3F98A8B5118494E500877969 /* JONTUBusRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JONTUBusRoute.m; path = ../../Development/JONTUBusCore/JONTUBusCore/JONTUBusRoute.m; sourceTree = SOURCE_ROOT; };
-		3F98A8B6118494E500877969 /* JONTUBusStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JONTUBusStop.h; path = ../../Development/JONTUBusCore/JONTUBusCore/JONTUBusStop.h; sourceTree = SOURCE_ROOT; };
-		3F98A8B7118494E500877969 /* JONTUBusStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JONTUBusStop.m; path = ../../Development/JONTUBusCore/JONTUBusCore/JONTUBusStop.m; sourceTree = SOURCE_ROOT; };
-		3F98A8B8118494E500877969 /* NSXMLParserDelegateFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSXMLParserDelegateFix.h; path = ../../Development/JONTUBusCore/JONTUBusCore/NSXMLParserDelegateFix.h; sourceTree = SOURCE_ROOT; };
-		3F98A8BA118494E500877969 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
-		3F98A8BB118494E500877969 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
-		3F98A8BC118494E500877969 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SynthesizeSingleton.h; path = ../../Development/JONTUBusCore/JONTUBusCore/SynthesizeSingleton.h; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* RushHourNTU-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RushHourNTU-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,7 +89,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				3F98A8AB118494D100877969 /* JONTUBusEngine */,
+				3F00E82011849EDD00339848 /* JONTUBusCore */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -129,32 +129,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3F98A8AB118494D100877969 /* JONTUBusEngine */ = {
+		3F00E82011849EDD00339848 /* JONTUBusCore */ = {
 			isa = PBXGroup;
 			children = (
-				3F98A8B0118494E500877969 /* JONTUBus.h */,
-				3F98A8B1118494E500877969 /* JONTUBus.m */,
-				3F98A8B2118494E500877969 /* JONTUBusEngine.h */,
-				3F98A8B3118494E500877969 /* JONTUBusEngine.m */,
-				3F98A8B4118494E500877969 /* JONTUBusRoute.h */,
-				3F98A8B5118494E500877969 /* JONTUBusRoute.m */,
-				3F98A8B6118494E500877969 /* JONTUBusStop.h */,
-				3F98A8B7118494E500877969 /* JONTUBusStop.m */,
-				3F98A8B8118494E500877969 /* NSXMLParserDelegateFix.h */,
-				3F98A8B9118494E500877969 /* RegexKitLite */,
-				3F98A8BC118494E500877969 /* SynthesizeSingleton.h */,
+				3F00E82511849EF500339848 /* JONTUBus.h */,
+				3F00E82611849EF500339848 /* JONTUBus.m */,
+				3F00E82711849EF500339848 /* JONTUBusEngine.h */,
+				3F00E82811849EF500339848 /* JONTUBusEngine.m */,
+				3F00E82911849EF500339848 /* JONTUBusRoute.h */,
+				3F00E82A11849EF500339848 /* JONTUBusRoute.m */,
+				3F00E82B11849EF500339848 /* JONTUBusStop.h */,
+				3F00E82C11849EF500339848 /* JONTUBusStop.m */,
+				3F00E82D11849EF500339848 /* NSXMLParserDelegateFix.h */,
+				3F00E82E11849EF500339848 /* RegexKitLite */,
+				3F00E83111849EF500339848 /* SynthesizeSingleton.h */,
 			);
-			name = JONTUBusEngine;
+			name = JONTUBusCore;
 			sourceTree = "<group>";
 		};
-		3F98A8B9118494E500877969 /* RegexKitLite */ = {
+		3F00E82E11849EF500339848 /* RegexKitLite */ = {
 			isa = PBXGroup;
 			children = (
-				3F98A8BA118494E500877969 /* RegexKitLite.h */,
-				3F98A8BB118494E500877969 /* RegexKitLite.m */,
+				3F00E82F11849EF500339848 /* RegexKitLite.h */,
+				3F00E83011849EF500339848 /* RegexKitLite.m */,
 			);
 			name = RegexKitLite;
-			path = ../../Development/JONTUBusCore/JONTUBusCore/RegexKitLite;
+			path = JONTUBusCore/JONTUBusCore/RegexKitLite;
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
@@ -221,11 +221,11 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* RushHourNTUAppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
-				3F98A8BD118494E500877969 /* JONTUBus.m in Sources */,
-				3F98A8BE118494E500877969 /* JONTUBusEngine.m in Sources */,
-				3F98A8BF118494E500877969 /* JONTUBusRoute.m in Sources */,
-				3F98A8C0118494E500877969 /* JONTUBusStop.m in Sources */,
-				3F98A8C1118494E500877969 /* RegexKitLite.m in Sources */,
+				3F00E83211849EF500339848 /* JONTUBus.m in Sources */,
+				3F00E83311849EF500339848 /* JONTUBusEngine.m in Sources */,
+				3F00E83411849EF500339848 /* JONTUBusRoute.m in Sources */,
+				3F00E83511849EF500339848 /* JONTUBusStop.m in Sources */,
+				3F00E83611849EF500339848 /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
