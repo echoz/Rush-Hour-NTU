@@ -4,7 +4,7 @@
 #import <Availability.h>
 
 #ifndef __IPHONE_3_0
-	#import "NSXMLParserDelegateFix.h"
+
 #endif
 
 

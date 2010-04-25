@@ -7,7 +7,7 @@
 //
 
 #import "RootViewController.h"
-
+#import "JONTUBusEngine.h"
 
 @implementation RootViewController
 
@@ -65,7 +65,8 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
+    return [[engine stops] count];
 }
 
 
@@ -73,6 +74,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
+	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -80,6 +82,7 @@
     }
     
 	// Configure the cell.
+	cell.textLabel.text = [[[engine stops] objectAtIndex:indexPath.row] desc];
 
     return cell;
 }

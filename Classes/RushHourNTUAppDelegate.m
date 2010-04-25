@@ -8,6 +8,7 @@
 
 #import "RushHourNTUAppDelegate.h"
 #import "RootViewController.h"
+#import "JONTUBusEngine.h"
 
 
 @implementation RushHourNTUAppDelegate
@@ -21,6 +22,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     // Override point for customization after app launch    
+	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
+	[engine setHoldCache:-1];
+	[engine start];
 	
 	[window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
