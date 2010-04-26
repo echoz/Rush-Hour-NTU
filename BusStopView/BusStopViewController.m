@@ -10,7 +10,7 @@
 
 @implementation BusStopViewController
 
-@synthesize busstopid, etaCell;
+@synthesize busstopid, etaCell, stopLocation;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -23,18 +23,21 @@
 
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-	
 	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
 	
 	stop = [[engine stopForId:self.busstopid] retain];
+	stopLocation = [[CLLocation alloc] initWithLatitude:[[stop lat] doubleValue] longitude:[[stop lon] doubleValue]];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
 	self.navigationItem.rightBarButtonItem = refreshETA;
+	self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Stops"
+																			 style:UIBarButtonItemStyleBordered
+																			target:nil
+																			action:nil];	
 	self.title = [stop code];
-	
+	[super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -42,9 +45,12 @@
 	self.navigationController.toolbarHidden = YES;
 
 	
+	
 }
 
 -(IBAction)refreshETA {
+	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
+	[engine busesWithRefresh:YES];
 	arrivals = [stop arrivals];
 	[self.tableView reloadData];
 	
@@ -103,6 +109,11 @@
 	return 60;
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	return @"Arrivals";
+}
+
+
 /*
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -137,9 +148,14 @@
 		cell = etaCell;
 		self.etaCell = nil;
     }
+
+	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
+	JONTUBus *bus = [engine busForPlate:[[arrivals objectAtIndex:indexPath.row] valueForKey:@"plate"]];
+	
+	CLLocation *busLocation = [[CLLocation alloc] initWithLatitude:[[bus lat] doubleValue] longitude:[[bus lon] doubleValue]];
 	
 	cell.textLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"routename"];
-	cell.subtextLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"plate"];
+	cell.subtextLabel.text = [NSString stringWithFormat:@"%@ is %.0fm away (%ikm/h)", [bus busPlate], [stopLocation getDistanceFrom:busLocation], [bus speed]];
 	if ([[arrivals objectAtIndex:indexPath.row] valueForKey:@"err"]) {
 		cell.detailLabel.text = @"";
 		cell.subtextLabel.text = @"Off Service";
@@ -148,6 +164,7 @@
 		cell.detailLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"eta"];		
 	}
 	
+	[busLocation release];
 		
     return cell;
 }

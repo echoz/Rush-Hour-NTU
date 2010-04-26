@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "JONTUBusEngine.h"
+#import "JONTUBus.h"
 #import "BusETACell.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface BusStopViewController : UITableViewController {
 	NSUInteger busstopid;
 	JONTUBusStop *stop;
 	NSArray *arrivals;
+	CLLocation *stopLocation;
 	
 	IBOutlet UIBarButtonItem *refreshETA;
 	
@@ -21,7 +24,7 @@
 }
 
 @property (nonatomic, assign) IBOutlet BusETACell *etaCell;
-
+@property (readonly) CLLocation *stopLocation;
 @property (readwrite) NSUInteger busstopid;
 -(IBAction)refreshETA;
 @end
