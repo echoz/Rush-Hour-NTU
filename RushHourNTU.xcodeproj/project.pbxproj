@@ -28,12 +28,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		000EF1BB118574C10070B458 /* BusETACell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusETACell.h; sourceTree = "<group>"; };
-		000EF1BC118574C10070B458 /* BusETACell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusETACell.m; sourceTree = "<group>"; };
-		000EF206118578DC0070B458 /* BusETACell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusETACell.xib; sourceTree = "<group>"; };
-		0064105511852C7200D0F9E8 /* BusStopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopViewController.h; sourceTree = "<group>"; };
-		0064105611852C7200D0F9E8 /* BusStopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopViewController.m; sourceTree = "<group>"; };
-		0064105711852C7200D0F9E8 /* BusStopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusStopViewController.xib; sourceTree = "<group>"; };
+		000EF1BB118574C10070B458 /* BusETACell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusETACell.h; path = BusStopView/BusETACell.h; sourceTree = SOURCE_ROOT; };
+		000EF1BC118574C10070B458 /* BusETACell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusETACell.m; path = BusStopView/BusETACell.m; sourceTree = SOURCE_ROOT; };
+		000EF206118578DC0070B458 /* BusETACell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BusETACell.xib; path = BusStopView/BusETACell.xib; sourceTree = SOURCE_ROOT; };
+		0064105511852C7200D0F9E8 /* BusStopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusStopViewController.h; path = BusStopView/BusStopViewController.h; sourceTree = SOURCE_ROOT; };
+		0064105611852C7200D0F9E8 /* BusStopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusStopViewController.m; path = BusStopView/BusStopViewController.m; sourceTree = SOURCE_ROOT; };
+		0064105711852C7200D0F9E8 /* BusStopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BusStopViewController.xib; path = BusStopView/BusStopViewController.xib; sourceTree = SOURCE_ROOT; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* RushHourNTUAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RushHourNTUAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* RushHourNTUAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RushHourNTUAppDelegate.m; sourceTree = "<group>"; };
@@ -42,9 +42,9 @@
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* RushHourNTU_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RushHourNTU_Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RootViewController.xib; path = ../RootViewController.xib; sourceTree = "<group>"; };
+		28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = RootView/RootViewController.h; sourceTree = SOURCE_ROOT; };
+		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = RootView/RootViewController.m; sourceTree = SOURCE_ROOT; };
+		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RootViewController.xib; path = RootView/RootViewController.xib; sourceTree = SOURCE_ROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3F00E82511849EF500339848 /* JONTUBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JONTUBus.h; path = JONTUBusCore/JONTUBusCore/JONTUBus.h; sourceTree = SOURCE_ROOT; };
 		3F00E82611849EF500339848 /* JONTUBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JONTUBus.m; path = JONTUBusCore/JONTUBusCore/JONTUBus.m; sourceTree = SOURCE_ROOT; };
@@ -77,6 +77,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		000EF22311857B230070B458 /* RootView */ = {
+			isa = PBXGroup;
+			children = (
+				28F335F01007B36200424DE2 /* RootViewController.xib */,
+				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
+				28C286E00D94DF7D0034E888 /* RootViewController.m */,
+			);
+			path = RootView;
+			sourceTree = SOURCE_ROOT;
+		};
 		0064105411852C6100D0F9E8 /* BusStopView */ = {
 			isa = PBXGroup;
 			children = (
@@ -87,15 +97,12 @@
 				000EF1BC118574C10070B458 /* BusETACell.m */,
 				000EF206118578DC0070B458 /* BusETACell.xib */,
 			);
-			name = BusStopView;
-			sourceTree = "<group>";
+			path = BusStopView;
+			sourceTree = SOURCE_ROOT;
 		};
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				28F335F01007B36200424DE2 /* RootViewController.xib */,
-				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
-				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* RushHourNTUAppDelegate.h */,
 				1D3623250D0F684500981E51 /* RushHourNTUAppDelegate.m */,
 			);
@@ -113,6 +120,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				000EF22311857B230070B458 /* RootView */,
 				0064105411852C6100D0F9E8 /* BusStopView */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
