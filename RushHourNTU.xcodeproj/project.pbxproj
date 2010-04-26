@@ -27,6 +27,10 @@
 		3F00E83511849EF500339848 /* JONTUBusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F00E82C11849EF500339848 /* JONTUBusStop.m */; };
 		3F00E83611849EF500339848 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F00E83011849EF500339848 /* RegexKitLite.m */; };
 		3F98A7B21184912C00877969 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F98A7B11184912C00877969 /* libicucore.dylib */; };
+		3FA589931185B349009A3D66 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA589921185B349009A3D66 /* CoreLocation.framework */; };
+		3FA58A851185D732009A3D66 /* JONTUBusStop+location.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA58A841185D732009A3D66 /* JONTUBusStop+location.m */; };
+		3FA58AF61185E1D3009A3D66 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA58AF51185E1D3009A3D66 /* LocationManager.m */; };
+		3FF6C61D1185E74300C33707 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FF6C61C1185E74300C33707 /* Entitlements.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +68,12 @@
 		3F00E83011849EF500339848 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = JONTUBusCore/JONTUBusCore/RegexKitLite/RegexKitLite.m; sourceTree = SOURCE_ROOT; };
 		3F00E83111849EF500339848 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SynthesizeSingleton.h; path = JONTUBusCore/JONTUBusCore/SynthesizeSingleton.h; sourceTree = SOURCE_ROOT; };
 		3F98A7B11184912C00877969 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		3FA589921185B349009A3D66 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3FA58A831185D732009A3D66 /* JONTUBusStop+location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JONTUBusStop+location.h"; sourceTree = "<group>"; };
+		3FA58A841185D732009A3D66 /* JONTUBusStop+location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JONTUBusStop+location.m"; sourceTree = "<group>"; };
+		3FA58AF41185E1D3009A3D66 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		3FA58AF51185E1D3009A3D66 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		3FF6C61C1185E74300C33707 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* RushHourNTU-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RushHourNTU-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +86,7 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				3F98A7B21184912C00877969 /* libicucore.dylib in Frameworks */,
+				3FA589931185B349009A3D66 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +123,10 @@
 				1D3623250D0F684500981E51 /* RushHourNTUAppDelegate.m */,
 				000EF28B118582060070B458 /* NSString+htmlentitiesaddition.h */,
 				000EF28C118582060070B458 /* NSString+htmlentitiesaddition.m */,
+				3FA58A831185D732009A3D66 /* JONTUBusStop+location.h */,
+				3FA58A841185D732009A3D66 /* JONTUBusStop+location.m */,
+				3FA58AF41185E1D3009A3D66 /* LocationManager.h */,
+				3FA58AF51185E1D3009A3D66 /* LocationManager.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -154,6 +169,7 @@
 				0047DBDB1185923800856AAF /* map-marker.png */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* RushHourNTU-Info.plist */,
+				3FF6C61C1185E74300C33707 /* Entitlements.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -165,6 +181,7 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				3F98A7B11184912C00877969 /* libicucore.dylib */,
+				3FA589921185B349009A3D66 /* CoreLocation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -251,6 +268,7 @@
 				0064105911852C7200D0F9E8 /* BusStopViewController.xib in Resources */,
 				000EF207118578DC0070B458 /* BusETACell.xib in Resources */,
 				0047DBDC1185923800856AAF /* map-marker.png in Resources */,
+				3FF6C61D1185E74300C33707 /* Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +290,8 @@
 				0064105811852C7200D0F9E8 /* BusStopViewController.m in Sources */,
 				000EF1BD118574C10070B458 /* BusETACell.m in Sources */,
 				000EF28D118582060070B458 /* NSString+htmlentitiesaddition.m in Sources */,
+				3FA58A851185D732009A3D66 /* JONTUBusStop+location.m in Sources */,
+				3FA58AF61185E1D3009A3D66 /* LocationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,12 +331,13 @@
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
@@ -325,13 +346,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jeremy Foo";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F8547584-B034-4AAD-978C-EFC680BE1EB0";
 				SDKROOT = iphoneos3.0;
 			};
 			name = Release;

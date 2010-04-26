@@ -10,10 +10,12 @@
 #import "JONTUBusEngine.h"
 #import "BusStopViewController.h"
 #import "NSString+htmlentitiesaddition.h"
+#import "JONTUBusStop+location.h"
+#import "LocationManager.h"
 
 @implementation RootViewController
 
-@synthesize currentLocation, savedSearchTerm, filteredContent, searchWasActive;
+@synthesize currentLocation, savedSearchTerm, filteredContent, searchWasActive, activity, actualContent;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -21,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
+
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -29,7 +31,6 @@
 	self.toolbarItems = [NSArray arrayWithObject:currentLocation];
 	self.navigationController.hidesBottomBarWhenPushed = YES;
 
-	self.filteredContent = [NSMutableArray arrayWithCapacity:[[engine stops] count]];	
 	
 	if (self.savedSearchTerm) {
 		[self.searchDisplayController setActive:self.searchWasActive];
@@ -37,18 +38,62 @@
 		
 		self.savedSearchTerm = nil;
 	}
-	[self.tableView reloadData];
 	self.tableView.scrollEnabled = YES;
+	
+	LocationManager *manager = [LocationManager sharedLocationManager];
+	
+	[manager.manager dismissHeadingCalibrationDisplay];
+	[manager.manager setDelegate:self];
+	[manager.manager setDesiredAccuracy:kCLLocationAccuracyBest];
+	
+	[self freshen];
+}
+
+-(void)freshen {
+	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];	
+	self.filteredContent = [NSMutableArray arrayWithCapacity:[[engine stops] count]];	
+	self.actualContent = [[engine stops] mutableCopy];
+	[self.tableView reloadData];
 }
 
 -(IBAction)useLocation {
+	[currentLocation setStyle:UIBarButtonItemStyleDone];
+	[currentLocation setAction:@selector(stopLocation)];
+	
+	LocationManager *manager = [LocationManager sharedLocationManager];	
+	[manager.manager startUpdatingLocation];
+}
+
+-(void)stopLocation {
+	[currentLocation setStyle:UIBarButtonItemStyleBordered];
+	[currentLocation setAction:@selector(useLocation)];
+	
+	LocationManager *manager = [LocationManager sharedLocationManager];	
+	[manager.manager stopUpdatingLocation];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    NSDate* eventDate = newLocation.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (abs(howRecent) < 5.0)
+    {
+        printf("latitude %+.6f, longitude %+.6f\n",
+			   newLocation.coordinate.latitude,
+			   newLocation.coordinate.longitude);
+		self.actualContent = [[actualContent sortedArrayUsingSelector:@selector(compareLocation:)] mutableCopy];
+		[self.tableView reloadData];
+
+    }
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
 	
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	self.navigationController.toolbarHidden = YES;
+	self.navigationController.toolbarHidden = NO;
 
 }
 
@@ -88,14 +133,12 @@
     return 1;
 }
 
-
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (tableView == self.searchDisplayController.searchResultsTableView) {
 		return [self.filteredContent count];
 	} else {		
-		JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
-		return [[engine stops] count];
+		return [actualContent count];
 		
 	}
 }
@@ -105,8 +148,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
-	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
-    
+	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
@@ -118,9 +160,9 @@
 		cell.tag = [[self.filteredContent objectAtIndex:indexPath.row] busstopid];
 		
 	} else {
-		cell.textLabel.text = [[[[engine stops] objectAtIndex:indexPath.row] desc] removeHTMLEntities];
-		cell.detailTextLabel.text = [[[engine stops] objectAtIndex:indexPath.row] roadName];
-		cell.tag = [[[engine stops] objectAtIndex:indexPath.row] busstopid];
+		cell.textLabel.text = [[[actualContent objectAtIndex:indexPath.row] desc] removeHTMLEntities];
+		cell.detailTextLabel.text = [[actualContent objectAtIndex:indexPath.row] roadName];
+		cell.tag = [[actualContent objectAtIndex:indexPath.row] busstopid];
 		
 	}
     
@@ -191,9 +233,7 @@
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
 	[self.filteredContent removeAllObjects];
 	
-	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
-	
-	for (JONTUBusStop *stop in [engine stops]) {
+	for (JONTUBusStop *stop in actualContent) {
 		NSComparisonResult coderesult = [stop.code compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
 		NSComparisonResult descresult = [stop.desc compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
 		NSComparisonResult roadnameresult = [stop.roadName compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
@@ -246,6 +286,9 @@
 
 
 - (void)dealloc {
+	[actualContent release];
+	[activity release];
+	[savedSearchTerm release];
 	[filteredContent release];
 	[currentLocation release];
     [super dealloc];
