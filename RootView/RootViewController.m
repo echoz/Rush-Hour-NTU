@@ -8,11 +8,12 @@
 
 #import "RootViewController.h"
 #import "JONTUBusEngine.h"
-
 #import "BusStopViewController.h"
+#import "NSString+htmlentitiesaddition.h"
 
 @implementation RootViewController
 
+@synthesize currentLocation;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -22,14 +23,23 @@
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-	self.title = @"Stops";
+	self.title = @"Rush Hour NTU";
+	self.toolbarItems = [NSArray arrayWithObject:currentLocation];
+	self.navigationController.hidesBottomBarWhenPushed = YES;
+
 }
 
-/*
+-(IBAction)useLocation {
+	
+}
+
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	self.navigationController.toolbarHidden = YES;
+
 }
-*/
+
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -83,7 +93,7 @@
     }
     
 	// Configure the cell.
-	cell.textLabel.text = [[[engine stops] objectAtIndex:indexPath.row] desc];
+	cell.textLabel.text = [[[[engine stops] objectAtIndex:indexPath.row] desc] removeHTMLEntities];
 	cell.detailTextLabel.text = [[[engine stops] objectAtIndex:indexPath.row] roadName];
 	cell.tag = [[[engine stops] objectAtIndex:indexPath.row] busstopid];
 

@@ -33,16 +33,16 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
 	self.navigationItem.rightBarButtonItem = refreshETA;
-	self.navigationController.toolbarHidden = NO;
 	self.title = [stop code];
 	
 }
 
-/*
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	self.navigationController.toolbarHidden = YES;
+
+	
 }
-*/
 
 -(IBAction)refreshETA {
 	arrivals = [stop arrivals];
@@ -141,7 +141,9 @@
 	cell.textLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"routename"];
 	cell.subtextLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"plate"];
 	if ([[arrivals objectAtIndex:indexPath.row] valueForKey:@"err"]) {
-		cell.detailLabel.text = @"Off Service";
+		cell.detailLabel.text = @"";
+		cell.subtextLabel.text = @"Off Service";
+	
 	} else {
 		cell.detailLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"eta"];		
 	}

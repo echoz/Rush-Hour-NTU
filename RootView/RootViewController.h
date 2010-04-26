@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface RootViewController : UITableViewController {
+	UIBarButtonItem *currentLocation;
 }
+
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *currentLocation;
+
+-(IBAction)useLocation;
 
 @end
