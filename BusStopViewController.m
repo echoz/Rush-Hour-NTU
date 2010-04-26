@@ -8,10 +8,9 @@
 
 #import "BusStopViewController.h"
 
-
 @implementation BusStopViewController
 
-@synthesize busstopid;
+@synthesize busstopid, etaCell;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -33,7 +32,10 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
+	self.navigationItem.rightBarButtonItem = refreshETA;
+	self.navigationController.toolbarHidden = NO;
 	self.title = [stop code];
+	
 }
 
 /*
@@ -42,10 +44,15 @@
 }
 */
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+-(IBAction)refreshETA {
 	arrivals = [stop arrivals];
 	[self.tableView reloadData];
+	
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+	[self refreshETA];
 }
 
 /*
@@ -89,31 +96,59 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [arrivals count];;
+    return [arrivals count];
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return 60;
+}
 
+/*
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"cell";
+
+    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
-    
+	
     // Set up the cell...
 	cell.textLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"routename"];
 	if ([[arrivals objectAtIndex:indexPath.row] valueForKey:@"err"]) {
-		cell.detailTextLabel.text = @"Not in service";
+		cell.detailTextLabel.text = @"Off Service";
 	} else {
 		cell.detailTextLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"eta"];		
 	}
 	
+	[cell setNeedsDisplay];
+	
     return cell;
 }
+*/
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *MyIdentifier = @"cell";
+	
+    BusETACell *cell = (BusETACell *)[tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    if (cell == nil) {
+		[[NSBundle mainBundle] loadNibNamed:@"BusETACell" owner:self options:nil];
+		cell = etaCell;
+		self.etaCell = nil;
+    }
+	
+	cell.textLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"routename"];
+	cell.subtextLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"plate"];
+	if ([[arrivals objectAtIndex:indexPath.row] valueForKey:@"err"]) {
+		cell.detailLabel.text = @"Off Service";
+	} else {
+		cell.detailLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"eta"];		
+	}
+	
+		
+    return cell;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.

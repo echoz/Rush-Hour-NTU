@@ -79,11 +79,12 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
 	// Configure the cell.
 	cell.textLabel.text = [[[engine stops] objectAtIndex:indexPath.row] desc];
+	cell.detailTextLabel.text = [[[engine stops] objectAtIndex:indexPath.row] roadName];
 	cell.tag = [[[engine stops] objectAtIndex:indexPath.row] busstopid];
 
     return cell;

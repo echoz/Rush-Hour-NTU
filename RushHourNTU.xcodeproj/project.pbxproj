@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000EF1BD118574C10070B458 /* BusETACell.m in Sources */ = {isa = PBXBuildFile; fileRef = 000EF1BC118574C10070B458 /* BusETACell.m */; };
+		000EF207118578DC0070B458 /* BusETACell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 000EF206118578DC0070B458 /* BusETACell.xib */; };
 		0064105811852C7200D0F9E8 /* BusStopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0064105611852C7200D0F9E8 /* BusStopViewController.m */; };
 		0064105911852C7200D0F9E8 /* BusStopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0064105711852C7200D0F9E8 /* BusStopViewController.xib */; };
 		1D3623260D0F684500981E51 /* RushHourNTUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* RushHourNTUAppDelegate.m */; };
@@ -26,6 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		000EF1BB118574C10070B458 /* BusETACell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusETACell.h; sourceTree = "<group>"; };
+		000EF1BC118574C10070B458 /* BusETACell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusETACell.m; sourceTree = "<group>"; };
+		000EF206118578DC0070B458 /* BusETACell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusETACell.xib; sourceTree = "<group>"; };
 		0064105511852C7200D0F9E8 /* BusStopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopViewController.h; sourceTree = "<group>"; };
 		0064105611852C7200D0F9E8 /* BusStopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopViewController.m; sourceTree = "<group>"; };
 		0064105711852C7200D0F9E8 /* BusStopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusStopViewController.xib; sourceTree = "<group>"; };
@@ -78,6 +83,9 @@
 				0064105511852C7200D0F9E8 /* BusStopViewController.h */,
 				0064105611852C7200D0F9E8 /* BusStopViewController.m */,
 				0064105711852C7200D0F9E8 /* BusStopViewController.xib */,
+				000EF1BB118574C10070B458 /* BusETACell.h */,
+				000EF1BC118574C10070B458 /* BusETACell.m */,
+				000EF206118578DC0070B458 /* BusETACell.xib */,
 			);
 			name = BusStopView;
 			sourceTree = "<group>";
@@ -225,6 +233,7 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				28F335F11007B36200424DE2 /* RootViewController.xib in Resources */,
 				0064105911852C7200D0F9E8 /* BusStopViewController.xib in Resources */,
+				000EF207118578DC0070B458 /* BusETACell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +253,7 @@
 				3F00E83511849EF500339848 /* JONTUBusStop.m in Sources */,
 				3F00E83611849EF500339848 /* RegexKitLite.m in Sources */,
 				0064105811852C7200D0F9E8 /* BusStopViewController.m in Sources */,
+				000EF1BD118574C10070B458 /* BusETACell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

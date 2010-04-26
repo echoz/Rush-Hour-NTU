@@ -10,7 +10,7 @@
 #import "RootViewController.h"
 #import "JONTUBusEngine.h"
 
-#define CACH_FILE @"test.dat"
+#define CACH_FILE @"JONTUBusCore.cache"
 
 @implementation RushHourNTUAppDelegate
 
