@@ -10,6 +10,7 @@
 #import "RootViewController.h"
 #import "JONTUBusEngine.h"
 
+#define CACH_FILE @"test.dat"
 
 @implementation RushHourNTUAppDelegate
 
@@ -21,10 +22,23 @@
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    // Override point for customization after app launch    
+    // Override point for customization after app launch
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+	NSString *cachePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:CACH_FILE];
+		
+	if ([[NSFileManager defaultManager] fileExistsAtPath:cachePath]) {
+		NSLog(@"Loading from cache");
+		[JONTUBusEngine loadState:cachePath];		
+	} 
+	
 	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
+	
 	[engine setHoldCache:-1];
-	[engine start];
+
+	if (![[NSFileManager defaultManager] fileExistsAtPath:cachePath]) {
+		NSLog(@"Non cache load");
+		[engine start];
+	}
 	
 	[window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
@@ -34,6 +48,12 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 	// Save data if appropriate
+	NSLog(@"Writing to cache");
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+	NSString *cachePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:CACH_FILE];
+
+	[JONTUBusEngine saveState:cachePath];
+
 }
 
 

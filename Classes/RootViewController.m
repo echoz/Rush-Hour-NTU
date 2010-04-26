@@ -9,20 +9,21 @@
 #import "RootViewController.h"
 #import "JONTUBusEngine.h"
 
+#import "BusStopViewController.h"
+
 @implementation RootViewController
 
 
 #pragma mark -
 #pragma mark View lifecycle
 
-/*
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	self.title = @"Stops";
 }
-*/
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -83,6 +84,7 @@
     
 	// Configure the cell.
 	cell.textLabel.text = [[[engine stops] objectAtIndex:indexPath.row] desc];
+	cell.tag = [[[engine stops] objectAtIndex:indexPath.row] busstopid];
 
     return cell;
 }
@@ -133,13 +135,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
+	BusStopViewController *detailViewController = [[BusStopViewController alloc] initWithNibName:@"BusStopViewController" bundle:nil];
+	// ...
+	// Pass the selected object to the new view controller.
+	detailViewController.busstopid = [[tableView cellForRowAtIndexPath:indexPath] tag];
+	
+	[self.navigationController pushViewController:detailViewController animated:YES];
+	[detailViewController release];
 }
 
 
