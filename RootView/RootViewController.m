@@ -13,13 +13,15 @@
 
 @implementation RootViewController
 
-@synthesize currentLocation;
+@synthesize currentLocation, savedSearchTerm, filteredContent, searchWasActive;
 
 #pragma mark -
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -27,6 +29,16 @@
 	self.toolbarItems = [NSArray arrayWithObject:currentLocation];
 	self.navigationController.hidesBottomBarWhenPushed = YES;
 
+	self.filteredContent = [NSMutableArray arrayWithCapacity:[[engine stops] count]];	
+	
+	if (self.savedSearchTerm) {
+		[self.searchDisplayController setActive:self.searchWasActive];
+		[self.searchDisplayController.searchBar setText:savedSearchTerm];
+		
+		self.savedSearchTerm = nil;
+	}
+	[self.tableView reloadData];
+	self.tableView.scrollEnabled = YES;
 }
 
 -(IBAction)useLocation {
@@ -50,11 +62,14 @@
 	[super viewWillDisappear:animated];
 }
 */
-/*
+
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
+	self.searchWasActive = [self.searchDisplayController isActive];
+	self.savedSearchTerm = [self.searchDisplayController.searchBar text];
+	
 }
-*/
+
 
 /*
  // Override to allow orientations other than the default portrait orientation.
@@ -76,8 +91,13 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
-    return [[engine stops] count];
+	if (tableView == self.searchDisplayController.searchResultsTableView) {
+		return [self.filteredContent count];
+	} else {		
+		JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
+		return [[engine stops] count];
+		
+	}
 }
 
 
@@ -91,11 +111,20 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
+	
+	if (tableView == self.searchDisplayController.searchResultsTableView) {
+		cell.textLabel.text = [[[self.filteredContent objectAtIndex:indexPath.row] desc] removeHTMLEntities];
+		cell.detailTextLabel.text = [[self.filteredContent objectAtIndex:indexPath.row] roadName];
+		cell.tag = [[self.filteredContent objectAtIndex:indexPath.row] busstopid];
+		
+	} else {
+		cell.textLabel.text = [[[[engine stops] objectAtIndex:indexPath.row] desc] removeHTMLEntities];
+		cell.detailTextLabel.text = [[[engine stops] objectAtIndex:indexPath.row] roadName];
+		cell.tag = [[[engine stops] objectAtIndex:indexPath.row] busstopid];
+		
+	}
     
 	// Configure the cell.
-	cell.textLabel.text = [[[[engine stops] objectAtIndex:indexPath.row] desc] removeHTMLEntities];
-	cell.detailTextLabel.text = [[[engine stops] objectAtIndex:indexPath.row] roadName];
-	cell.tag = [[[engine stops] objectAtIndex:indexPath.row] busstopid];
 
     return cell;
 }
@@ -151,9 +180,51 @@
 	// Pass the selected object to the new view controller.
 	detailViewController.busstopid = [[tableView cellForRowAtIndexPath:indexPath] tag];
 	
+	
 	[self.navigationController pushViewController:detailViewController animated:YES];
 	[detailViewController release];
 }
+
+#pragma mark -
+#pragma mark Content Filtering
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
+	[self.filteredContent removeAllObjects];
+	
+	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
+	
+	for (JONTUBusStop *stop in [engine stops]) {
+		NSComparisonResult coderesult = [stop.code compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
+		NSComparisonResult descresult = [stop.desc compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
+		NSComparisonResult roadnameresult = [stop.roadName compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
+	
+		if ((coderesult == NSOrderedSame) || (descresult == NSOrderedSame) || (roadnameresult == NSOrderedSame))
+		{
+			[self.filteredContent addObject:stop];
+		}
+		
+	}
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString scope:
+	 [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    [self filterContentForSearchText:[self.searchDisplayController.searchBar text] scope:
+	 [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
+    
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
 
 
 #pragma mark -
@@ -169,10 +240,14 @@
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+	self.filteredContent = nil;
+	
 }
 
 
 - (void)dealloc {
+	[filteredContent release];
+	[currentLocation release];
     [super dealloc];
 }
 
