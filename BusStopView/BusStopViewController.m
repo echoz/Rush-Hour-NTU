@@ -27,6 +27,8 @@
 	
 	stop = [[engine stopForId:self.busstopid] retain];
 	stopLocation = [[CLLocation alloc] initWithLatitude:[[stop lat] doubleValue] longitude:[[stop lon] doubleValue]];
+	
+	irisArrivals = [[NSMutableArray arrayWithCapacity:[[stop otherBus] count]] retain];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -44,14 +46,21 @@
     [super viewWillAppear:animated];
 	self.navigationController.toolbarHidden = YES;
 
-	
-	
 }
 
 -(IBAction)refreshETA {
 	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
 	[engine busesWithRefresh:YES];
 	arrivals = [stop arrivals];
+	[irisArrivals removeAllObjects];
+	NSDictionary *irisQueryResult;
+	
+	for (int i=0;i<[[stop otherBus] count];i++) {
+		irisQueryResult = [stop irisQueryForService:[[stop otherBus] objectAtIndex:i]];
+		[irisArrivals addObject:irisQueryResult];
+	}
+	
+	
 	[self.tableView reloadData];
 	
 }
@@ -110,7 +119,9 @@
 		case 0:
 			return [arrivals count];
 		case 1:
-			return [[stop otherBus] count];
+			if ([irisArrivals count] > 0) {
+				return [[stop otherBus] count];				
+			}
 	}
 	return 0;
 }
@@ -186,10 +197,10 @@
 		}
 		
 		[busLocation release];
-	} else {
+	} else if (indexPath.section == 1) {
 		cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
-		cell.subtextLabel.text = @"";
-		cell.detailLabel.text = @"";
+		cell.subtextLabel.text = [NSString stringWithFormat:@"%@ for next bus", [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"subsequent"]];
+		cell.detailLabel.text = [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"eta"];
 	}
 		
     return cell;
@@ -244,7 +255,12 @@
 
 
 - (void)dealloc {
+	[irisArrivals release];
 	[stop release];
+	[arrivals release];
+	[stopLocation release];
+	[refreshETA release];
+	[etaCell release];
     [super dealloc];
 }
 

@@ -16,6 +16,7 @@
 	NSUInteger busstopid;
 	JONTUBusStop *stop;
 	NSArray *arrivals;
+	NSMutableArray *irisArrivals;
 	CLLocation *stopLocation;
 	
 	IBOutlet UIBarButtonItem *refreshETA;

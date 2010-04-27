@@ -46,6 +46,8 @@
 	[manager.manager setDelegate:self];
 	[manager.manager setDesiredAccuracy:kCLLocationAccuracyBest];
 	
+	proximitySort = NO;
+	
 	[self freshen];
 }
 
@@ -62,6 +64,7 @@
 	
 	LocationManager *manager = [LocationManager sharedLocationManager];	
 	[manager.manager startUpdatingLocation];
+	proximitySort = YES;
 }
 
 -(void)stopLocation {
@@ -70,6 +73,7 @@
 	
 	LocationManager *manager = [LocationManager sharedLocationManager];	
 	[manager.manager stopUpdatingLocation];
+	proximitySort = NO;
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
@@ -143,6 +147,9 @@
 	}
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return 55;
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -161,7 +168,19 @@
 		
 	} else {
 		cell.textLabel.text = [[[actualContent objectAtIndex:indexPath.row] desc] removeHTMLEntities];
-		cell.detailTextLabel.text = [[actualContent objectAtIndex:indexPath.row] roadName];
+		
+		if (proximitySort) {
+			CLLocation *stopLocation = [[CLLocation alloc] initWithLatitude:[[[actualContent objectAtIndex:indexPath.row] lat] doubleValue] longitude:[[[actualContent objectAtIndex:indexPath.row] lon] doubleValue]];
+			CLLocationDegrees dist = [[[[LocationManager sharedLocationManager] manager] location] getDistanceFrom:stopLocation];
+			
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"%.fm away", dist];
+			[stopLocation release];
+			
+		} else {
+			cell.detailTextLabel.text = [[actualContent objectAtIndex:indexPath.row] roadName];
+			
+		}
+				
 		cell.tag = [[actualContent objectAtIndex:indexPath.row] busstopid];
 		
 	}

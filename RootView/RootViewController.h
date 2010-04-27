@@ -18,6 +18,8 @@
 	NSString *savedSearchTerm;
 	BOOL searchWasActive;
 	
+	BOOL proximitySort;
+	
 }
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *currentLocation;
