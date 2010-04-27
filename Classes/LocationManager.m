@@ -18,7 +18,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LocationManager);
 -(id)init {
 	if (self = [super init]) {
 		manager = [[CLLocationManager alloc] init];
-		NSLog(@"INIT");
 	}
 	return self;
 }

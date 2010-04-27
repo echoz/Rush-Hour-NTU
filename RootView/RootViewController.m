@@ -82,19 +82,32 @@
 }
 
 -(IBAction)refreshTheCache {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Refresh" 
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Refresh Cache" 
 													message:@"Are you sure you want to refresh the cache?" 
 												   delegate:self 
 										  cancelButtonTitle:@"No"
 										  otherButtonTitles:@"Yes",nil];
+	[alert setDelegate:self];
 	[alert show];
-	
 	[alert release];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if ((alertView.title = @"Refresh Cache") && ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Yes"])) {
+		NSLog(@"Refreshing Cache");
+		[[JONTUBusEngine sharedJONTUBusEngine] setHoldCache:20];
+		CacheOperation *fillCache = [[CacheOperation alloc] initWithDelegate:self];
+		[self.workQueue addOperation:fillCache];
+		[fillCache release];
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+		
+	}
 }
 
 -(void)engineStarted {
 	NSLog(@"Fill Cache complete");
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	[[JONTUBusEngine sharedJONTUBusEngine] setHoldCache:-1];	
 	[self freshen];
 }
 

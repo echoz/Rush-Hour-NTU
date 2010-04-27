@@ -52,7 +52,6 @@
 -(void)gotArrivals:(id)object {
 	[arrivals release];
 	arrivals = [object retain];
-	NSLog(@"%i",[[workQueue operations] count]);
 	if ([[workQueue operations] count] == 1) {
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	}
@@ -62,8 +61,6 @@
 
 -(void)gotIrisResult:(id)object {
 	[irisArrivals addObject:object];
-	NSLog(@"%i",[[workQueue operations] count]);
-
 	if ([[workQueue operations] count] == 1) {
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	}
