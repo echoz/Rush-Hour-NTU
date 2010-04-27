@@ -79,7 +79,7 @@
 								<string key="IBUIText">Label</string>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">12</double>
+									<double key="NSSize">13</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<object class="NSColor" key="IBUITextColor">
@@ -197,9 +197,9 @@
 						<reference key="object" ref="187394588"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="260515972"/>
 							<reference ref="421821880"/>
 							<reference ref="179277475"/>
+							<reference ref="260515972"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -238,7 +238,7 @@
 					<string>BusStopViewController</string>
 					<string>UIResponder</string>
 					<string>BusETACell</string>
-					<string>{{329, 573}, {320, 60}}</string>
+					<string>{{329, 574}, {320, 60}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
