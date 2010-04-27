@@ -56,7 +56,7 @@
 								<string key="IBUIText">Label</string>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">16</double>
+									<double key="NSSize">18</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<object class="NSColor" key="IBUITextColor">
@@ -78,8 +78,8 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText">Label</string>
 								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">13</double>
+									<string key="NSName">Helvetica</string>
+									<double key="NSSize">14</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<object class="NSColor" key="IBUITextColor">
@@ -105,6 +105,10 @@
 									<bytes key="NSRGB">MC4yODgwNDM0NzgzIDAuMjg4MDQzNDc4MyAwLjI4ODA0MzQ3ODMAA</bytes>
 								</object>
 								<nil key="IBUIHighlightedColor"/>
+								<object class="NSColor" key="IBUIShadowColor">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MCAwAA</bytes>
+								</object>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">13</float>
 								<int key="IBUITextAlignment">2</int>
@@ -198,8 +202,8 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="421821880"/>
-							<reference ref="179277475"/>
 							<reference ref="260515972"/>
+							<reference ref="179277475"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>

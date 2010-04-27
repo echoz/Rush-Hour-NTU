@@ -200,7 +200,7 @@
 		CLLocation *busLocation = [[CLLocation alloc] initWithLatitude:[[bus lat] doubleValue] longitude:[[bus lon] doubleValue]];
 		
 		cell.textLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"routename"];
-		cell.subtextLabel.text = [NSString stringWithFormat:@"%@ is %.0fm away (%ikm/h)", [bus busPlate], [stopLocation getDistanceFrom:busLocation], [bus speed]];
+		cell.subtextLabel.text = [NSString stringWithFormat:@"%.0fm away (%ikm/h): %@", [stopLocation getDistanceFrom:busLocation], [bus speed], [bus busPlate]];
 		if ([[arrivals objectAtIndex:indexPath.row] valueForKey:@"err"]) {
 			cell.detailLabel.text = @"";
 			cell.subtextLabel.text = @"Off Service";
@@ -221,7 +221,7 @@
 		} else {
 			NSLog(@"%@", [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"service"]);
 			cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
-			cell.subtextLabel.text = [NSString stringWithFormat:@"%@ for next bus", [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"subsequent"]];
+			cell.subtextLabel.text = [NSString stringWithFormat:@"Next bus: %@", [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"subsequent"]];
 			cell.detailLabel.text = [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"eta"];
 			
 		}
