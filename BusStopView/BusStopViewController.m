@@ -96,13 +96,23 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+	if ([[stop otherBus] count] > 0) {
+		return 2;		
+	} else {
+		return 1;
+	}
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [arrivals count];
+	switch (section) {
+		case 0:
+			return [arrivals count];
+		case 1:
+			return [[stop otherBus] count];
+	}
+	return 0;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -110,7 +120,15 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	return @"Arrivals";
+	if ([[stop otherBus] count] > 0) {
+		switch (section) {
+			case 0:
+				return @"Internal Shuttle";
+			case 1:
+				return @"Public Transport";
+		}
+	}
+	return @"Internal Shuttle";
 }
 
 
@@ -148,23 +166,31 @@
 		cell = etaCell;
 		self.etaCell = nil;
     }
-
-	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
-	JONTUBus *bus = [engine busForPlate:[[arrivals objectAtIndex:indexPath.row] valueForKey:@"plate"]];
 	
-	CLLocation *busLocation = [[CLLocation alloc] initWithLatitude:[[bus lat] doubleValue] longitude:[[bus lon] doubleValue]];
 	
-	cell.textLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"routename"];
-	cell.subtextLabel.text = [NSString stringWithFormat:@"%@ is %.0fm away (%ikm/h)", [bus busPlate], [stopLocation getDistanceFrom:busLocation], [bus speed]];
-	if ([[arrivals objectAtIndex:indexPath.row] valueForKey:@"err"]) {
-		cell.detailLabel.text = @"";
-		cell.subtextLabel.text = @"Off Service";
-	
+	if (indexPath.section == 0) {
+		
+		JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
+		JONTUBus *bus = [engine busForPlate:[[arrivals objectAtIndex:indexPath.row] valueForKey:@"plate"]];
+		
+		CLLocation *busLocation = [[CLLocation alloc] initWithLatitude:[[bus lat] doubleValue] longitude:[[bus lon] doubleValue]];
+		
+		cell.textLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"routename"];
+		cell.subtextLabel.text = [NSString stringWithFormat:@"%@ is %.0fm away (%ikm/h)", [bus busPlate], [stopLocation getDistanceFrom:busLocation], [bus speed]];
+		if ([[arrivals objectAtIndex:indexPath.row] valueForKey:@"err"]) {
+			cell.detailLabel.text = @"";
+			cell.subtextLabel.text = @"Off Service";
+		
+		} else {
+			cell.detailLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"eta"];		
+		}
+		
+		[busLocation release];
 	} else {
-		cell.detailLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"eta"];		
+		cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
+		cell.subtextLabel.text = @"";
+		cell.detailLabel.text = @"";
 	}
-	
-	[busLocation release];
 		
     return cell;
 }
