@@ -251,7 +251,7 @@
 		cell.contentView.backgroundColor = [UIColor clearColor];
 		cell.detailTextLabel.backgroundColor = [UIColor clearColor];
 		cell.textLabel.backgroundColor = [UIColor clearColor];
-		
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 	
 	if (tableView == self.searchDisplayController.searchResultsTableView) {
