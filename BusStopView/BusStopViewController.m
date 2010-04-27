@@ -36,10 +36,6 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
 	self.navigationItem.rightBarButtonItem = refreshETA;
-	self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Stops"
-																			 style:UIBarButtonItemStyleBordered
-																			target:nil
-																			action:nil];	
 	self.title = [stop code];
 	workQueue = [[NSOperationQueue alloc] init];
 	[super viewDidLoad];
