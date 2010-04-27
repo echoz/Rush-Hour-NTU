@@ -13,6 +13,10 @@
 		0047DBDC1185923800856AAF /* map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 0047DBDB1185923800856AAF /* map-marker.png */; };
 		0064105811852C7200D0F9E8 /* BusStopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0064105611852C7200D0F9E8 /* BusStopViewController.m */; };
 		0064105911852C7200D0F9E8 /* BusStopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0064105711852C7200D0F9E8 /* BusStopViewController.xib */; };
+		00AEC6571186ADBC0083D75A /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 00AEC6561186ADBC0083D75A /* location.png */; };
+		00AEC6731186AFD90083D75A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AEC6721186AFD90083D75A /* QuartzCore.framework */; };
+		00AEC68B1186B1800083D75A /* stop-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 00AEC68A1186B1800083D75A /* stop-bg.png */; };
+		00AEC6D01186BCC50083D75A /* ArrivalsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AEC6CF1186BCC50083D75A /* ArrivalsOperation.m */; };
 		1D3623260D0F684500981E51 /* RushHourNTUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* RushHourNTUAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -43,6 +47,11 @@
 		0064105511852C7200D0F9E8 /* BusStopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusStopViewController.h; path = BusStopView/BusStopViewController.h; sourceTree = SOURCE_ROOT; };
 		0064105611852C7200D0F9E8 /* BusStopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusStopViewController.m; path = BusStopView/BusStopViewController.m; sourceTree = SOURCE_ROOT; };
 		0064105711852C7200D0F9E8 /* BusStopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BusStopViewController.xib; path = BusStopView/BusStopViewController.xib; sourceTree = SOURCE_ROOT; };
+		00AEC6561186ADBC0083D75A /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
+		00AEC6721186AFD90083D75A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		00AEC68A1186B1800083D75A /* stop-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stop-bg.png"; sourceTree = "<group>"; };
+		00AEC6CE1186BCC50083D75A /* ArrivalsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrivalsOperation.h; sourceTree = "<group>"; };
+		00AEC6CF1186BCC50083D75A /* ArrivalsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrivalsOperation.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* RushHourNTUAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RushHourNTUAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* RushHourNTUAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RushHourNTUAppDelegate.m; sourceTree = "<group>"; };
@@ -87,6 +96,7 @@
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				3F98A7B21184912C00877969 /* libicucore.dylib in Frameworks */,
 				3FA589931185B349009A3D66 /* CoreLocation.framework in Frameworks */,
+				00AEC6731186AFD90083D75A /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,9 +122,18 @@
 				000EF1BB118574C10070B458 /* BusETACell.h */,
 				000EF1BC118574C10070B458 /* BusETACell.m */,
 				000EF206118578DC0070B458 /* BusETACell.xib */,
+				00AEC6CE1186BCC50083D75A /* ArrivalsOperation.h */,
+				00AEC6CF1186BCC50083D75A /* ArrivalsOperation.m */,
 			);
 			path = BusStopView;
 			sourceTree = SOURCE_ROOT;
+		};
+		00AEC7401186C3680083D75A /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Metadata;
+			sourceTree = "<group>";
 		};
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
@@ -142,11 +161,14 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				8D1107310486CEB800E47090 /* RushHourNTU-Info.plist */,
+				3FF6C61C1185E74300C33707 /* Entitlements.plist */,
 				000EF22311857B230070B458 /* RootView */,
 				0064105411852C6100D0F9E8 /* BusStopView */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				3F00E82011849EDD00339848 /* JONTUBusCore */,
+				00AEC7401186C3680083D75A /* Metadata */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -166,12 +188,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00AEC6561186ADBC0083D75A /* location.png */,
+				00AEC68A1186B1800083D75A /* stop-bg.png */,
 				0047DBDB1185923800856AAF /* map-marker.png */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
-				8D1107310486CEB800E47090 /* RushHourNTU-Info.plist */,
-				3FF6C61C1185E74300C33707 /* Entitlements.plist */,
 			);
-			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
@@ -182,6 +204,7 @@
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				3F98A7B11184912C00877969 /* libicucore.dylib */,
 				3FA589921185B349009A3D66 /* CoreLocation.framework */,
+				00AEC6721186AFD90083D75A /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -269,6 +292,8 @@
 				000EF207118578DC0070B458 /* BusETACell.xib in Resources */,
 				0047DBDC1185923800856AAF /* map-marker.png in Resources */,
 				3FF6C61D1185E74300C33707 /* Entitlements.plist in Resources */,
+				00AEC6571186ADBC0083D75A /* location.png in Resources */,
+				00AEC68B1186B1800083D75A /* stop-bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +317,7 @@
 				000EF28D118582060070B458 /* NSString+htmlentitiesaddition.m in Sources */,
 				3FA58A851185D732009A3D66 /* JONTUBusStop+location.m in Sources */,
 				3FA58AF61185E1D3009A3D66 /* LocationManager.m in Sources */,
+				00AEC6D01186BCC50083D75A /* ArrivalsOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +360,7 @@
 				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PREBINDING = NO;
@@ -352,6 +379,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

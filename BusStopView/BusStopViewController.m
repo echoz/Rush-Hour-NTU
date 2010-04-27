@@ -7,6 +7,7 @@
 //
 
 #import "BusStopViewController.h"
+#import "ArrivalsOperation.h"
 
 @implementation BusStopViewController
 
@@ -28,6 +29,7 @@
 	stop = [[engine stopForId:self.busstopid] retain];
 	stopLocation = [[CLLocation alloc] initWithLatitude:[[stop lat] doubleValue] longitude:[[stop lon] doubleValue]];
 	
+	arrivals = nil;
 	irisArrivals = [[NSMutableArray arrayWithCapacity:[[stop otherBus] count]] retain];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -39,6 +41,7 @@
 																			target:nil
 																			action:nil];	
 	self.title = [stop code];
+	workQueue = [[NSOperationQueue alloc] init];
 	[super viewDidLoad];
 }
 
@@ -48,20 +51,31 @@
 
 }
 
+-(void)gotArrivals:(id)object {
+	[arrivals release];
+	arrivals = [object retain];
+	[self.tableView reloadData];
+}
+
+-(void)gotIrisResult:(id)object {
+	[irisArrivals addObject:object];
+	[self.tableView reloadData];
+}
+
 -(IBAction)refreshETA {
-	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
-	[engine busesWithRefresh:YES];
-	arrivals = [stop arrivals];
+	ArrivalsOperation *arrivalsop = [[ArrivalsOperation alloc] initWithStop:stop delegate:self];
+	[workQueue addOperation:arrivalsop];
+	[arrivalsop release];
+	arrivalsop = nil;
+	
 	[irisArrivals removeAllObjects];
-	NSDictionary *irisQueryResult;
 	
 	for (int i=0;i<[[stop otherBus] count];i++) {
-		irisQueryResult = [stop irisQueryForService:[[stop otherBus] objectAtIndex:i]];
-		[irisArrivals addObject:irisQueryResult];
+		arrivalsop = [[ArrivalsOperation alloc] initWithStop:stop queryIrisForSvcNumber:[[stop otherBus] objectAtIndex:i] delegate:self];
+		[workQueue addOperation:arrivalsop];
+		[arrivalsop release];
+		arrivalsop = nil;
 	}
-	
-	
-	[self.tableView reloadData];
 	
 }
 
@@ -119,7 +133,7 @@
 		case 0:
 			return [arrivals count];
 		case 1:
-			if ([irisArrivals count] > 0) {
+			if ([irisArrivals count] == [[stop otherBus] count]) {
 				return [[stop otherBus] count];				
 			}
 	}
@@ -255,6 +269,7 @@
 
 
 - (void)dealloc {
+	[workQueue release];
 	[irisArrivals release];
 	[stop release];
 	[arrivals release];

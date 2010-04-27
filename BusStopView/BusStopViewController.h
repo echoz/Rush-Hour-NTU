@@ -22,6 +22,8 @@
 	IBOutlet UIBarButtonItem *refreshETA;
 	
 	BusETACell *etaCell;
+	
+	NSOperationQueue *workQueue;
 }
 
 @property (nonatomic, assign) IBOutlet BusETACell *etaCell;

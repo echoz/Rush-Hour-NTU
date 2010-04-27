@@ -12,6 +12,7 @@
 #import "NSString+htmlentitiesaddition.h"
 #import "JONTUBusStop+location.h"
 #import "LocationManager.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation RootViewController
 
@@ -159,6 +160,16 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+		cell.imageView.image = [UIImage imageNamed:@"map-marker.png"];
+		cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stop-bg.png"]] autorelease];
+		cell.backgroundView.opaque = NO;
+		cell.contentView.opaque = NO;
+		cell.detailTextLabel.opaque = YES;
+		cell.textLabel.opaque = YES;
+		cell.contentView.backgroundColor = [UIColor clearColor];
+		cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+		cell.textLabel.backgroundColor = [UIColor clearColor];
+		
     }
 	
 	if (tableView == self.searchDisplayController.searchResultsTableView) {
@@ -185,8 +196,7 @@
 		
 	}
     
-	// Configure the cell.
-
+	// Configure the cell.	
     return cell;
 }
 
