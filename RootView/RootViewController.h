@@ -13,6 +13,7 @@
 	UIBarButtonItem *currentLocation;
 	UIBarButtonItem *refreshCache;
 	UIActivityIndicatorView *activity;
+	UILabel *lastUpdate;
 	
 	NSMutableArray *filteredContent;
 	NSMutableArray *actualContent;
@@ -21,6 +22,7 @@
 	
 	BOOL proximitySort;
 	
+	NSOperationQueue *workQueue;
 }
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *currentLocation;
@@ -31,6 +33,7 @@
 @property (nonatomic, retain) NSMutableArray *actualContent;
 @property (nonatomic, copy) NSString *savedSearchTerm;
 @property (nonatomic) BOOL searchWasActive;
+@property (nonatomic, readonly) NSOperationQueue *workQueue;
 
 -(IBAction)useLocation;
 -(IBAction)refreshTheCache;

@@ -12,14 +12,15 @@
 #import "NSString+htmlentitiesaddition.h"
 #import "JONTUBusStop+location.h"
 #import "LocationManager.h"
-#import <QuartzCore/QuartzCore.h>
+#import "CacheOperation.h"
 
 @implementation RootViewController
 
-@synthesize currentLocation, refreshCache, savedSearchTerm, filteredContent, searchWasActive, activity, actualContent;
+@synthesize currentLocation, refreshCache, savedSearchTerm, filteredContent, searchWasActive, activity, actualContent, workQueue;
 
 #pragma mark -
 #pragma mark View lifecycle
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,7 +28,17 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	self.title = @"Rush Hour NTU";
-	self.toolbarItems = [NSArray arrayWithObject:currentLocation];
+	lastUpdate = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
+	lastUpdate.backgroundColor = [UIColor clearColor];
+	lastUpdate.textColor = [UIColor whiteColor];
+	lastUpdate.font = [UIFont fontWithName:@"Helvetica" size:12.0];
+	lastUpdate.text = @"";
+	self.toolbarItems = [NSArray arrayWithObjects:currentLocation,
+						 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
+						 [[[UIBarButtonItem alloc] initWithCustomView:lastUpdate] autorelease],
+						 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
+						 nil];
+	
 	self.navigationItem.rightBarButtonItem = refreshCache;
 	self.navigationController.hidesBottomBarWhenPushed = YES;
 	
@@ -47,7 +58,15 @@
 	
 	proximitySort = NO;
 	
-	[self freshen];
+	workQueue = [[NSOperationQueue alloc] init];
+	
+	if ([JONTUBusEngine sharedJONTUBusEngine].brandNew) {
+		CacheOperation *fillCache = [[CacheOperation alloc] initWithDelegate:self];
+		[self.workQueue addOperation:fillCache];
+		[fillCache release];
+	} else {
+		[self freshen];		
+	}
 }
 
 
@@ -71,10 +90,18 @@
 	[alert release];
 }
 
+-(void)engineStarted {
+	NSLog(@"Fill Cache complete");
+	[self freshen];
+}
+
 -(void)freshen {
 	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];	
 	self.filteredContent = [NSMutableArray arrayWithCapacity:[[engine stops] count]];	
 	self.actualContent = [[engine stops] mutableCopy];
+	
+	lastUpdate.text = [NSString stringWithFormat:@"Cache loaded %@ ago", [NSString formattedDateRelativeToNow:engine.lastGetIndexPage]];
+	
 	[self.tableView reloadData];
 }
 
@@ -325,6 +352,8 @@
 
 
 - (void)dealloc {
+	[workQueue release];
+	[lastUpdate release];
 	[refreshCache release];
 	[actualContent release];
 	[activity release];

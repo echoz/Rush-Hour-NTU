@@ -10,6 +10,7 @@
 		000EF1BD118574C10070B458 /* BusETACell.m in Sources */ = {isa = PBXBuildFile; fileRef = 000EF1BC118574C10070B458 /* BusETACell.m */; };
 		000EF207118578DC0070B458 /* BusETACell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 000EF206118578DC0070B458 /* BusETACell.xib */; };
 		000EF28D118582060070B458 /* NSString+htmlentitiesaddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 000EF28C118582060070B458 /* NSString+htmlentitiesaddition.m */; };
+		00471E591186D3F200BAC790 /* CacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00471E581186D3F200BAC790 /* CacheOperation.m */; };
 		0047DBDC1185923800856AAF /* map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 0047DBDB1185923800856AAF /* map-marker.png */; };
 		0064105811852C7200D0F9E8 /* BusStopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0064105611852C7200D0F9E8 /* BusStopViewController.m */; };
 		0064105911852C7200D0F9E8 /* BusStopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0064105711852C7200D0F9E8 /* BusStopViewController.xib */; };
@@ -43,6 +44,8 @@
 		000EF206118578DC0070B458 /* BusETACell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BusETACell.xib; path = BusStopView/BusETACell.xib; sourceTree = SOURCE_ROOT; };
 		000EF28B118582060070B458 /* NSString+htmlentitiesaddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+htmlentitiesaddition.h"; sourceTree = "<group>"; };
 		000EF28C118582060070B458 /* NSString+htmlentitiesaddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+htmlentitiesaddition.m"; sourceTree = "<group>"; };
+		00471E571186D3F200BAC790 /* CacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CacheOperation.h; path = ../Classes/CacheOperation.h; sourceTree = "<group>"; };
+		00471E581186D3F200BAC790 /* CacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CacheOperation.m; path = ../Classes/CacheOperation.m; sourceTree = "<group>"; };
 		0047DBDB1185923800856AAF /* map-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-marker.png"; sourceTree = "<group>"; };
 		0064105511852C7200D0F9E8 /* BusStopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusStopViewController.h; path = BusStopView/BusStopViewController.h; sourceTree = SOURCE_ROOT; };
 		0064105611852C7200D0F9E8 /* BusStopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusStopViewController.m; path = BusStopView/BusStopViewController.m; sourceTree = SOURCE_ROOT; };
@@ -109,6 +112,8 @@
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
 				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
+				00471E571186D3F200BAC790 /* CacheOperation.h */,
+				00471E581186D3F200BAC790 /* CacheOperation.m */,
 			);
 			path = RootView;
 			sourceTree = SOURCE_ROOT;
@@ -318,6 +323,7 @@
 				3FA58A851185D732009A3D66 /* JONTUBusStop+location.m in Sources */,
 				3FA58AF61185E1D3009A3D66 /* LocationManager.m in Sources */,
 				00AEC6D01186BCC50083D75A /* ArrivalsOperation.m in Sources */,
+				00471E591186D3F200BAC790 /* CacheOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

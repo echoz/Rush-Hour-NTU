@@ -36,10 +36,10 @@
 	[engine setHoldCache:-1];
 
 	if (![[NSFileManager defaultManager] fileExistsAtPath:cachePath]) {
-		NSLog(@"Non cache load");
-		[engine start];
+		NSLog(@"No cache load");
+		//		[engine start];
 	}
-	
+
 	[window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
 	return YES;

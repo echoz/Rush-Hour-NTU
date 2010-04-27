@@ -38,6 +38,7 @@
 	self.navigationItem.rightBarButtonItem = refreshETA;
 	self.title = [stop code];
 	workQueue = [[NSOperationQueue alloc] init];
+	[workQueue setMaxConcurrentOperationCount:1];
 	[super viewDidLoad];
 }
 
@@ -50,6 +51,8 @@
 -(void)gotArrivals:(id)object {
 	[arrivals release];
 	arrivals = [object retain];
+	// check operations queue everytime reload to know when to not show in progress indicator.
+	
 	[self.tableView reloadData];
 }
 
@@ -209,12 +212,14 @@
 		[busLocation release];
 	} else if (indexPath.section == 1) {
 
+		// need to fix invalid service thing here.
 		if ([[[[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"service"] lowercaseString] hasPrefix:@"invalid service"]) {
 			cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
 			cell.subtextLabel.text = @"Invalid Service";
 			cell.detailLabel.text = @"";
 			
 		} else {
+			NSLog(@"%@", [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"service"]);
 			cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
 			cell.subtextLabel.text = [NSString stringWithFormat:@"%@ for next bus", [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"subsequent"]];
 			cell.detailLabel.text = [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"eta"];
