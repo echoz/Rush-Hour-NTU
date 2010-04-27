@@ -18,27 +18,4 @@
 
 	return self;
 }
-
-+(NSString *) formattedDateRelativeToNow:(NSDate *)date {
-	NSDateFormatter *mdf = [[NSDateFormatter alloc] init];
-	[mdf setDateFormat:@"yyyy-MM-dd"];
-	NSDate *midnight = [mdf dateFromString:[mdf stringFromDate:date]];
-	[mdf release];
-	
-	NSUInteger dayDiff = (int)[midnight timeIntervalSinceNow] / (60*60*24);
-	
-	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-	
-	switch(dayDiff) {
-		case 0:
-			[dateFormatter setDateFormat:@"'today, 'H'h'mm'm"]; break;
-		case -1:
-			[dateFormatter setDateFormat:@"'yesterday, 'H'h'mm'm"]; break;
-		default:
-			[dateFormatter setDateFormat:@"MMMM d, H'h'mm'm"];
-	}
-	
-	return [dateFormatter stringFromDate:date];
-}
-
 @end

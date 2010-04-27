@@ -11,5 +11,4 @@
 
 @interface NSString (JOHTMLEntitiesAddition)
 -(NSString *)removeHTMLEntities;
-+(NSString *) formattedDateRelativeToNow:(NSDate *)date;
 @end

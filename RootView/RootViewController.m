@@ -13,6 +13,7 @@
 #import "JONTUBusStop+location.h"
 #import "LocationManager.h"
 #import "CacheOperation.h"
+#import "RegexKitLite.h"
 
 @implementation RootViewController
 
@@ -31,7 +32,7 @@
 	lastUpdate = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
 	lastUpdate.backgroundColor = [UIColor clearColor];
 	lastUpdate.textColor = [UIColor whiteColor];
-	lastUpdate.font = [UIFont fontWithName:@"Helvetica" size:12.0];
+	lastUpdate.font = [UIFont fontWithName:@"Helvetica" size:13.0];
 	lastUpdate.text = @"";
 	self.toolbarItems = [NSArray arrayWithObjects:currentLocation,
 						 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
@@ -40,7 +41,6 @@
 						 nil];
 	
 	self.navigationItem.rightBarButtonItem = refreshCache;
-	self.navigationController.hidesBottomBarWhenPushed = YES;
 	
 	if (self.savedSearchTerm) {
 		[self.searchDisplayController setActive:self.searchWasActive];
@@ -64,6 +64,8 @@
 		CacheOperation *fillCache = [[CacheOperation alloc] initWithDelegate:self];
 		[self.workQueue addOperation:fillCache];
 		[fillCache release];
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+		
 	} else {
 		[self freshen];		
 	}
@@ -92,6 +94,7 @@
 
 -(void)engineStarted {
 	NSLog(@"Fill Cache complete");
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	[self freshen];
 }
 
@@ -100,7 +103,12 @@
 	self.filteredContent = [NSMutableArray arrayWithCapacity:[[engine stops] count]];	
 	self.actualContent = [[engine stops] mutableCopy];
 	
-	lastUpdate.text = [NSString stringWithFormat:@"Cache loaded %@ ago", [NSString formattedDateRelativeToNow:engine.lastGetIndexPage]];
+	NSDateFormatter *f = [[NSDateFormatter alloc] init];
+	[f setDateStyle:NSDateFormatterShortStyle];
+	[f setTimeStyle:NSDateFormatterShortStyle];
+	
+	lastUpdate.text = [NSString stringWithFormat:@"Last updated: %@", [f stringFromDate:engine.lastGetIndexPage]];
+	[f release];
 	
 	[self.tableView reloadData];
 }
@@ -300,12 +308,11 @@
 	[self.filteredContent removeAllObjects];
 	
 	for (JONTUBusStop *stop in actualContent) {
-		NSComparisonResult coderesult = [stop.code compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
-		NSComparisonResult descresult = [stop.desc compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
-		NSComparisonResult roadnameresult = [stop.roadName compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
-	
-		if ((coderesult == NSOrderedSame) || (descresult == NSOrderedSame) || (roadnameresult == NSOrderedSame))
-		{
+		
+		NSRange descresult = [stop.desc rangeOfString:searchText options:NSCaseInsensitiveSearch];
+		NSRange coderesult = [stop.code rangeOfString:searchText options:NSCaseInsensitiveSearch];
+		NSRange roadnameresult = [stop.roadName rangeOfString:searchText options:NSCaseInsensitiveSearch];
+		if ((coderesult.location != NSNotFound) || (descresult.location != NSNotFound) || (roadnameresult.location != NSNotFound)) {
 			[self.filteredContent addObject:stop];
 		}
 		

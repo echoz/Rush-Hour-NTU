@@ -36,6 +36,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
 	self.navigationItem.rightBarButtonItem = refreshETA;
+
 	self.title = [stop code];
 	workQueue = [[NSOperationQueue alloc] init];
 	[workQueue setMaxConcurrentOperationCount:1];
@@ -44,20 +45,29 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	self.navigationController.toolbarHidden = YES;
+	self.navigationController.toolbarHidden = NO;
 
 }
 
 -(void)gotArrivals:(id)object {
 	[arrivals release];
 	arrivals = [object retain];
-	// check operations queue everytime reload to know when to not show in progress indicator.
+	NSLog(@"%i",[[workQueue operations] count]);
+	if ([[workQueue operations] count] == 1) {
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	}
 	
 	[self.tableView reloadData];
 }
 
 -(void)gotIrisResult:(id)object {
 	[irisArrivals addObject:object];
+	NSLog(@"%i",[[workQueue operations] count]);
+
+	if ([[workQueue operations] count] == 1) {
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	}
+	
 	[self.tableView reloadData];
 }
 
@@ -75,7 +85,7 @@
 		[arrivalsop release];
 		arrivalsop = nil;
 	}
-	
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;	
 }
 
 - (void)viewDidAppear:(BOOL)animated {
