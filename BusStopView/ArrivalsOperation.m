@@ -18,6 +18,7 @@
 		self.delegate = dgate;
 		self.irisquery = NO;
 		serviceNumber = nil;
+		cancel = NO;
 	}
 	return self;
 }
@@ -28,20 +29,27 @@
 		self.delegate = dgate;
 		self.irisquery = YES;
 		serviceNumber = [svcnumber retain];
+		cancel = NO;
 	}
 	return self;	
+}
+
+-(void)cancel {
+	cancel = YES;
 }
 
 -(void)main {
 	
 	if (irisquery) {
 		NSDictionary *irisQueryResult = [stop irisQueryForService:serviceNumber];
-		[delegate performSelectorOnMainThread:@selector(gotIrisResult:) withObject:irisQueryResult waitUntilDone:YES];
+		if (!cancel)
+			[delegate performSelectorOnMainThread:@selector(gotIrisResult:) withObject:irisQueryResult waitUntilDone:YES];
 	} else {
 		JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
 		[engine busesWithRefresh:YES];
 		NSArray *arrivals = [stop arrivals];
-		[delegate performSelectorOnMainThread:@selector(gotArrivals:) withObject:arrivals waitUntilDone:YES];
+		if (!cancel)
+			[delegate performSelectorOnMainThread:@selector(gotArrivals:) withObject:arrivals waitUntilDone:YES];
 		
 	}
 	

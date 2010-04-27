@@ -16,14 +16,20 @@
 -(id)initWithDelegate:(id)dgate {
 	if (self = [super init]) {
 		self.delegate = dgate;
+		cancel = NO;
 	}
 	return self;
+}
+
+-(void)cancel {
+	cancel = YES;
 }
 
 -(void)main {
 	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
 	[engine start];
-	[delegate performSelectorOnMainThread:@selector(engineStarted) withObject:nil waitUntilDone:YES];
+	if (!cancel)
+		[delegate performSelectorOnMainThread:@selector(engineStarted) withObject:nil waitUntilDone:YES];
 }
 
 -(void)dealloc {

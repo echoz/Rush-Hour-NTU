@@ -14,6 +14,7 @@
 	id delegate;
 	BOOL irisquery;
 	NSString *serviceNumber;
+	BOOL cancel;
 }
 -(id)initWithStop:(JONTUBusStop *)bstop delegate:(id)dgate;
 -(id)initWithStop:(JONTUBusStop *)bstop queryIrisForSvcNumber:(NSString *)svcnumber delegate:(id)dgate;

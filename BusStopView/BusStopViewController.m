@@ -69,6 +69,9 @@
 }
 
 -(IBAction)refreshETA {
+	
+	[workQueue cancelAllOperations];
+	
 	ArrivalsOperation *arrivalsop = [[ArrivalsOperation alloc] initWithStop:stop delegate:self];
 	[workQueue addOperation:arrivalsop];
 	[arrivalsop release];
@@ -226,7 +229,6 @@
 			cell.detailLabel.text = @"";
 			
 		} else {
-			NSLog(@"%@", [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"service"]);
 			cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
 			cell.subtextLabel.text = [NSString stringWithFormat:@"Next bus: %@", [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"subsequent"]];
 			cell.detailLabel.text = [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"eta"];

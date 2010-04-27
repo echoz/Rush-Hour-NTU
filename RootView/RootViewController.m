@@ -28,7 +28,7 @@
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-	self.title = @"Rush Hour NTU";
+	self.title = @"Traverse NTU";
 	lastUpdate = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
 	lastUpdate.backgroundColor = [UIColor clearColor];
 	lastUpdate.textColor = [UIColor whiteColor];

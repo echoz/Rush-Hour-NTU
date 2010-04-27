@@ -11,6 +11,7 @@
 
 @interface CacheOperation : NSOperation {
 	id delegate;
+	BOOL cancel;
 }
 
 @property (nonatomic, retain) id delegate;
