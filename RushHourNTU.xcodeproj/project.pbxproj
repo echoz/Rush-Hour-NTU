@@ -128,11 +128,13 @@
 			path = BusStopView;
 			sourceTree = SOURCE_ROOT;
 		};
-		00AEC7401186C3680083D75A /* Metadata */ = {
+		00AEC7511186C4AE0083D75A /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
+				8D1107310486CEB800E47090 /* RushHourNTU-Info.plist */,
+				3FF6C61C1185E74300C33707 /* Entitlements.plist */,
 			);
-			path = Metadata;
+			name = Metadata;
 			sourceTree = "<group>";
 		};
 		080E96DDFE201D6D7F000001 /* Classes */ = {
@@ -161,14 +163,12 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107310486CEB800E47090 /* RushHourNTU-Info.plist */,
-				3FF6C61C1185E74300C33707 /* Entitlements.plist */,
+				00AEC7511186C4AE0083D75A /* Metadata */,
 				000EF22311857B230070B458 /* RootView */,
 				0064105411852C6100D0F9E8 /* BusStopView */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				3F00E82011849EDD00339848 /* JONTUBusCore */,
-				00AEC7401186C3680083D75A /* Metadata */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,

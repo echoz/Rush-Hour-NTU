@@ -27,7 +27,7 @@
 		self.stop = bstop;
 		self.delegate = dgate;
 		self.irisquery = YES;
-		serviceNumber = svcnumber; 
+		serviceNumber = [svcnumber retain];
 	}
 	return self;	
 }

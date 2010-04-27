@@ -16,22 +16,20 @@
 
 @implementation RootViewController
 
-@synthesize currentLocation, savedSearchTerm, filteredContent, searchWasActive, activity, actualContent;
+@synthesize currentLocation, refreshCache, savedSearchTerm, filteredContent, searchWasActive, activity, actualContent;
 
 #pragma mark -
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	self.title = @"Rush Hour NTU";
 	self.toolbarItems = [NSArray arrayWithObject:currentLocation];
+	self.navigationItem.rightBarButtonItem = refreshCache;
 	self.navigationController.hidesBottomBarWhenPushed = YES;
-
 	
 	if (self.savedSearchTerm) {
 		[self.searchDisplayController setActive:self.searchWasActive];
@@ -52,12 +50,6 @@
 	[self freshen];
 }
 
--(void)freshen {
-	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];	
-	self.filteredContent = [NSMutableArray arrayWithCapacity:[[engine stops] count]];	
-	self.actualContent = [[engine stops] mutableCopy];
-	[self.tableView reloadData];
-}
 
 -(IBAction)useLocation {
 	[currentLocation setStyle:UIBarButtonItemStyleDone];
@@ -66,6 +58,24 @@
 	LocationManager *manager = [LocationManager sharedLocationManager];	
 	[manager.manager startUpdatingLocation];
 	proximitySort = YES;
+}
+
+-(IBAction)refreshTheCache {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Refresh" 
+													message:@"Are you sure you want to refresh the cache?" 
+												   delegate:self 
+										  cancelButtonTitle:@"No"
+										  otherButtonTitles:@"Yes",nil];
+	[alert show];
+	
+	[alert release];
+}
+
+-(void)freshen {
+	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];	
+	self.filteredContent = [NSMutableArray arrayWithCapacity:[[engine stops] count]];	
+	self.actualContent = [[engine stops] mutableCopy];
+	[self.tableView reloadData];
 }
 
 -(void)stopLocation {
@@ -161,7 +171,7 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
 		cell.imageView.image = [UIImage imageNamed:@"map-marker.png"];
-		cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stop-bg.png"]] autorelease];
+		//		cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stop-bg.png"]] autorelease];
 		cell.backgroundView.opaque = NO;
 		cell.contentView.opaque = NO;
 		cell.detailTextLabel.opaque = YES;
@@ -315,6 +325,7 @@
 
 
 - (void)dealloc {
+	[refreshCache release];
 	[actualContent release];
 	[activity release];
 	[savedSearchTerm release];

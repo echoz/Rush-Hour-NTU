@@ -212,9 +212,18 @@
 		
 		[busLocation release];
 	} else if (indexPath.section == 1) {
-		cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
-		cell.subtextLabel.text = [NSString stringWithFormat:@"%@ for next bus", [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"subsequent"]];
-		cell.detailLabel.text = [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"eta"];
+
+		if ([[[[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"service"] lowercaseString] hasPrefix:@"invalid service"]) {
+			cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
+			cell.subtextLabel.text = @"Invalid Service";
+			cell.detailLabel.text = @"";
+			
+		} else {
+			cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
+			cell.subtextLabel.text = [NSString stringWithFormat:@"%@ for next bus", [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"subsequent"]];
+			cell.detailLabel.text = [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"eta"];
+			
+		}
 	}
 		
     return cell;
