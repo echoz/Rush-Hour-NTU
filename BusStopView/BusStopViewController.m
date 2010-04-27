@@ -228,6 +228,11 @@
 			cell.subtextLabel.text = @"Invalid Service";
 			cell.detailLabel.text = @"";
 			
+		} else if ([[[[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"eta"] lowercaseString] hasPrefix:@"not operating"]) {
+			cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
+			cell.subtextLabel.text = @"Off Service";
+			cell.detailLabel.text = @"";
+			
 		} else {
 			cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
 			cell.subtextLabel.text = [NSString stringWithFormat:@"Next bus: %@", [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"subsequent"]];
