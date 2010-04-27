@@ -34,6 +34,8 @@
 	lastUpdate.textColor = [UIColor whiteColor];
 	lastUpdate.font = [UIFont fontWithName:@"Helvetica" size:13.0];
 	lastUpdate.text = @"";
+
+	// self.toolbarItems = [NSArray arrayWithObject:currentLocation]; // for taking of default images
 	self.toolbarItems = [NSArray arrayWithObjects:currentLocation,
 						 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
 						 [[[UIBarButtonItem alloc] initWithCustomView:lastUpdate] autorelease],
@@ -79,6 +81,7 @@
 	LocationManager *manager = [LocationManager sharedLocationManager];	
 	[manager.manager startUpdatingLocation];
 	proximitySort = YES;
+	[self.tableView reloadData];
 }
 
 -(IBAction)refreshTheCache {
@@ -100,7 +103,13 @@
 		[self.workQueue addOperation:fillCache];
 		[fillCache release];
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-		
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration:0.75];
+		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+		[self.tableView setAlpha:0.5];
+		[self.tableView setScrollEnabled:NO];
+		[self.tableView setAllowsSelection:NO];
+		[UIView commitAnimations];		
 	}
 }
 
@@ -109,6 +118,14 @@
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	[[JONTUBusEngine sharedJONTUBusEngine] setHoldCache:-1];	
 	[self freshen];
+	[UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.75];
+	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+	[self.tableView setAlpha:1];
+	[self.tableView setScrollEnabled:YES];
+	[self.tableView setAllowsSelection:YES];
+	[UIView commitAnimations];		
+	
 }
 
 -(void)freshen {
@@ -133,6 +150,10 @@
 	LocationManager *manager = [LocationManager sharedLocationManager];	
 	[manager.manager stopUpdatingLocation];
 	proximitySort = NO;
+	[actualContent release];
+	actualContent = nil;
+	self.actualContent = [[[JONTUBusEngine sharedJONTUBusEngine] stops] mutableCopy];
+	[self.tableView reloadData];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
@@ -198,12 +219,15 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
 	if (tableView == self.searchDisplayController.searchResultsTableView) {
 		return [self.filteredContent count];
 	} else {		
 		return [actualContent count];
 		
 	}
+
+//	return 0; // for taking of default images
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -217,9 +241,9 @@
 	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
 		cell.imageView.image = [UIImage imageNamed:@"map-marker.png"];
-		//		cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stop-bg.png"]] autorelease];
+//		cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stop-bg.png"]] autorelease];
 		cell.backgroundView.opaque = NO;
 		cell.contentView.opaque = NO;
 		cell.detailTextLabel.opaque = YES;
