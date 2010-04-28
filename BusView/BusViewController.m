@@ -31,6 +31,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	self.title = [bus busPlate];
 	[map.layer setCornerRadius:10.0];
+	self.navigationController.toolbarHidden = YES;
 }
 
 
@@ -111,7 +112,7 @@
 		case 0:
 			return 1;
 		case 1:
-			return 5;
+			return 4;
 		default:
 			return 0;
 	}
@@ -119,22 +120,26 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == 0) {
-		return 200;
+		return 180;
 	} else if (indexPath.section == 1) {
-		return 50;
+		return 44;
+	} else {
+		return 44;
 	}
 	
 }
-
+/*
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	switch (section) {
 		case 0:
 			return @"";
 		case 1:
 			return @"Details";
+		default:
+			return @"";
 	}
 }
-
+*/
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -166,16 +171,14 @@
 				cell.value.text = [NSString stringWithFormat:@"%i km/h",[bus speed]];
 				break;
 			case 3:
-				cell.name.text = @"Latitude";
-				cell.value.text = [[bus lat] stringValue];
-				break;
-			case 4:
-				cell.name.text = @"Longtitude";
-				cell.value.text = [[bus lon] stringValue];
+				cell.name.text = @"GPS";
+				cell.value.text = [NSString stringWithFormat:@"%@, %@",[[bus lat] stringValue],[[bus lon] stringValue]];
 				break;
 		}
 		
 		return cell;
+	} else {
+		return nil;
 	}
 	
 }

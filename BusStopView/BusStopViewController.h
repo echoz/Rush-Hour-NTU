@@ -19,15 +19,18 @@
 	NSMutableArray *irisArrivals;
 	CLLocation *stopLocation;
 	
-	IBOutlet UIBarButtonItem *refreshETA;
+	UIBarButtonItem *refreshETA;
+	UIBarButtonItem *star;
 	
 	BusETACell *etaCell;
 	
 	NSOperationQueue *workQueue;
 }
-
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshETA;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *star;
 @property (nonatomic, assign) IBOutlet BusETACell *etaCell;
 @property (readonly) CLLocation *stopLocation;
 @property (readwrite) NSUInteger busstopid;
--(IBAction)refreshETA;
+-(IBAction)refresh;
+-(IBAction)favorite;
 @end

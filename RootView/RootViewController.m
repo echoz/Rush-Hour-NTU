@@ -365,7 +365,7 @@
     
 	BusStopViewController *detailViewController = [[BusStopViewController alloc] initWithNibName:@"BusStopViewController" bundle:nil];
 	detailViewController.busstopid = [[tableView cellForRowAtIndexPath:indexPath] tag];
-		
+	
 	[self.navigationController pushViewController:detailViewController animated:YES];
 	[detailViewController release];
 }
@@ -438,7 +438,7 @@
 	[savedSearchTerm release];
 	[filteredContent release];
 	[currentLocation release];
-    [super dealloc];
+	[super dealloc];
 }
 
 

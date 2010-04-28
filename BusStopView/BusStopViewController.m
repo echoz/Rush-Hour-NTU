@@ -12,7 +12,7 @@
 
 @implementation BusStopViewController
 
-@synthesize busstopid, etaCell, stopLocation;
+@synthesize busstopid, etaCell, stopLocation, refreshETA, star;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -24,6 +24,7 @@
 */
 
 - (void)viewDidLoad {
+	[super viewDidLoad];
 
 	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
 	
@@ -35,13 +36,14 @@
 	workQueue = [[NSOperationQueue alloc] init];
 	[workQueue setMaxConcurrentOperationCount:1];
 	
+	self.toolbarItems = [NSArray arrayWithObject:star];
 	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
 	self.navigationItem.rightBarButtonItem = refreshETA;
 	self.title = [stop code];
-	[super viewDidLoad];
+	
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -69,9 +71,15 @@
 	[self.tableView reloadData];
 }
 
--(IBAction)refreshETA {
-	
-	[workQueue cancelAllOperations];
+-(IBAction)favorite {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Future action" message:@"To be implemented. Enjoy this alert for now." delegate:nil cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+}
+
+-(IBAction)refresh {
+	if ([workQueue operations] > 0)
+		[workQueue cancelAllOperations];
 	
 	ArrivalsOperation *arrivalsop = [[ArrivalsOperation alloc] initWithStop:stop delegate:self];
 	[workQueue addOperation:arrivalsop];
@@ -90,8 +98,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-	[self refreshETA];
+	[super viewDidAppear:animated];
+	[self refresh];
 }
 
 /*
@@ -119,12 +127,12 @@
 	
 	// Release any cached data, images, etc that aren't in use.
 }
-
+/*
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }
-
+*/
 
 #pragma mark Table view methods
 
@@ -290,14 +298,15 @@
 
 
 - (void)dealloc {
-	[workQueue release];
+	[star release];
+	[refreshETA release];
 	[irisArrivals release];
 	[stop release];
 	[arrivals release];
 	[stopLocation release];
-	[refreshETA release];
 	[etaCell release];
-    [super dealloc];
+	[workQueue release];
+	[super dealloc];
 }
 
 
