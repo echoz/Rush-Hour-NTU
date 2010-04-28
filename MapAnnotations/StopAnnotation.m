@@ -7,7 +7,7 @@
 //
 
 #import "StopAnnotation.h"
-
+#import "NSString+htmlentitiesaddition.h"
 
 @implementation StopAnnotation
 @synthesize stop;
@@ -20,7 +20,7 @@
 }
 
 -(NSString *)title {
-	return [NSString stringWithFormat:@"%@ (%@)",[stop desc],[stop code]];
+	return [[NSString stringWithFormat:@"%@ (%@)",[stop desc],[stop code]] removeHTMLEntities];
 }
 
 -(NSString *)subtitle {
