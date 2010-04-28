@@ -12,6 +12,7 @@
 @interface RootViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, CLLocationManagerDelegate, UIAlertViewDelegate> {
 	UIBarButtonItem *currentLocation;
 	UIBarButtonItem *refreshCache;
+	UIBarButtonItem *irisquery;
 	UILabel *lastUpdate;
 	
 	NSMutableArray *filteredContent;
@@ -29,6 +30,7 @@
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *currentLocation;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshCache;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *irisquery;
 
 @property (nonatomic, retain) NSMutableArray *filteredContent;
 @property (nonatomic, retain) NSMutableArray *actualContent;
@@ -38,6 +40,7 @@
 
 -(IBAction)useLocation;
 -(IBAction)refreshTheCache;
+-(IBAction)showIrisQuery;
 
 -(void)stopLocation;
 -(void)freshen;

@@ -15,10 +15,11 @@
 #import "CacheOperation.h"
 #import "RegexKitLite.h"
 #import <QuartzCore/QuartzCore.h>
+#import "IrisQueryUIViewController.h"
 
 @implementation RootViewController
 
-@synthesize currentLocation, refreshCache, savedSearchTerm, filteredContent, searchWasActive, actualContent, workQueue;
+@synthesize currentLocation, refreshCache, savedSearchTerm, filteredContent, searchWasActive, actualContent, workQueue, irisquery;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -44,6 +45,7 @@
 						 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
 						 [[[UIBarButtonItem alloc] initWithCustomView:lastUpdate] autorelease],
 						 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
+						 irisquery,
 						 nil];
 	
 	self.navigationItem.rightBarButtonItem = refreshCache;
@@ -95,6 +97,13 @@
 	if (spinnerFrame == 10) {
 		spinnerFrame = 0;
 	}
+}
+
+-(IBAction)showIrisQuery {
+	NSLog(@"HERE");
+	IrisQueryUIViewController *modalView = [[IrisQueryUIViewController alloc] initWithNibName:@"IrisQueryUIViewController" bundle:nil];
+	[self presentModalViewController:modalView animated:YES];
+	[modalView release];
 }
 
 -(IBAction)useLocation {
@@ -430,7 +439,7 @@
 - (void)dealloc {
 	[animationTimer release];
 	[spinner release];
-	
+	[irisquery release];
 	[workQueue release];
 	[lastUpdate release];
 	[refreshCache release];

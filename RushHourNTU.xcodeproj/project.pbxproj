@@ -45,6 +45,9 @@
 		3FA589931185B349009A3D66 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA589921185B349009A3D66 /* CoreLocation.framework */; };
 		3FA58A851185D732009A3D66 /* JONTUBusStop+location.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA58A841185D732009A3D66 /* JONTUBusStop+location.m */; };
 		3FA58AF61185E1D3009A3D66 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA58AF51185E1D3009A3D66 /* LocationManager.m */; };
+		3FA7B1031188883F00638E51 /* IrisQueryUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7B1011188883F00638E51 /* IrisQueryUIViewController.m */; };
+		3FA7B1041188883F00638E51 /* IrisQueryUIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FA7B1021188883F00638E51 /* IrisQueryUIViewController.xib */; };
+		3FA7B10A11888BFD00638E51 /* 09-chat2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA7B10911888BFD00638E51 /* 09-chat2.png */; };
 		3FF6C61D1185E74300C33707 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FF6C61C1185E74300C33707 /* Entitlements.plist */; };
 		3FFCED8D1187500400322057 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFCED8C1187500400322057 /* Default.png */; };
 /* End PBXBuildFile section */
@@ -110,6 +113,10 @@
 		3FA58A841185D732009A3D66 /* JONTUBusStop+location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JONTUBusStop+location.m"; sourceTree = "<group>"; };
 		3FA58AF41185E1D3009A3D66 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		3FA58AF51185E1D3009A3D66 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		3FA7B1001188883F00638E51 /* IrisQueryUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IrisQueryUIViewController.h; sourceTree = "<group>"; };
+		3FA7B1011188883F00638E51 /* IrisQueryUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IrisQueryUIViewController.m; sourceTree = "<group>"; };
+		3FA7B1021188883F00638E51 /* IrisQueryUIViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IrisQueryUIViewController.xib; sourceTree = "<group>"; };
+		3FA7B10911888BFD00638E51 /* 09-chat2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "09-chat2.png"; sourceTree = "<group>"; };
 		3FF6C61C1185E74300C33707 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		3FFCED8C1187500400322057 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* RushHourNTU-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RushHourNTU-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -219,6 +226,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				3FA7B0FF1188881E00638E51 /* IRISQUERY */,
 				00D0CCF21188295600F1D387 /* MapAnnotations */,
 				004F5C3B1187D4FC00844FD6 /* BusView */,
 				00AEC7511186C4AE0083D75A /* Metadata */,
@@ -246,6 +254,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3FA7B10911888BFD00638E51 /* 09-chat2.png */,
 				3F83324511886E8300F3B165 /* star-icon-dark.png */,
 				3F83324611886E8300F3B165 /* star-icon-filled-dark.png */,
 				004F5CAC1187E22300844FD6 /* spinner.png */,
@@ -299,6 +308,16 @@
 			name = RegexKitLite;
 			path = JONTUBusCore/JONTUBusCore/RegexKitLite;
 			sourceTree = SOURCE_ROOT;
+		};
+		3FA7B0FF1188881E00638E51 /* IRISQUERY */ = {
+			isa = PBXGroup;
+			children = (
+				3FA7B1001188883F00638E51 /* IrisQueryUIViewController.h */,
+				3FA7B1011188883F00638E51 /* IrisQueryUIViewController.m */,
+				3FA7B1021188883F00638E51 /* IrisQueryUIViewController.xib */,
+			);
+			name = IRISQUERY;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -363,6 +382,8 @@
 				00D0CC601188211900F1D387 /* NameValueCell.xib in Resources */,
 				3F83324711886E8300F3B165 /* star-icon-dark.png in Resources */,
 				3F83324811886E8300F3B165 /* star-icon-filled-dark.png in Resources */,
+				3FA7B1041188883F00638E51 /* IrisQueryUIViewController.xib in Resources */,
+				3FA7B10A11888BFD00638E51 /* 09-chat2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +413,7 @@
 				00D0CC5E118820E100F1D387 /* NameValueCell.m in Sources */,
 				00D0CCF51188298900F1D387 /* BusAnnotation.m in Sources */,
 				00D0CD2511882F0D00F1D387 /* StopAnnotation.m in Sources */,
+				3FA7B1031188883F00638E51 /* IrisQueryUIViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
