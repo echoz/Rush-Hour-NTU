@@ -15,13 +15,15 @@
 		004F5C441187D52200844FD6 /* BusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5C421187D52200844FD6 /* BusViewController.m */; };
 		004F5C451187D52200844FD6 /* BusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F5C431187D52200844FD6 /* BusViewController.xib */; };
 		004F5C951187DF4400844FD6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004F5C941187DF4400844FD6 /* MapKit.framework */; };
-		004F5CAD1187E22300844FD6 /* SpinnerStrip.png in Resources */ = {isa = PBXBuildFile; fileRef = 004F5CAC1187E22300844FD6 /* SpinnerStrip.png */; };
+		004F5CAD1187E22300844FD6 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 004F5CAC1187E22300844FD6 /* spinner.png */; };
 		0064105811852C7200D0F9E8 /* BusStopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0064105611852C7200D0F9E8 /* BusStopViewController.m */; };
 		0064105911852C7200D0F9E8 /* BusStopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0064105711852C7200D0F9E8 /* BusStopViewController.xib */; };
 		00AEC6571186ADBC0083D75A /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 00AEC6561186ADBC0083D75A /* location.png */; };
 		00AEC6731186AFD90083D75A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AEC6721186AFD90083D75A /* QuartzCore.framework */; };
 		00AEC68B1186B1800083D75A /* stop-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 00AEC68A1186B1800083D75A /* stop-bg.png */; };
 		00AEC6D01186BCC50083D75A /* ArrivalsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AEC6CF1186BCC50083D75A /* ArrivalsOperation.m */; };
+		00D0CC5E118820E100F1D387 /* NameValueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D0CC5D118820E100F1D387 /* NameValueCell.m */; };
+		00D0CC601188211900F1D387 /* NameValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00D0CC5F1188211900F1D387 /* NameValueCell.xib */; };
 		1D3623260D0F684500981E51 /* RushHourNTUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* RushHourNTUAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -56,7 +58,7 @@
 		004F5C421187D52200844FD6 /* BusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusViewController.m; sourceTree = "<group>"; };
 		004F5C431187D52200844FD6 /* BusViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusViewController.xib; sourceTree = "<group>"; };
 		004F5C941187DF4400844FD6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		004F5CAC1187E22300844FD6 /* SpinnerStrip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpinnerStrip.png; sourceTree = "<group>"; };
+		004F5CAC1187E22300844FD6 /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
 		0064105511852C7200D0F9E8 /* BusStopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusStopViewController.h; path = BusStopView/BusStopViewController.h; sourceTree = SOURCE_ROOT; };
 		0064105611852C7200D0F9E8 /* BusStopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusStopViewController.m; path = BusStopView/BusStopViewController.m; sourceTree = SOURCE_ROOT; };
 		0064105711852C7200D0F9E8 /* BusStopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BusStopViewController.xib; path = BusStopView/BusStopViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -65,6 +67,9 @@
 		00AEC68A1186B1800083D75A /* stop-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stop-bg.png"; sourceTree = "<group>"; };
 		00AEC6CE1186BCC50083D75A /* ArrivalsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrivalsOperation.h; sourceTree = "<group>"; };
 		00AEC6CF1186BCC50083D75A /* ArrivalsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrivalsOperation.m; sourceTree = "<group>"; };
+		00D0CC5C118820E100F1D387 /* NameValueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameValueCell.h; sourceTree = "<group>"; };
+		00D0CC5D118820E100F1D387 /* NameValueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameValueCell.m; sourceTree = "<group>"; };
+		00D0CC5F1188211900F1D387 /* NameValueCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NameValueCell.xib; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* RushHourNTUAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RushHourNTUAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* RushHourNTUAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RushHourNTUAppDelegate.m; sourceTree = "<group>"; };
@@ -136,6 +141,9 @@
 				004F5C411187D52200844FD6 /* BusViewController.h */,
 				004F5C421187D52200844FD6 /* BusViewController.m */,
 				004F5C431187D52200844FD6 /* BusViewController.xib */,
+				00D0CC5C118820E100F1D387 /* NameValueCell.h */,
+				00D0CC5D118820E100F1D387 /* NameValueCell.m */,
+				00D0CC5F1188211900F1D387 /* NameValueCell.xib */,
 			);
 			path = BusView;
 			sourceTree = "<group>";
@@ -216,7 +224,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				004F5CAC1187E22300844FD6 /* SpinnerStrip.png */,
+				004F5CAC1187E22300844FD6 /* spinner.png */,
 				00AEC6561186ADBC0083D75A /* location.png */,
 				00AEC68A1186B1800083D75A /* stop-bg.png */,
 				0047DBDB1185923800856AAF /* map-marker.png */,
@@ -327,7 +335,8 @@
 				00AEC68B1186B1800083D75A /* stop-bg.png in Resources */,
 				3FFCED8D1187500400322057 /* Default.png in Resources */,
 				004F5C451187D52200844FD6 /* BusViewController.xib in Resources */,
-				004F5CAD1187E22300844FD6 /* SpinnerStrip.png in Resources */,
+				004F5CAD1187E22300844FD6 /* spinner.png in Resources */,
+				00D0CC601188211900F1D387 /* NameValueCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +363,7 @@
 				00AEC6D01186BCC50083D75A /* ArrivalsOperation.m in Sources */,
 				00471E591186D3F200BAC790 /* CacheOperation.m in Sources */,
 				004F5C441187D52200844FD6 /* BusViewController.m in Sources */,
+				00D0CC5E118820E100F1D387 /* NameValueCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

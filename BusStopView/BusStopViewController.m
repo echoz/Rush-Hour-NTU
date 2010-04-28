@@ -8,6 +8,7 @@
 
 #import "BusStopViewController.h"
 #import "ArrivalsOperation.h"
+#import "BusViewController.h"
 
 @implementation BusStopViewController
 
@@ -22,8 +23,8 @@
 }
 */
 
-
 - (void)viewDidLoad {
+
 	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
 	
 	stop = [[engine stopForId:self.busstopid] retain];
@@ -31,15 +32,15 @@
 	
 	arrivals = nil;
 	irisArrivals = [[NSMutableArray arrayWithCapacity:[[stop otherBus] count]] retain];
-
+	workQueue = [[NSOperationQueue alloc] init];
+	[workQueue setMaxConcurrentOperationCount:1];
+	
+	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
 	self.navigationItem.rightBarButtonItem = refreshETA;
-
 	self.title = [stop code];
-	workQueue = [[NSOperationQueue alloc] init];
-	[workQueue setMaxConcurrentOperationCount:1];
 	[super viewDidLoad];
 }
 
@@ -165,32 +166,6 @@
 	return @"Internal Shuttle";
 }
 
-
-/*
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"cell";
-
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
-    }
-	
-    // Set up the cell...
-	cell.textLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"routename"];
-	if ([[arrivals objectAtIndex:indexPath.row] valueForKey:@"err"]) {
-		cell.detailTextLabel.text = @"Off Service";
-	} else {
-		cell.detailTextLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"eta"];		
-	}
-	
-	[cell setNeedsDisplay];
-	
-    return cell;
-}
-*/
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *MyIdentifier = @"cell";
 	
@@ -199,6 +174,9 @@
 		[[NSBundle mainBundle] loadNibNamed:@"BusETACell" owner:self options:nil];
 		cell = etaCell;
 		self.etaCell = nil;
+		cell.detailLabel.highlightedTextColor = [UIColor whiteColor];
+		cell.textLabel.highlightedTextColor = [UIColor whiteColor];
+		cell.subtextLabel.highlightedTextColor = [UIColor whiteColor];		
     }
 	
 	
@@ -208,21 +186,24 @@
 		JONTUBus *bus = [engine busForPlate:[[arrivals objectAtIndex:indexPath.row] valueForKey:@"plate"]];
 		
 		CLLocation *busLocation = [[CLLocation alloc] initWithLatitude:[[bus lat] doubleValue] longitude:[[bus lon] doubleValue]];
-		
+				
 		cell.textLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"routename"];
 		cell.subtextLabel.text = [NSString stringWithFormat:@"%.0fm away (%ikm/h): %@", [stopLocation getDistanceFrom:busLocation], [bus speed], [bus busPlate]];
 		if ([[arrivals objectAtIndex:indexPath.row] valueForKey:@"err"]) {
 			cell.detailLabel.text = @"";
 			cell.subtextLabel.text = @"Off Service";
+			cell.accessoryType = UITableViewCellAccessoryNone;
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		
 		} else {
 			cell.detailLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"eta"];		
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 		}
-		
 		[busLocation release];
 	} else if (indexPath.section == 1) {
-
 		// need to fix invalid service thing here.
+		
 		if ([[[[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"service"] lowercaseString] hasPrefix:@"invalid service"]) {
 			cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
 			cell.subtextLabel.text = @"Invalid Service";
@@ -239,16 +220,32 @@
 			cell.detailLabel.text = [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"eta"];
 			
 		}
+		cell.accessoryType = UITableViewCellAccessoryNone;
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		
 	}
 		
     return cell;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
 	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
 	// [self.navigationController pushViewController:anotherViewController];
 	// [anotherViewController release];
+	
+	if (indexPath.section == 0) {
+		if (![[arrivals objectAtIndex:indexPath.row] valueForKey:@"err"]) {
+			JONTUBus *bus = [[JONTUBusEngine sharedJONTUBusEngine] busForPlate:[[arrivals objectAtIndex:indexPath.row] valueForKey:@"plate"]];			
+			BusViewController *busView = [[BusViewController alloc] initWithNibName:@"BusViewController" bundle:nil];
+			busView.bus = bus;
+			busView.stop = stop;
+			[self.navigationController pushViewController:busView animated:YES];
+			[busView release];
+		}
+	}
+	
 }
 
 

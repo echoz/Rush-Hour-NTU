@@ -36,7 +36,7 @@
 	lastUpdate.font = [UIFont fontWithName:@"Helvetica" size:13.0];
 	lastUpdate.text = @"";
 	
-	spinner = [UIImage imageNamed:@"SpinnerStrip.png"];
+	spinner = [UIImage imageNamed:@"spinner.png"];
 	spinnerFrame = 0;
 
 	// self.toolbarItems = [NSArray arrayWithObject:currentLocation]; // for taking of default images
