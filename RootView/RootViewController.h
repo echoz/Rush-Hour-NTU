@@ -12,7 +12,6 @@
 @interface RootViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, CLLocationManagerDelegate, UIAlertViewDelegate> {
 	UIBarButtonItem *currentLocation;
 	UIBarButtonItem *refreshCache;
-	UIActivityIndicatorView *activity;
 	UILabel *lastUpdate;
 	
 	NSMutableArray *filteredContent;
@@ -23,11 +22,13 @@
 	BOOL proximitySort;
 	
 	NSOperationQueue *workQueue;
+	NSTimer *animationTimer;
+	UIImage *spinner;
+	int spinnerFrame;
 }
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *currentLocation;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshCache;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activity;
 
 @property (nonatomic, retain) NSMutableArray *filteredContent;
 @property (nonatomic, retain) NSMutableArray *actualContent;

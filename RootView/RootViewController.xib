@@ -76,14 +76,6 @@
 				<int key="IBUIStyle">1</int>
 			</object>
 			<object class="IBUISearchDisplayController" id="257682026"/>
-			<object class="IBUIActivityIndicatorView" id="319029460">
-				<nil key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
-				<string key="NSFrame">{{9, 9}, {20, 20}}</string>
-				<bool key="IBUIOpaque">NO</bool>
-				<bool key="IBUIHidesWhenStopped">NO</bool>
-				<bool key="IBUIAnimating">YES</bool>
-			</object>
 			<object class="IBUIBarButtonItem" id="141854317">
 				<int key="IBUIStyle">1</int>
 				<int key="IBUISystemItemIdentifier">13</int>
@@ -190,14 +182,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">activity</string>
-						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="319029460"/>
-					</object>
-					<int key="connectionID">19</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">refreshCache</string>
 						<reference key="source" ref="841351856"/>
 						<reference key="destination" ref="141854317"/>
@@ -259,11 +243,6 @@
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">18</int>
-						<reference key="object" ref="319029460"/>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">20</int>
 						<reference key="object" ref="141854317"/>
 						<reference key="parent" ref="0"/>
@@ -277,7 +256,6 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>-1.CustomClassName</string>
 					<string>-2.CustomClassName</string>
-					<string>18.IBPluginDependency</string>
 					<string>2.IBEditorWindowLastContentRect</string>
 					<string>2.IBPluginDependency</string>
 					<string>20.IBPluginDependency</string>
@@ -288,7 +266,6 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>RootViewController</string>
 					<string>UIResponder</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{325, 317}, {320, 247}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

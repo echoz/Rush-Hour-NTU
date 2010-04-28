@@ -14,10 +14,11 @@
 #import "LocationManager.h"
 #import "CacheOperation.h"
 #import "RegexKitLite.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation RootViewController
 
-@synthesize currentLocation, refreshCache, savedSearchTerm, filteredContent, searchWasActive, activity, actualContent, workQueue;
+@synthesize currentLocation, refreshCache, savedSearchTerm, filteredContent, searchWasActive, actualContent, workQueue;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -34,6 +35,9 @@
 	lastUpdate.textColor = [UIColor whiteColor];
 	lastUpdate.font = [UIFont fontWithName:@"Helvetica" size:13.0];
 	lastUpdate.text = @"";
+	
+	spinner = [UIImage imageNamed:@"SpinnerStrip.png"];
+	spinnerFrame = 0;
 
 	// self.toolbarItems = [NSArray arrayWithObject:currentLocation]; // for taking of default images
 	self.toolbarItems = [NSArray arrayWithObjects:currentLocation,
@@ -73,14 +77,52 @@
 	}
 }
 
+-(void)updateLocationProgress {
+	
+	UIGraphicsBeginImageContext(CGSizeMake(19, 19));
+	CGContextRef currentContext = UIGraphicsGetCurrentContext();
+	
+	CGContextClipToRect(currentContext, CGRectMake(0, 0, 19, 19));
+
+	CGContextDrawImage(currentContext, CGRectMake(spinnerFrame*-19, 0, 190, 19), spinner.CGImage);
+	
+	UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();	
+	
+	[currentLocation setImage:viewImage];
+	
+	spinnerFrame++;
+	if (spinnerFrame == 10) {
+		spinnerFrame = 0;
+	}
+}
 
 -(IBAction)useLocation {
+	animationTimer = [[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateLocationProgress) userInfo:nil repeats:YES] retain];
+	
+	[animationTimer fire];
+
 	[currentLocation setStyle:UIBarButtonItemStyleDone];
 	[currentLocation setAction:@selector(stopLocation)];
 	
 	LocationManager *manager = [LocationManager sharedLocationManager];	
 	[manager.manager startUpdatingLocation];
 	proximitySort = YES;
+	[self.tableView reloadData];
+}
+
+
+-(void)stopLocation {
+	
+	[currentLocation setStyle:UIBarButtonItemStyleBordered];
+	[currentLocation setAction:@selector(useLocation)];
+	
+	LocationManager *manager = [LocationManager sharedLocationManager];	
+	[manager.manager stopUpdatingLocation];
+	proximitySort = NO;
+	[actualContent release];
+	actualContent = nil;
+	self.actualContent = [[[JONTUBusEngine sharedJONTUBusEngine] stops] mutableCopy];
 	[self.tableView reloadData];
 }
 
@@ -143,28 +185,17 @@
 	[self.tableView reloadData];
 }
 
--(void)stopLocation {
-	[currentLocation setStyle:UIBarButtonItemStyleBordered];
-	[currentLocation setAction:@selector(useLocation)];
-	
-	LocationManager *manager = [LocationManager sharedLocationManager];	
-	[manager.manager stopUpdatingLocation];
-	proximitySort = NO;
-	[actualContent release];
-	actualContent = nil;
-	self.actualContent = [[[JONTUBusEngine sharedJONTUBusEngine] stops] mutableCopy];
-	[self.tableView reloadData];
-}
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     NSDate* eventDate = newLocation.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
     if (abs(howRecent) < 5.0)
     {
-        printf("latitude %+.6f, longitude %+.6f\n",
-			   newLocation.coordinate.latitude,
-			   newLocation.coordinate.longitude);
 		self.actualContent = [[actualContent sortedArrayUsingSelector:@selector(compareLocation:)] mutableCopy];
+		[animationTimer invalidate];
+		
+		[currentLocation setImage:[UIImage imageNamed:@"location.png"]];
+		
 		[self.tableView reloadData];
 
     }
@@ -243,15 +274,18 @@
     if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
 		cell.imageView.image = [UIImage imageNamed:@"map-marker.png"];
-//		cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stop-bg.png"]] autorelease];
-		cell.backgroundView.opaque = NO;
+		//		cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stop-bg.png"]] autorelease];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		
+		
 		cell.contentView.opaque = NO;
-		cell.detailTextLabel.opaque = YES;
-		cell.textLabel.opaque = YES;
+		cell.detailTextLabel.opaque = NO;
+		cell.textLabel.opaque = NO;
 		cell.contentView.backgroundColor = [UIColor clearColor];
 		cell.detailTextLabel.backgroundColor = [UIColor clearColor];
 		cell.textLabel.backgroundColor = [UIColor clearColor];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		
+		
     }
 	
 	if (tableView == self.searchDisplayController.searchResultsTableView) {
@@ -279,6 +313,7 @@
 	}
     
 	// Configure the cell.	
+	
     return cell;
 }
 
@@ -329,11 +364,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 	BusStopViewController *detailViewController = [[BusStopViewController alloc] initWithNibName:@"BusStopViewController" bundle:nil];
-	// ...
-	// Pass the selected object to the new view controller.
 	detailViewController.busstopid = [[tableView cellForRowAtIndexPath:indexPath] tag];
-	
-	
+		
 	[self.navigationController pushViewController:detailViewController animated:YES];
 	[detailViewController release];
 }
@@ -396,11 +428,13 @@
 
 
 - (void)dealloc {
+	[animationTimer release];
+	[spinner release];
+	
 	[workQueue release];
 	[lastUpdate release];
 	[refreshCache release];
 	[actualContent release];
-	[activity release];
 	[savedSearchTerm release];
 	[filteredContent release];
 	[currentLocation release];

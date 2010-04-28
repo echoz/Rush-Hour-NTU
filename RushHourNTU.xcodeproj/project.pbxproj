@@ -12,6 +12,10 @@
 		000EF28D118582060070B458 /* NSString+htmlentitiesaddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 000EF28C118582060070B458 /* NSString+htmlentitiesaddition.m */; };
 		00471E591186D3F200BAC790 /* CacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00471E581186D3F200BAC790 /* CacheOperation.m */; };
 		0047DBDC1185923800856AAF /* map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 0047DBDB1185923800856AAF /* map-marker.png */; };
+		004F5C441187D52200844FD6 /* BusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5C421187D52200844FD6 /* BusViewController.m */; };
+		004F5C451187D52200844FD6 /* BusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F5C431187D52200844FD6 /* BusViewController.xib */; };
+		004F5C951187DF4400844FD6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004F5C941187DF4400844FD6 /* MapKit.framework */; };
+		004F5CAD1187E22300844FD6 /* SpinnerStrip.png in Resources */ = {isa = PBXBuildFile; fileRef = 004F5CAC1187E22300844FD6 /* SpinnerStrip.png */; };
 		0064105811852C7200D0F9E8 /* BusStopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0064105611852C7200D0F9E8 /* BusStopViewController.m */; };
 		0064105911852C7200D0F9E8 /* BusStopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0064105711852C7200D0F9E8 /* BusStopViewController.xib */; };
 		00AEC6571186ADBC0083D75A /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 00AEC6561186ADBC0083D75A /* location.png */; };
@@ -48,6 +52,11 @@
 		00471E571186D3F200BAC790 /* CacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CacheOperation.h; path = ../Classes/CacheOperation.h; sourceTree = "<group>"; };
 		00471E581186D3F200BAC790 /* CacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CacheOperation.m; path = ../Classes/CacheOperation.m; sourceTree = "<group>"; };
 		0047DBDB1185923800856AAF /* map-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-marker.png"; sourceTree = "<group>"; };
+		004F5C411187D52200844FD6 /* BusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusViewController.h; sourceTree = "<group>"; };
+		004F5C421187D52200844FD6 /* BusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusViewController.m; sourceTree = "<group>"; };
+		004F5C431187D52200844FD6 /* BusViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusViewController.xib; sourceTree = "<group>"; };
+		004F5C941187DF4400844FD6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		004F5CAC1187E22300844FD6 /* SpinnerStrip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpinnerStrip.png; sourceTree = "<group>"; };
 		0064105511852C7200D0F9E8 /* BusStopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusStopViewController.h; path = BusStopView/BusStopViewController.h; sourceTree = SOURCE_ROOT; };
 		0064105611852C7200D0F9E8 /* BusStopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusStopViewController.m; path = BusStopView/BusStopViewController.m; sourceTree = SOURCE_ROOT; };
 		0064105711852C7200D0F9E8 /* BusStopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BusStopViewController.xib; path = BusStopView/BusStopViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -102,6 +111,7 @@
 				3F98A7B21184912C00877969 /* libicucore.dylib in Frameworks */,
 				3FA589931185B349009A3D66 /* CoreLocation.framework in Frameworks */,
 				00AEC6731186AFD90083D75A /* QuartzCore.framework in Frameworks */,
+				004F5C951187DF4400844FD6 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +129,16 @@
 			);
 			path = RootView;
 			sourceTree = SOURCE_ROOT;
+		};
+		004F5C3B1187D4FC00844FD6 /* BusView */ = {
+			isa = PBXGroup;
+			children = (
+				004F5C411187D52200844FD6 /* BusViewController.h */,
+				004F5C421187D52200844FD6 /* BusViewController.m */,
+				004F5C431187D52200844FD6 /* BusViewController.xib */,
+			);
+			path = BusView;
+			sourceTree = "<group>";
 		};
 		0064105411852C6100D0F9E8 /* BusStopView */ = {
 			isa = PBXGroup;
@@ -170,6 +190,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				004F5C3B1187D4FC00844FD6 /* BusView */,
 				00AEC7511186C4AE0083D75A /* Metadata */,
 				000EF22311857B230070B458 /* RootView */,
 				0064105411852C6100D0F9E8 /* BusStopView */,
@@ -195,6 +216,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				004F5CAC1187E22300844FD6 /* SpinnerStrip.png */,
 				00AEC6561186ADBC0083D75A /* location.png */,
 				00AEC68A1186B1800083D75A /* stop-bg.png */,
 				0047DBDB1185923800856AAF /* map-marker.png */,
@@ -213,6 +235,7 @@
 				3F98A7B11184912C00877969 /* libicucore.dylib */,
 				3FA589921185B349009A3D66 /* CoreLocation.framework */,
 				00AEC6721186AFD90083D75A /* QuartzCore.framework */,
+				004F5C941187DF4400844FD6 /* MapKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -303,6 +326,8 @@
 				00AEC6571186ADBC0083D75A /* location.png in Resources */,
 				00AEC68B1186B1800083D75A /* stop-bg.png in Resources */,
 				3FFCED8D1187500400322057 /* Default.png in Resources */,
+				004F5C451187D52200844FD6 /* BusViewController.xib in Resources */,
+				004F5CAD1187E22300844FD6 /* SpinnerStrip.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +353,7 @@
 				3FA58AF61185E1D3009A3D66 /* LocationManager.m in Sources */,
 				00AEC6D01186BCC50083D75A /* ArrivalsOperation.m in Sources */,
 				00471E591186D3F200BAC790 /* CacheOperation.m in Sources */,
+				004F5C441187D52200844FD6 /* BusViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
