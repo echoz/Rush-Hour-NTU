@@ -8,6 +8,8 @@
 
 #import "BusViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "BusAnnotation.h"
+#import "StopAnnotation.h"
 
 @implementation BusViewController
 @synthesize map, mapCell, bus, stop, nvCell;
@@ -28,7 +30,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	self.title = [bus busPlate];
-	[map.layer setCornerRadius:7.0];
+	[map.layer setCornerRadius:10.0];
 }
 
 
@@ -37,11 +39,29 @@
     [super viewWillAppear:animated];
 }
 */
-/*
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+ 
+	BusAnnotation *busAnnote = [[BusAnnotation alloc] init];
+	[busAnnote setBus:bus];
+	
+	StopAnnotation *stopAnnote = [[StopAnnotation alloc] init];
+	[stopAnnote setStop:stop];
+
+	[map addAnnotations:[NSArray arrayWithObjects:busAnnote, stopAnnote,nil]];
+	[stopAnnote release];
+	[busAnnote release];
+	
+	MKCoordinateRegion newRegion;
+    newRegion.center.latitude = [[stop lat] doubleValue];
+    newRegion.center.longitude = [[stop lon] doubleValue];
+    newRegion.span.latitudeDelta = 0.0112872;
+    newRegion.span.longitudeDelta = 0.0109863;
+	[map setRegion:newRegion animated:YES];
+ 
 }
-*/
+
 /*
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
@@ -207,6 +227,31 @@
     return YES;
 }
 */
+
+
+- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
+	static NSString* annotationIdentifier = @"annotationIdentifier";
+	MKPinAnnotationView* pinView = (MKPinAnnotationView *)
+	[map dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
+	if (!pinView) {
+		// if an existing pin view was not available, create one
+		MKPinAnnotationView* pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier] autorelease];
+		pinView.animatesDrop = YES;
+		pinView.canShowCallout = YES;
+		
+	} else {
+		pinView.annotation = annotation;
+	}
+	
+	if ([annotation isKindOfClass:[StopAnnotation class]]) {
+		pinView.pinColor = MKPinAnnotationColorGreen;
+	} else if ([annotation isKindOfClass:[BusAnnotation class]]) {
+		pinView.pinColor = MKPinAnnotationColorRed;
+	}
+	
+	return pinView;
+	
+}
 
 
 - (void)dealloc {
