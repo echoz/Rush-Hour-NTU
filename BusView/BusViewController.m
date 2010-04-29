@@ -31,7 +31,6 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	self.title = [bus busPlate];
 	[map.layer setCornerRadius:10.0];
-	self.navigationController.toolbarHidden = YES;
 }
 
 
@@ -43,7 +42,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
- 
+ 	[self.navigationController setToolbarHidden:YES animated:YES];
+
 	BusAnnotation *busAnnote = [[BusAnnotation alloc] init];
 	[busAnnote setBus:bus];
 	
@@ -63,11 +63,11 @@
  
 }
 
-/*
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
+ 	[self.navigationController setToolbarHidden:NO animated:YES];
+
 }
-*/
 /*
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
@@ -183,14 +183,14 @@
 	
 }
 
-
+/*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
 	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
 	// [self.navigationController pushViewController:anotherViewController];
 	// [anotherViewController release];
 }
-
+*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -234,8 +234,7 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
 	static NSString* annotationIdentifier = @"annotationIdentifier";
-	MKPinAnnotationView* pinView = (MKPinAnnotationView *)
-	[map dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
+	MKPinAnnotationView* pinView = (MKPinAnnotationView *)[map dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
 	if (!pinView) {
 		// if an existing pin view was not available, create one
 		MKPinAnnotationView* pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier] autorelease];
@@ -245,7 +244,7 @@
 	} else {
 		pinView.annotation = annotation;
 	}
-	
+
 	if ([annotation isKindOfClass:[StopAnnotation class]]) {
 		pinView.pinColor = MKPinAnnotationColorGreen;
 	} else if ([annotation isKindOfClass:[BusAnnotation class]]) {
@@ -258,11 +257,11 @@
 
 
 - (void)dealloc {
-	[nvCell release];
-	[bus release];
-	[stop release];
-	[mapCell release];
-	[map release];
+	[nvCell release], nvCell = nil;
+	[bus release], bus = nil;
+	[stop release], stop = nil;
+	[map release], map = nil;
+	[mapCell release], mapCell = nil;
     [super dealloc];
 }
 

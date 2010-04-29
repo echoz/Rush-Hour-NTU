@@ -21,6 +21,9 @@
 	
 	UIBarButtonItem *refreshETA;
 	UIBarButtonItem *star;
+	UIView *navTitleView;
+	UILabel *navStopName;
+	UILabel *navRoadName;
 	
 	BusETACell *etaCell;
 	
@@ -28,6 +31,9 @@
 }
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshETA;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *star;
+@property (nonatomic, retain) IBOutlet UIView *navTitleView;
+@property (nonatomic, retain) IBOutlet UILabel *navStopName;
+@property (nonatomic, retain) IBOutlet UILabel *navRoadName;
 @property (nonatomic, assign) IBOutlet BusETACell *etaCell;
 @property (readonly) CLLocation *stopLocation;
 @property (readwrite) NSUInteger busstopid;

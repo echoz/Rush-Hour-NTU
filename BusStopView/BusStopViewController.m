@@ -9,10 +9,11 @@
 #import "BusStopViewController.h"
 #import "ArrivalsOperation.h"
 #import "BusViewController.h"
+#import "NSString+htmlentitiesaddition.h"
 
 @implementation BusStopViewController
 
-@synthesize busstopid, etaCell, stopLocation, refreshETA, star;
+@synthesize busstopid, etaCell, stopLocation, refreshETA, star, navTitleView, navRoadName, navStopName;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -38,11 +39,19 @@
 	
 	self.toolbarItems = [NSArray arrayWithObject:star];
 	
+	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:[[stop desc] removeHTMLEntities] style:UIBarButtonItemStyleBordered target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backButton;
+    [backButton release];		
+	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
 	self.navigationItem.rightBarButtonItem = refreshETA;
-	self.title = [stop code];
+	//	self.title = [stop code];
+	navStopName.text = [[stop desc] removeHTMLEntities];
+	navRoadName.text = [stop roadName];
+	self.navigationItem.titleView = navTitleView;
+	
 	
 }
 
@@ -98,15 +107,18 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
+	[self.navigationController setToolbarHidden:NO animated:YES];
 	[self refresh];
+	[super viewDidAppear:animated];
+
+
 }
 
-/*
+
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 }
-*/
+
 /*
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
@@ -298,6 +310,9 @@
 
 
 - (void)dealloc {
+	[navStopName release];
+	[navRoadName release];
+	[navTitleView release];
 	[star release];
 	[refreshETA release];
 	[irisArrivals release];

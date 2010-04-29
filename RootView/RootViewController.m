@@ -50,6 +50,10 @@
 	
 	self.navigationItem.rightBarButtonItem = refreshCache;
 	
+	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backButton;
+    [backButton release];	
+	
 	if (self.savedSearchTerm) {
 		[self.searchDisplayController setActive:self.searchWasActive];
 		[self.searchDisplayController.searchBar setText:savedSearchTerm];
