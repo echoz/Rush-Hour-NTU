@@ -27,7 +27,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(RHSettings);
 	// Get Paths
 	//	NSString *defaultSettingsPath = [[NSBundle mainBundle] pathForResource:@"DefaultSettings" ofType:@"plist"];
 	
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
 	NSString *settingsPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:SETTINGS_FILE];
 
 	if ([[NSFileManager defaultManager] fileExistsAtPath:settingsPath]) {
@@ -58,7 +58,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(RHSettings);
 
 - (void)saveSettings {
 	if (self.stash) {
-		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
 		NSString *settingsPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:SETTINGS_FILE];
 		[self.stash writeToFile:settingsPath atomically:YES];
 	}

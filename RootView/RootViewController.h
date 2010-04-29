@@ -17,6 +17,7 @@
 	
 	NSMutableArray *filteredContent;
 	NSMutableArray *actualContent;
+	NSArray *originalContent;
 	NSString *savedSearchTerm;
 	BOOL searchWasActive;
 	
@@ -36,6 +37,7 @@
 
 @property (nonatomic, retain) NSMutableArray *filteredContent;
 @property (nonatomic, retain) NSMutableArray *actualContent;
+@property (nonatomic, retain) NSArray *originalContent;
 @property (nonatomic, copy) NSString *savedSearchTerm;
 @property (nonatomic) BOOL searchWasActive;
 @property (nonatomic, readonly) NSOperationQueue *workQueue;

@@ -38,7 +38,10 @@
 	workQueue = [[NSOperationQueue alloc] init];
 	[workQueue setMaxConcurrentOperationCount:5];
 	
-	self.toolbarItems = [NSArray arrayWithObject:star];
+	self.toolbarItems = [NSArray arrayWithObjects:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
+						 star,
+						 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
+						 nil];
 	
 	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:[[stop desc] removeHTMLEntities] style:UIBarButtonItemStyleBordered target:nil action:nil];
     self.navigationItem.backBarButtonItem = backButton;
@@ -53,7 +56,8 @@
 	navRoadName.text = [stop roadName];
 	self.navigationItem.titleView = navTitleView;
 	
-	loadProgress.hidden = YES;
+	self.loadProgress.alpha = 0.0;
+	self.navRoadName.alpha = 1.0;
 	
 	NSMutableArray *favs = [[RHSettings sharedRHSettings].stash valueForKey:@"favorites"];
 	if (!favs)
@@ -91,8 +95,13 @@
 	[self.loadProgress setProgress:(float)(totalOps - [[workQueue operations] count] + 1)/totalOps];
 	if ([[workQueue operations] count] == 1) {
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-		self.loadProgress.hidden = YES;
-		self.navRoadName.hidden = NO;
+		
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration:0.75];
+		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+		self.loadProgress.alpha = 0.0;
+		self.navRoadName.alpha = 1.0;
+		[UIView commitAnimations];		
 	}
 }
 
@@ -102,10 +111,12 @@
 		favs = [NSMutableArray array];
 	if ([favs indexOfObject:[stop code]] == NSNotFound) {
 		[star setImage:[UIImage imageNamed:@"star-icon-filled-dark.png"]];
-		[[[RHSettings sharedRHSettings].stash valueForKey:@"favorites"] addObject:[stop code]];
+		[favs addObject:[stop code]];
+		[[RHSettings sharedRHSettings].stash setObject:favs forKey:@"favorites"];
 	} else {
 		[star setImage:[UIImage imageNamed:@"star-icon-dark.png"]];
-		[[[RHSettings sharedRHSettings].stash valueForKey:@"favorites"] removeObject:[stop code]];	
+		[favs removeObject:[stop code]];
+		[[RHSettings sharedRHSettings].stash setObject:favs forKey:@"favorites"];
 	}
 	
 }
@@ -129,8 +140,8 @@
 	}
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	totalOps = [[workQueue operations] count];
-	self.navRoadName.hidden = YES;	
-	self.loadProgress.hidden = NO;
+	self.loadProgress.alpha = 1.0;
+	self.navRoadName.alpha = 0.0;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

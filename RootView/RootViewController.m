@@ -20,7 +20,7 @@
 
 @implementation RootViewController
 
-@synthesize currentLocation, refreshCache, savedSearchTerm, filteredContent, searchWasActive, actualContent, workQueue, irisquery;
+@synthesize currentLocation, refreshCache, savedSearchTerm, filteredContent, searchWasActive, actualContent, workQueue, irisquery, originalContent;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -35,7 +35,9 @@
 	lastUpdate = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
 	lastUpdate.backgroundColor = [UIColor clearColor];
 	lastUpdate.textColor = [UIColor whiteColor];
-	lastUpdate.font = [UIFont fontWithName:@"Helvetica" size:13.0];
+	lastUpdate.shadowColor = [UIColor grayColor];
+	lastUpdate.shadowOffset = CGSizeMake(0, -1);
+	lastUpdate.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
 	lastUpdate.text = @"";
 	
 	spinner = [UIImage imageNamed:@"spinner.png"];
@@ -187,7 +189,17 @@
 	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];	
 	self.filteredContent = [NSMutableArray arrayWithCapacity:[[engine stops] count]];	
 	self.actualContent = [[engine stops] mutableCopy];
+	self.originalContent = [engine stops];
 	
+	NSMutableArray *toremove = [NSMutableArray array];
+	
+	for (JONTUBusStop *stop in self.actualContent) {
+		if ([favorites indexOfObject:[stop code]] != NSNotFound) {
+			[toremove addObject:stop];
+		}
+	}
+	[self.actualContent removeObjectsInArray:toremove];
+		
 	NSDateFormatter *f = [[NSDateFormatter alloc] init];
 	[f setDateStyle:NSDateFormatterShortStyle];
 	[f setTimeStyle:NSDateFormatterShortStyle];
@@ -197,7 +209,6 @@
 	
 	[self.tableView reloadData];
 }
-
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     NSDate* eventDate = newLocation.timestamp;
@@ -220,14 +231,13 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+	[super viewWillAppear:animated];
 	self.navigationController.toolbarHidden = NO;
 	favorites = [[RHSettings sharedRHSettings].stash valueForKey:@"favorites"];
 	if (!favorites)
 		favorites = [[NSMutableArray array] retain];
 
-	[self.tableView reloadData];
-
+	[self freshen];
 }
 
 /*
@@ -263,10 +273,15 @@
 
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if ([favorites count] > 0) {
-		return 2;
+	if (tableView == self.searchDisplayController.searchResultsTableView) {
+		return 1;
 	} else {
-		return 1;		
+		if ([favorites count] > 0) {
+			return 2;
+		} else {
+			return 1;		
+		}
+		
 	}
 }
 
@@ -287,6 +302,21 @@
 
 //	return 0; // for taking of default images
 }
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	if (tableView != self.searchDisplayController.searchResultsTableView) {	
+		if ([favorites count] > 0) {
+			switch (section) {
+				case 0:
+					return @"Favourites";
+				default:
+					return @"Stops";
+			}
+		}
+	}
+	return @"";
+}
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return 55;
@@ -409,7 +439,7 @@
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
 	[self.filteredContent removeAllObjects];
 	
-	for (JONTUBusStop *stop in actualContent) {
+	for (JONTUBusStop *stop in originalContent) {
 		
 		NSRange descresult = [stop.desc rangeOfString:searchText options:NSCaseInsensitiveSearch];
 		NSRange coderesult = [stop.code rangeOfString:searchText options:NSCaseInsensitiveSearch];
