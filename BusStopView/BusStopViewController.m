@@ -171,9 +171,7 @@
 		case 0:
 			return [arrivals count];
 		case 1:
-			if ([irisArrivals count] == [[stop otherBus] count]) {
-				return [[stop otherBus] count];				
-			}
+			return [[stop otherBus] count];				
 	}
 	return 0;
 }
@@ -234,9 +232,17 @@
 		NSDictionary *irisbus = [self irisArrivalFromService:[[stop otherBus] objectAtIndex:indexPath.row]];
 		
 		if (!irisbus) {
-			cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
-			cell.subtextLabel.text = @"Invalid Service";
-			cell.detailLabel.text = @"";
+			if ([irisArrivals count] == [[stop otherBus] count]) {
+				cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
+				cell.subtextLabel.text = @"Invalid Service";
+				cell.detailLabel.text = @"";
+				
+			} else {
+				cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
+				cell.subtextLabel.text = @"";
+				cell.detailLabel.text = @"";
+				
+			}
 			
 		} else if ([[[irisbus valueForKey:@"eta"] lowercaseString] hasPrefix:@"not operating"]) {
 			cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
