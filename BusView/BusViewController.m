@@ -238,7 +238,7 @@
 	if (!pinView) {
 		// if an existing pin view was not available, create one
 		MKPinAnnotationView* pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier] autorelease];
-		pinView.animatesDrop = YES;
+		pinView.animatesDrop = NO;
 		pinView.canShowCallout = YES;
 		
 	} else {
