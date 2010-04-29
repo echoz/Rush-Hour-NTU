@@ -104,7 +104,6 @@
 }
 
 -(IBAction)showIrisQuery {
-	NSLog(@"HERE");
 	IrisQueryUIViewController *modalView = [[IrisQueryUIViewController alloc] initWithNibName:@"IrisQueryUIViewController" bundle:nil];
 	[self presentModalViewController:modalView animated:YES];
 	[modalView release];

@@ -78,7 +78,6 @@
 
 -(void)updateProgressBar {
 	[self.loadProgress setProgress:(float)(totalOps - [[workQueue operations] count] + 1)/totalOps];
-	NSLog(@"%f",self.loadProgress.progress);
 	if ([[workQueue operations] count] == 1) {
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 		self.loadProgress.hidden = YES;
