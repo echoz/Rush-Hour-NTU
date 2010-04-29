@@ -9,6 +9,7 @@
 #import "RushHourNTUAppDelegate.h"
 #import "RootViewController.h"
 #import "JONTUBusEngine.h"
+#import "RHSettings.h"
 
 #define CACH_FILE @"JONTUBusCore.cache"
 
@@ -53,6 +54,8 @@
 	NSString *cachePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:CACH_FILE];
 
 	[JONTUBusEngine saveState:cachePath];
+	
+	[[RHSettings sharedRHSettings] saveSettings];
 
 }
 

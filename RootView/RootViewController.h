@@ -26,6 +26,8 @@
 	NSTimer *animationTimer;
 	UIImage *spinner;
 	int spinnerFrame;
+	
+	NSMutableArray *favorites;
 }
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *currentLocation;

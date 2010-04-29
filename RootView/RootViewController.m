@@ -16,6 +16,7 @@
 #import "RegexKitLite.h"
 #import <QuartzCore/QuartzCore.h>
 #import "IrisQueryUIViewController.h"
+#import "RHSettings.h"
 
 @implementation RootViewController
 
@@ -69,7 +70,7 @@
 	[manager.manager setDesiredAccuracy:kCLLocationAccuracyBest];
 	
 	proximitySort = NO;
-	
+		
 	workQueue = [[NSOperationQueue alloc] init];
 	
 	if ([JONTUBusEngine sharedJONTUBusEngine].brandNew) {
@@ -221,6 +222,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	self.navigationController.toolbarHidden = NO;
+	favorites = [[RHSettings sharedRHSettings].stash valueForKey:@"favorites"];
+	if (!favorites)
+		favorites = [[NSMutableArray array] retain];
+
+	[self.tableView reloadData];
 
 }
 
@@ -257,7 +263,11 @@
 
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+	if ([favorites count] > 0) {
+		return 2;
+	} else {
+		return 1;		
+	}
 }
 
 // Customize the number of rows in the table view.
@@ -266,6 +276,11 @@
 	if (tableView == self.searchDisplayController.searchResultsTableView) {
 		return [self.filteredContent count];
 	} else {		
+		if ([favorites count] > 0) {
+			if (section == 0) {
+				return [favorites count];
+			}
+		}
 		return [actualContent count];
 		
 	}
@@ -306,22 +321,28 @@
 		cell.tag = [[self.filteredContent objectAtIndex:indexPath.row] busstopid];
 		
 	} else {
-		cell.textLabel.text = [[[actualContent objectAtIndex:indexPath.row] desc] removeHTMLEntities];
-		
-		if (proximitySort) {
-			CLLocation *stopLocation = [[CLLocation alloc] initWithLatitude:[[[actualContent objectAtIndex:indexPath.row] lat] doubleValue] longitude:[[[actualContent objectAtIndex:indexPath.row] lon] doubleValue]];
-			CLLocationDegrees dist = [[[[LocationManager sharedLocationManager] manager] location] getDistanceFrom:stopLocation];
+		if (([favorites count] == 0) || (indexPath.section == 1)) {
+			cell.textLabel.text = [[[actualContent objectAtIndex:indexPath.row] desc] removeHTMLEntities];
 			
-			cell.detailTextLabel.text = [NSString stringWithFormat:@"%.fm away", dist];
-			[stopLocation release];
-			
-		} else {
-			cell.detailTextLabel.text = [[actualContent objectAtIndex:indexPath.row] roadName];
-			
-		}
+			if (proximitySort) {
+				CLLocation *stopLocation = [[CLLocation alloc] initWithLatitude:[[[actualContent objectAtIndex:indexPath.row] lat] doubleValue] longitude:[[[actualContent objectAtIndex:indexPath.row] lon] doubleValue]];
+				CLLocationDegrees dist = [[[[LocationManager sharedLocationManager] manager] location] getDistanceFrom:stopLocation];
 				
-		cell.tag = [[actualContent objectAtIndex:indexPath.row] busstopid];
-		
+				cell.detailTextLabel.text = [NSString stringWithFormat:@"%.fm away", dist];
+				[stopLocation release];
+				
+			} else {
+				cell.detailTextLabel.text = [[actualContent objectAtIndex:indexPath.row] roadName];
+				
+			}
+			
+			cell.tag = [[actualContent objectAtIndex:indexPath.row] busstopid];				
+		} else {
+			JONTUBusStop *favstop = [[JONTUBusEngine sharedJONTUBusEngine] stopForCode:[favorites objectAtIndex:indexPath.row]];
+			cell.textLabel.text = [favstop desc];
+			cell.detailTextLabel.text = [favstop roadName];
+			cell.tag = [favstop busstopid];
+		}
 	}
     
 	// Configure the cell.	
@@ -440,6 +461,7 @@
 
 
 - (void)dealloc {
+	[favorites release];
 	[animationTimer release];
 	[spinner release];
 	[irisquery release];

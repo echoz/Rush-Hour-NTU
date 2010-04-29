@@ -22,6 +22,7 @@
 		00AEC6731186AFD90083D75A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AEC6721186AFD90083D75A /* QuartzCore.framework */; };
 		00AEC68B1186B1800083D75A /* stop-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 00AEC68A1186B1800083D75A /* stop-bg.png */; };
 		00AEC6D01186BCC50083D75A /* ArrivalsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AEC6CF1186BCC50083D75A /* ArrivalsOperation.m */; };
+		00CDAF1E118986B300C10F97 /* RHSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CDAF1D118986B300C10F97 /* RHSettings.m */; };
 		00D0CC5E118820E100F1D387 /* NameValueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D0CC5D118820E100F1D387 /* NameValueCell.m */; };
 		00D0CC601188211900F1D387 /* NameValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00D0CC5F1188211900F1D387 /* NameValueCell.xib */; };
 		00D0CCF51188298900F1D387 /* BusAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D0CCF41188298900F1D387 /* BusAnnotation.m */; };
@@ -74,6 +75,8 @@
 		00AEC68A1186B1800083D75A /* stop-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stop-bg.png"; sourceTree = "<group>"; };
 		00AEC6CE1186BCC50083D75A /* ArrivalsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrivalsOperation.h; sourceTree = "<group>"; };
 		00AEC6CF1186BCC50083D75A /* ArrivalsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrivalsOperation.m; sourceTree = "<group>"; };
+		00CDAF1C118986B300C10F97 /* RHSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHSettings.h; sourceTree = "<group>"; };
+		00CDAF1D118986B300C10F97 /* RHSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHSettings.m; sourceTree = "<group>"; };
 		00D0CC5C118820E100F1D387 /* NameValueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameValueCell.h; sourceTree = "<group>"; };
 		00D0CC5D118820E100F1D387 /* NameValueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameValueCell.m; sourceTree = "<group>"; };
 		00D0CC5F1188211900F1D387 /* NameValueCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NameValueCell.xib; sourceTree = "<group>"; };
@@ -211,6 +214,8 @@
 				3FA58A841185D732009A3D66 /* JONTUBusStop+location.m */,
 				3FA58AF41185E1D3009A3D66 /* LocationManager.h */,
 				3FA58AF51185E1D3009A3D66 /* LocationManager.m */,
+				00CDAF1C118986B300C10F97 /* RHSettings.h */,
+				00CDAF1D118986B300C10F97 /* RHSettings.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -414,6 +419,7 @@
 				00D0CCF51188298900F1D387 /* BusAnnotation.m in Sources */,
 				00D0CD2511882F0D00F1D387 /* StopAnnotation.m in Sources */,
 				3FA7B1031188883F00638E51 /* IrisQueryUIViewController.m in Sources */,
+				00CDAF1E118986B300C10F97 /* RHSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

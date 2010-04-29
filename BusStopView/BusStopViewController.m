@@ -10,6 +10,7 @@
 #import "ArrivalsOperation.h"
 #import "BusViewController.h"
 #import "NSString+htmlentitiesaddition.h"
+#import "RHSettings.h"
 
 @implementation BusStopViewController
 
@@ -53,6 +54,16 @@
 	self.navigationItem.titleView = navTitleView;
 	
 	loadProgress.hidden = YES;
+	
+	NSMutableArray *favs = [[RHSettings sharedRHSettings].stash valueForKey:@"favorites"];
+	if (!favs)
+		favs = [NSMutableArray array];
+	
+	if ([favs indexOfObject:[stop code]] != NSNotFound) {
+		[star setImage:[UIImage imageNamed:@"star-icon-filled-dark.png"]];
+	} else {
+		[star setImage:[UIImage imageNamed:@"star-icon-dark.png"]];
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -86,9 +97,17 @@
 }
 
 -(IBAction)favorite {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Future action" message:@"To be implemented. Enjoy this alert for now." delegate:nil cancelButtonTitle:@"Continue" otherButtonTitles:nil];
-	[alert show];
-	[alert release];
+	NSMutableArray *favs = [[RHSettings sharedRHSettings].stash valueForKey:@"favorites"];
+	if (!favs)
+		favs = [NSMutableArray array];
+	if ([favs indexOfObject:[stop code]] == NSNotFound) {
+		[star setImage:[UIImage imageNamed:@"star-icon-filled-dark.png"]];
+		[[[RHSettings sharedRHSettings].stash valueForKey:@"favorites"] addObject:[stop code]];
+	} else {
+		[star setImage:[UIImage imageNamed:@"star-icon-dark.png"]];
+		[[[RHSettings sharedRHSettings].stash valueForKey:@"favorites"] removeObject:[stop code]];	
+	}
+	
 }
 
 -(IBAction)refresh {
