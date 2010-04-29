@@ -24,19 +24,24 @@
 	UIView *navTitleView;
 	UILabel *navStopName;
 	UILabel *navRoadName;
+	UIProgressView *loadProgress;
 	
 	BusETACell *etaCell;
 	
 	NSOperationQueue *workQueue;
+	int totalOps;
 }
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshETA;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *star;
 @property (nonatomic, retain) IBOutlet UIView *navTitleView;
 @property (nonatomic, retain) IBOutlet UILabel *navStopName;
 @property (nonatomic, retain) IBOutlet UILabel *navRoadName;
+@property (nonatomic, retain) IBOutlet UIProgressView *loadProgress;
 @property (nonatomic, assign) IBOutlet BusETACell *etaCell;
 @property (readonly) CLLocation *stopLocation;
 @property (readwrite) NSUInteger busstopid;
+-(NSDictionary *)irisArrivalFromService:(NSString *)service;
+-(void)updateProgressBar;
 -(IBAction)refresh;
 -(IBAction)favorite;
 @end

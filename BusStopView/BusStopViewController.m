@@ -13,7 +13,7 @@
 
 @implementation BusStopViewController
 
-@synthesize busstopid, etaCell, stopLocation, refreshETA, star, navTitleView, navRoadName, navStopName;
+@synthesize busstopid, etaCell, stopLocation, refreshETA, star, navTitleView, navRoadName, navStopName, loadProgress;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -35,7 +35,7 @@
 	arrivals = nil;
 	irisArrivals = [[NSMutableArray arrayWithCapacity:[[stop otherBus] count]] retain];
 	workQueue = [[NSOperationQueue alloc] init];
-	[workQueue setMaxConcurrentOperationCount:1];
+	[workQueue setMaxConcurrentOperationCount:5];
 	
 	self.toolbarItems = [NSArray arrayWithObject:star];
 	
@@ -52,13 +52,12 @@
 	navRoadName.text = [stop roadName];
 	self.navigationItem.titleView = navTitleView;
 	
-	
+	loadProgress.hidden = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	self.navigationController.toolbarHidden = NO;
-
+	[self refresh];
 }
 
 -(void)gotArrivals:(id)object {
@@ -67,17 +66,24 @@
 	if ([[workQueue operations] count] == 1) {
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	}
-	
+	[self updateProgressBar];	
 	[self.tableView reloadData];
 }
 
 -(void)gotIrisResult:(id)object {
 	[irisArrivals addObject:object];
+	[self updateProgressBar];
+	[self.tableView reloadData];
+}
+
+-(void)updateProgressBar {
+	[self.loadProgress setProgress:(float)(totalOps - [[workQueue operations] count] + 1)/totalOps];
+	NSLog(@"%f",self.loadProgress.progress);
 	if ([[workQueue operations] count] == 1) {
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+		self.loadProgress.hidden = YES;
+		self.navRoadName.hidden = NO;
 	}
-	
-	[self.tableView reloadData];
 }
 
 -(IBAction)favorite {
@@ -103,12 +109,14 @@
 		[arrivalsop release];
 		arrivalsop = nil;
 	}
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;	
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	totalOps = [[workQueue operations] count];
+	self.navRoadName.hidden = YES;	
+	self.loadProgress.hidden = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[self.navigationController setToolbarHidden:NO animated:YES];
-	[self refresh];
 	[super viewDidAppear:animated];
 
 
@@ -116,6 +124,7 @@
 
 
 - (void)viewWillDisappear:(BOOL)animated {
+	[self.navigationController setToolbarHidden:YES animated:YES];
 	[super viewWillDisappear:animated];
 }
 
@@ -222,22 +231,23 @@
 		}
 		[busLocation release];
 	} else if (indexPath.section == 1) {
-		// need to fix invalid service thing here.
 		
-		if ([[[[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"service"] lowercaseString] hasPrefix:@"invalid service"]) {
+		NSDictionary *irisbus = [self irisArrivalFromService:[[stop otherBus] objectAtIndex:indexPath.row]];
+		
+		if (!irisbus) {
 			cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
 			cell.subtextLabel.text = @"Invalid Service";
 			cell.detailLabel.text = @"";
 			
-		} else if ([[[[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"eta"] lowercaseString] hasPrefix:@"not operating"]) {
+		} else if ([[[irisbus valueForKey:@"eta"] lowercaseString] hasPrefix:@"not operating"]) {
 			cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
 			cell.subtextLabel.text = @"Off Service";
 			cell.detailLabel.text = @"";
 			
 		} else {
 			cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
-			cell.subtextLabel.text = [NSString stringWithFormat:@"Next bus: %@", [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"subsequent"]];
-			cell.detailLabel.text = [[irisArrivals objectAtIndex:indexPath.row] valueForKey:@"eta"];
+			cell.subtextLabel.text = [NSString stringWithFormat:@"Next bus: %@", [irisbus valueForKey:@"subsequent"]];
+			cell.detailLabel.text = [irisbus valueForKey:@"eta"];
 			
 		}
 		cell.accessoryType = UITableViewCellAccessoryNone;
@@ -248,6 +258,14 @@
     return cell;
 }
 
+-(NSDictionary *)irisArrivalFromService:(NSString *)service {
+	for (int i=0;i<[irisArrivals count];i++) {
+		if ([[[irisArrivals objectAtIndex:i] valueForKey:@"service"] isEqualToString:service]) {
+			return [irisArrivals objectAtIndex:i];
+		}
+	}
+	return nil;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
