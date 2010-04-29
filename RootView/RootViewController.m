@@ -43,7 +43,8 @@
 	spinner = [UIImage imageNamed:@"spinner.png"];
 	spinnerFrame = 0;
 
-	// self.toolbarItems = [NSArray arrayWithObject:currentLocation]; // for taking of default images
+//	self.toolbarItems = [NSArray arrayWithObject:currentLocation]; // for taking of default images
+	
 	self.toolbarItems = [NSArray arrayWithObjects:currentLocation,
 						 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
 						 [[[UIBarButtonItem alloc] initWithCustomView:lastUpdate] autorelease],
@@ -137,8 +138,9 @@
 	proximitySort = NO;
 	[actualContent release];
 	actualContent = nil;
-	self.actualContent = [[[JONTUBusEngine sharedJONTUBusEngine] stops] mutableCopy];
-	[self.tableView reloadData];
+//	self.actualContent = [[[JONTUBusEngine sharedJONTUBusEngine] stops] mutableCopy];
+//	[self.tableView reloadData];
+	[self freshen];
 }
 
 -(IBAction)refreshTheCache {
@@ -204,7 +206,7 @@
 	[f setDateStyle:NSDateFormatterShortStyle];
 	[f setTimeStyle:NSDateFormatterShortStyle];
 	
-	lastUpdate.text = [NSString stringWithFormat:@"Last updated: %@", [f stringFromDate:engine.lastGetIndexPage]];
+	lastUpdate.text = [NSString stringWithFormat:@"Last updated: %@", [f stringFromDate:engine.lastGetIndexPage]]; // comment for taking of default images
 	[f release];
 	
 	[self.tableView reloadData];
