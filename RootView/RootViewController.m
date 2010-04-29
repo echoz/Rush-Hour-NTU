@@ -139,8 +139,8 @@
 }
 
 -(IBAction)refreshTheCache {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Refresh Cache" 
-													message:@"Are you sure you want to refresh the cache?" 
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reload Cache" 
+													message:@"Are you sure you want to reload the entire Shuttle Bus Database?" 
 												   delegate:self 
 										  cancelButtonTitle:@"No"
 										  otherButtonTitles:@"Yes",nil];

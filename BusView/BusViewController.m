@@ -43,6 +43,13 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
  	[self.navigationController setToolbarHidden:YES animated:YES];
+	
+	MKCoordinateRegion newRegion;
+    newRegion.center.latitude = [[stop lat] doubleValue];
+    newRegion.center.longitude = [[stop lon] doubleValue];
+    newRegion.span.latitudeDelta = 0.0112872;
+    newRegion.span.longitudeDelta = 0.0109863;
+	[map setRegion:newRegion animated:YES];	
 
 	BusAnnotation *busAnnote = [[BusAnnotation alloc] init];
 	[busAnnote setBus:bus];
@@ -53,17 +60,11 @@
 	[map addAnnotations:[NSArray arrayWithObjects:busAnnote, stopAnnote,nil]];
 	[stopAnnote release];
 	[busAnnote release];
-	
-	MKCoordinateRegion newRegion;
-    newRegion.center.latitude = [[stop lat] doubleValue];
-    newRegion.center.longitude = [[stop lon] doubleValue];
-    newRegion.span.latitudeDelta = 0.0112872;
-    newRegion.span.longitudeDelta = 0.0109863;
-	[map setRegion:newRegion animated:YES];
  
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+	[map.layer removeAllAnimations];
 	[super viewWillDisappear:animated];
  	[self.navigationController setToolbarHidden:NO animated:YES];
 
@@ -85,7 +86,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
-
+/*
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -97,7 +98,7 @@
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }
-
+*/
 
 #pragma mark Table view methods
 
@@ -237,12 +238,10 @@
 	MKPinAnnotationView* pinView = (MKPinAnnotationView *)[map dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
 	if (!pinView) {
 		// if an existing pin view was not available, create one
-		MKPinAnnotationView* pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier] autorelease];
-		pinView.animatesDrop = NO;
-		pinView.canShowCallout = YES;
-		
-	} else {
-		pinView.annotation = annotation;
+		MKPinAnnotationView* pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:nil reuseIdentifier:annotationIdentifier] autorelease];
+		pinView.animatesDrop = YES;
+		pinView.canShowCallout = NO;
+
 	}
 
 	if ([annotation isKindOfClass:[StopAnnotation class]]) {
@@ -251,12 +250,15 @@
 		pinView.pinColor = MKPinAnnotationColorRed;
 	}
 	
+	pinView.annotation = annotation;	
+	
 	return pinView;
 	
 }
 
 
 - (void)dealloc {
+	map.delegate = nil;
 	[nvCell release], nvCell = nil;
 	[bus release], bus = nil;
 	[stop release], stop = nil;

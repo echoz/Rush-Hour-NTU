@@ -212,7 +212,9 @@
 		JONTUBus *bus = [engine busForPlate:[[arrivals objectAtIndex:indexPath.row] valueForKey:@"plate"]];
 		
 		CLLocation *busLocation = [[CLLocation alloc] initWithLatitude:[[bus lat] doubleValue] longitude:[[bus lon] doubleValue]];
-				
+
+		//cell.textLabel.textColor = [NSString colorFromHexString:[[engine routeForId:[[[arrivals objectAtIndex:indexPath.row] valueForKey:@"routeid"] integerValue]] color]];
+
 		cell.textLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"routename"];
 		cell.subtextLabel.text = [NSString stringWithFormat:@"%.0fm away (%ikm/h): %@", [stopLocation getDistanceFrom:busLocation], [bus speed], [bus busPlate]];
 		if ([[arrivals objectAtIndex:indexPath.row] valueForKey:@"err"]) {

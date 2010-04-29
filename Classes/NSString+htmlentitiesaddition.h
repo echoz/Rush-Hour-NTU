@@ -11,4 +11,5 @@
 
 @interface NSString (JOHTMLEntitiesAddition)
 -(NSString *)removeHTMLEntities;
++(UIColor *) colorFromHexString:(NSString *)colorString;
 @end
