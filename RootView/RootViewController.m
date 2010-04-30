@@ -470,10 +470,14 @@
 
 		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 		if ([favorites count] == 0) {
-			[tableView reloadSections:[[NSIndexSet alloc] initWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-			[tableView reloadSections:[[NSIndexSet alloc] initWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];			
+			[tableView reloadSections:[[[NSIndexSet alloc] initWithIndex:0] autorelease] withRowAnimation:UITableViewRowAnimationFade];
+			[tableView reloadSections:[[[NSIndexSet alloc] initWithIndex:1] autorelease]withRowAnimation:UITableViewRowAnimationFade];			
 		}
-		[tableView endUpdates];	
+		[tableView endUpdates];
+		
+		if (!tableView.editing) {
+			[[self.tableView cellForRowAtIndexPath:indexPath] setEditing:NO animated:YES];
+		}
 	}
 }
 
@@ -522,7 +526,7 @@
 						 withRowAnimation:UITableViewRowAnimationFade];
 		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 		if ([favorites count] == 1)
-			[tableView reloadSections:[[NSIndexSet alloc] initWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];		
+			[tableView reloadSections:[[[NSIndexSet alloc] initWithIndex:0] autorelease] withRowAnimation:UITableViewRowAnimationFade];		
 		[tableView endUpdates];
 		
 	} else if (!self.tableView.editing) {
