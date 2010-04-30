@@ -17,6 +17,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "IrisQueryUIViewController.h"
 #import "RHSettings.h"
+#import "StopTableViewCell.h"
 
 @implementation RootViewController
 
@@ -95,6 +96,8 @@
 	} else {
 		[self freshen];		
 	}
+	
+	[self.searchDisplayController.searchResultsTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 }
 
 -(void)cacheLoadStartNotification:(id)object {
@@ -350,7 +353,7 @@
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return 55;
+	return 60;
 }
 
 // Customize the appearance of table view cells.
@@ -358,20 +361,22 @@
     
     static NSString *CellIdentifier = @"Cell";
 	
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    StopTableViewCell *cell = (StopTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-		//		cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stop-bg.png"]] autorelease];
+		cell = [[[StopTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+		cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stop-bg.png"]] autorelease];
+		
+		cell.backgroundColor = [UIColor clearColor];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		cell.editingAccessoryType = UITableViewCellAccessoryNone;		
-		cell.contentView.opaque = NO;
-		cell.detailTextLabel.opaque = NO;
-		cell.textLabel.opaque = NO;
+
+		cell.contentView.opaque = YES;
+		cell.detailTextLabel.opaque = YES;
+		cell.textLabel.opaque = YES;
 		cell.contentView.backgroundColor = [UIColor clearColor];
 		cell.detailTextLabel.backgroundColor = [UIColor clearColor];
 		cell.textLabel.backgroundColor = [UIColor clearColor];
-		
-		
+
     }
 	
 	if (tableView == self.searchDisplayController.searchResultsTableView) {
@@ -382,6 +387,7 @@
 	} else {
 		if (([favorites count] == 0) || (indexPath.section == 1)) {
 			cell.textLabel.text = [[[actualContent objectAtIndex:indexPath.row] desc] removeHTMLEntities];
+			cell.textLabel.clearsContextBeforeDrawing = YES;
 			
 			if (proximitySort) {
 				CLLocation *stopLocation = [[CLLocation alloc] initWithLatitude:[[[actualContent objectAtIndex:indexPath.row] lat] doubleValue] longitude:[[[actualContent objectAtIndex:indexPath.row] lon] doubleValue]];
@@ -396,14 +402,14 @@
 			}
 			
 			cell.tag = [[actualContent objectAtIndex:indexPath.row] busstopid];
-			cell.imageView.bounds = CGRectMake(0, 0, 20, 20);
+			cell.fav.image = [UIImage imageNamed:@"star-icon-dark.png"];
 			cell.showsReorderControl = NO;				
 		} else {
 			JONTUBusStop *favstop = [[JONTUBusEngine sharedJONTUBusEngine] stopForCode:[favorites objectAtIndex:indexPath.row]];
 			cell.textLabel.text = [favstop desc];
 			cell.detailTextLabel.text = [favstop roadName];
 			cell.tag = [favstop busstopid];
-			cell.imageView.image = [UIImage imageNamed:@"star-icon-filled-dark.png"];
+			cell.fav.image = [UIImage imageNamed:@"star-icon-filled-dark.png"];
 			cell.showsReorderControl = YES;
 		}
 	}
@@ -411,6 +417,11 @@
 	// Configure the cell.	
 	
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+	cell.textLabel.backgroundColor = [UIColor clearColor];
 }
 
 

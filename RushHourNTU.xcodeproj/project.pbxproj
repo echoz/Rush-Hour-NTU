@@ -28,6 +28,8 @@
 		00D0CCF51188298900F1D387 /* BusAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D0CCF41188298900F1D387 /* BusAnnotation.m */; };
 		00D0CD2511882F0D00F1D387 /* StopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D0CD2411882F0D00F1D387 /* StopAnnotation.m */; };
 		00DAB1AA118AA6440090C13A /* StopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DAB1A9118AA6440090C13A /* StopTableViewCell.m */; };
+		00DAB24B118AAED80090C13A /* star-icon-filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DAB249118AAED80090C13A /* star-icon-filled.png */; };
+		00DAB24C118AAED80090C13A /* star-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DAB24A118AAED80090C13A /* star-icon.png */; };
 		1D3623260D0F684500981E51 /* RushHourNTUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* RushHourNTUAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -87,6 +89,8 @@
 		00D0CD2411882F0D00F1D387 /* StopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAnnotation.m; sourceTree = "<group>"; };
 		00DAB1A8118AA6440090C13A /* StopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopTableViewCell.h; sourceTree = "<group>"; };
 		00DAB1A9118AA6440090C13A /* StopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopTableViewCell.m; sourceTree = "<group>"; };
+		00DAB249118AAED80090C13A /* star-icon-filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-icon-filled.png"; sourceTree = "<group>"; };
+		00DAB24A118AAED80090C13A /* star-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-icon.png"; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* RushHourNTUAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RushHourNTUAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* RushHourNTUAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RushHourNTUAppDelegate.m; sourceTree = "<group>"; };
@@ -264,6 +268,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00DAB249118AAED80090C13A /* star-icon-filled.png */,
+				00DAB24A118AAED80090C13A /* star-icon.png */,
 				3FA7B10911888BFD00638E51 /* 09-chat2.png */,
 				3F83324511886E8300F3B165 /* star-icon-dark.png */,
 				3F83324611886E8300F3B165 /* star-icon-filled-dark.png */,
@@ -394,6 +400,8 @@
 				3FA7B1041188883F00638E51 /* IrisQueryUIViewController.xib in Resources */,
 				3FA7B10A11888BFD00638E51 /* 09-chat2.png in Resources */,
 				3FB4BC171189E11300FEAE71 /* Default.png in Resources */,
+				00DAB24B118AAED80090C13A /* star-icon-filled.png in Resources */,
+				00DAB24C118AAED80090C13A /* star-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
