@@ -43,8 +43,6 @@
 	
 	spinner = [UIImage imageNamed:@"spinner.png"];
 	spinnerFrame = 0;
-
-//	self.toolbarItems = [NSArray arrayWithObject:currentLocation]; // for taking of default images
 	
 	genericDisplay = [[UIBarButtonItem alloc] initWithCustomView:lastUpdate];
 	
@@ -186,7 +184,7 @@
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if ((alertView.title = @"Refresh Cache") && ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Yes"])) {
+	if ((alertView.title == @"Reload Cache") && ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Yes"])) {
 		NSLog(@"Refreshing Cache");
 		[[JONTUBusEngine sharedJONTUBusEngine] setHoldCache:20];
 		CacheOperation *fillCache = [[CacheOperation alloc] initWithDelegate:self];
@@ -335,6 +333,7 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	
 	if (tableView != self.searchDisplayController.searchResultsTableView) {	
 		switch (section) {
 			case 0:
@@ -351,6 +350,8 @@
 	} else {
 		return @"";
 	}
+
+//	return @""; // for taking of default images
 }
 
 

@@ -43,6 +43,7 @@
 		3F00E83411849EF500339848 /* JONTUBusRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F00E82A11849EF500339848 /* JONTUBusRoute.m */; };
 		3F00E83511849EF500339848 /* JONTUBusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F00E82C11849EF500339848 /* JONTUBusStop.m */; };
 		3F00E83611849EF500339848 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F00E83011849EF500339848 /* RegexKitLite.m */; };
+		3F550F96118B326300CB9C81 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F550F95118B326300CB9C81 /* Default.png */; };
 		3F83324711886E8300F3B165 /* star-icon-dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F83324511886E8300F3B165 /* star-icon-dark.png */; };
 		3F83324811886E8300F3B165 /* star-icon-filled-dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F83324611886E8300F3B165 /* star-icon-filled-dark.png */; };
 		3F98A7B21184912C00877969 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F98A7B11184912C00877969 /* libicucore.dylib */; };
@@ -52,7 +53,6 @@
 		3FA7B1031188883F00638E51 /* IrisQueryUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7B1011188883F00638E51 /* IrisQueryUIViewController.m */; };
 		3FA7B1041188883F00638E51 /* IrisQueryUIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FA7B1021188883F00638E51 /* IrisQueryUIViewController.xib */; };
 		3FA7B10A11888BFD00638E51 /* 09-chat2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA7B10911888BFD00638E51 /* 09-chat2.png */; };
-		3FB4BC171189E11300FEAE71 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4BC161189E11300FEAE71 /* Default.png */; };
 		3FF6C61D1185E74300C33707 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FF6C61C1185E74300C33707 /* Entitlements.plist */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +115,7 @@
 		3F00E82F11849EF500339848 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = JONTUBusCore/JONTUBusCore/RegexKitLite/RegexKitLite.h; sourceTree = SOURCE_ROOT; };
 		3F00E83011849EF500339848 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = JONTUBusCore/JONTUBusCore/RegexKitLite/RegexKitLite.m; sourceTree = SOURCE_ROOT; };
 		3F00E83111849EF500339848 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SynthesizeSingleton.h; path = JONTUBusCore/JONTUBusCore/SynthesizeSingleton.h; sourceTree = SOURCE_ROOT; };
+		3F550F95118B326300CB9C81 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3F83324511886E8300F3B165 /* star-icon-dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-icon-dark.png"; sourceTree = "<group>"; };
 		3F83324611886E8300F3B165 /* star-icon-filled-dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-icon-filled-dark.png"; sourceTree = "<group>"; };
 		3F98A7B11184912C00877969 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -127,7 +128,6 @@
 		3FA7B1011188883F00638E51 /* IrisQueryUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IrisQueryUIViewController.m; sourceTree = "<group>"; };
 		3FA7B1021188883F00638E51 /* IrisQueryUIViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IrisQueryUIViewController.xib; sourceTree = "<group>"; };
 		3FA7B10911888BFD00638E51 /* 09-chat2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "09-chat2.png"; sourceTree = "<group>"; };
-		3FB4BC161189E11300FEAE71 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3FF6C61C1185E74300C33707 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* RushHourNTU-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RushHourNTU-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -278,7 +278,7 @@
 				00AEC68A1186B1800083D75A /* stop-bg.png */,
 				0047DBDB1185923800856AAF /* map-marker.png */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
-				3FB4BC161189E11300FEAE71 /* Default.png */,
+				3F550F95118B326300CB9C81 /* Default.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -399,9 +399,9 @@
 				3F83324811886E8300F3B165 /* star-icon-filled-dark.png in Resources */,
 				3FA7B1041188883F00638E51 /* IrisQueryUIViewController.xib in Resources */,
 				3FA7B10A11888BFD00638E51 /* 09-chat2.png in Resources */,
-				3FB4BC171189E11300FEAE71 /* Default.png in Resources */,
 				00DAB24B118AAED80090C13A /* star-icon-filled.png in Resources */,
 				00DAB24C118AAED80090C13A /* star-icon.png in Resources */,
+				3F550F96118B326300CB9C81 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,7 +488,7 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jeremy Foo";
 				GCC_C_LANGUAGE_STANDARD = c99;
