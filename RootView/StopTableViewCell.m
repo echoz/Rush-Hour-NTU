@@ -24,6 +24,25 @@ const NSInteger SIDE_PADDING = 5;
 	return self;
 }
 
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated {
+	[super setEditing:editing animated:animated];
+	[self layoutSubviews];
+	if (editing) {
+		self.selectionStyle = UITableViewCellSelectionStyleNone;		
+	} else {
+		self.selectionStyle = UITableViewCellSelectionStyleBlue;		
+	}
+}
+
+-(void)setEditing:(BOOL)editing {
+	[super setEditing:editing];
+	if (editing) {
+		self.selectionStyle = UITableViewCellSelectionStyleNone;		
+	} else {
+		self.selectionStyle = UITableViewCellSelectionStyleBlue;		
+	}
+	
+}
 //
 // layoutSubviews
 //

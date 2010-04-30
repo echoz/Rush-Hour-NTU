@@ -311,12 +311,7 @@
 	if (tableView == self.searchDisplayController.searchResultsTableView) {
 		return 1;
 	} else {
-		if ([favorites count] > 0) {
-			return 2;
-		} else {
-			return 1;		
-		}
-		
+		return 2;		
 	}
 }
 
@@ -326,12 +321,14 @@
 	if (tableView == self.searchDisplayController.searchResultsTableView) {
 		return [self.filteredContent count];
 	} else {
-		if ([favorites count] > 0) {
-			if (section == 0) {
+		switch (section) {
+			case 0:
 				return [favorites count];
-			}
+			case 1:
+				return [actualContent count];
+			default:
+				return 0;
 		}
-		return [actualContent count];					
 	}
 
 //	return 0; // for taking of default images
@@ -339,16 +336,19 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	if (tableView != self.searchDisplayController.searchResultsTableView) {	
-		if ([favorites count] > 0) {
-			switch (section) {
-				case 0:
+		switch (section) {
+			case 0:
+				if ([favorites count] > 0) {
 					return @"Favourites";
-				default:
-					return @"Stops";
-			}
+				} else {
+					return @"";
+				}
+			case 1:
+				return @"Stops";
+			default:
+				return @"";
 		}
 	}
-	return @"";
 }
 
 
@@ -365,7 +365,7 @@
     if (cell == nil) {
 		cell = [[[StopTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
 		cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stop-bg.png"]] autorelease];
-		
+
 		cell.backgroundColor = [UIColor clearColor];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		cell.editingAccessoryType = UITableViewCellAccessoryNone;		
@@ -437,29 +437,39 @@
 	if ((indexPath.section == 0) && ([favorites count] > 0)) {
 		return UITableViewCellEditingStyleDelete;
 	} else {
-/*		
-		UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-		cell.imageView.image = [UIImage imageNamed:@"star-icon-dark.png"];
-*/		
-		
 		return UITableViewCellEditingStyleNone;
 	}
 	return UITableViewCellEditingStyleInsert;
 }
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
+		
+		NSUInteger idtorestore = [self.tableView cellForRowAtIndexPath:indexPath].tag;
+
+		[tableView beginUpdates];
+		for (int i=0;i<[originalContent count];i++) {
+			if ([[originalContent objectAtIndex:i] busstopid] == idtorestore) {
+				[actualContent insertObject:[originalContent objectAtIndex:i] atIndex:i];
+				[tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:i inSection:1]] 
+								 withRowAnimation:UITableViewRowAnimationFade];
+				break;
+			}
+		}
+
+		
+		[favorites removeObjectAtIndex:indexPath.row];
+		[[RHSettings sharedRHSettings].stash setObject:favorites forKey:@"favorites"];
+		[[RHSettings sharedRHSettings] saveSettings];
+
+		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+		//		[tableView reloadSections:[[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationFade];		
+		[tableView endUpdates];	
+	}
 }
-*/
 
 
 
@@ -485,12 +495,34 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-	BusStopViewController *detailViewController = [[BusStopViewController alloc] initWithNibName:@"BusStopViewController" bundle:nil];
-	detailViewController.busstopid = [[tableView cellForRowAtIndexPath:indexPath] tag];
-	
-	[self.navigationController pushViewController:detailViewController animated:YES];
-	[detailViewController release];
+    if ((self.tableView.editing) && (indexPath.section == 1)) {
+		StopTableViewCell *cell = (StopTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+		cell.fav.image = [UIImage imageNamed:@"star-icon-filled-dark.png"];
+		JONTUBusStop *stop = [[JONTUBusEngine sharedJONTUBusEngine] stopForId:cell.tag];
+		[favorites addObject:[stop code]];
+		[[RHSettings sharedRHSettings].stash setObject:favorites forKey:@"favorites"];
+		[[RHSettings sharedRHSettings] saveSettings];
+		[actualContent removeObject:stop];
+
+		//		[self freshen];
+
+		[tableView beginUpdates];
+		[tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:[favorites count]-1 inSection:0]]
+						 withRowAnimation:UITableViewRowAnimationFade];
+		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+		if ([favorites count] == 1)
+			[tableView reloadSections:[[NSIndexSet alloc] initWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];		
+		[tableView endUpdates];
+		
+	} else if (!self.tableView.editing) {
+		
+		BusStopViewController *detailViewController = [[BusStopViewController alloc] initWithNibName:@"BusStopViewController" bundle:nil];
+		detailViewController.busstopid = [[tableView cellForRowAtIndexPath:indexPath] tag];
+		
+		[self.navigationController pushViewController:detailViewController animated:YES];
+		[detailViewController release];
+		
+	}
 }
 
 #pragma mark -
