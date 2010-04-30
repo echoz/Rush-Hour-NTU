@@ -466,7 +466,10 @@
 		[[RHSettings sharedRHSettings] saveSettings];
 
 		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-		//		[tableView reloadSections:[[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationFade];		
+		if ([favorites count] == 0) {
+			[tableView reloadSections:[[NSIndexSet alloc] initWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+			[tableView reloadSections:[[NSIndexSet alloc] initWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];			
+		}
 		[tableView endUpdates];	
 	}
 }
