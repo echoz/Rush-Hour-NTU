@@ -46,6 +46,11 @@
 		3F550F96118B326300CB9C81 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F550F95118B326300CB9C81 /* Default.png */; };
 		3F83324711886E8300F3B165 /* star-icon-dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F83324511886E8300F3B165 /* star-icon-dark.png */; };
 		3F83324811886E8300F3B165 /* star-icon-filled-dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F83324611886E8300F3B165 /* star-icon-filled-dark.png */; };
+		3F91169A118B450E00E2E50D /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F911690118B450E00E2E50D /* UIDevice-Hardware.m */; };
+		3F91169C118B450E00E2E50D /* UIDevice-Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F911694118B450E00E2E50D /* UIDevice-Reachability.m */; };
+		3F91169D118B450E00E2E50D /* UIDevice-Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F911696118B450E00E2E50D /* UIDevice-Orientation.m */; };
+		3F91169E118B450E00E2E50D /* wwanconnect.c in Sources */ = {isa = PBXBuildFile; fileRef = 3F911698118B450E00E2E50D /* wwanconnect.c */; };
+		3F9116B8118B454A00E2E50D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F9116B7118B454A00E2E50D /* SystemConfiguration.framework */; };
 		3F98A7B21184912C00877969 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F98A7B11184912C00877969 /* libicucore.dylib */; };
 		3FA589931185B349009A3D66 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA589921185B349009A3D66 /* CoreLocation.framework */; };
 		3FA58A851185D732009A3D66 /* JONTUBusStop+location.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA58A841185D732009A3D66 /* JONTUBusStop+location.m */; };
@@ -118,6 +123,15 @@
 		3F550F95118B326300CB9C81 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3F83324511886E8300F3B165 /* star-icon-dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-icon-dark.png"; sourceTree = "<group>"; };
 		3F83324611886E8300F3B165 /* star-icon-filled-dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-icon-filled-dark.png"; sourceTree = "<group>"; };
+		3F91168F118B450E00E2E50D /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice-Hardware.h"; path = "uidevice-extension/UIDevice-Hardware.h"; sourceTree = "<group>"; };
+		3F911690118B450E00E2E50D /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice-Hardware.m"; path = "uidevice-extension/UIDevice-Hardware.m"; sourceTree = "<group>"; };
+		3F911693118B450E00E2E50D /* UIDevice-Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice-Reachability.h"; path = "uidevice-extension/UIDevice-Reachability.h"; sourceTree = "<group>"; };
+		3F911694118B450E00E2E50D /* UIDevice-Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice-Reachability.m"; path = "uidevice-extension/UIDevice-Reachability.m"; sourceTree = "<group>"; };
+		3F911695118B450E00E2E50D /* UIDevice-Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice-Orientation.h"; path = "uidevice-extension/UIDevice-Orientation.h"; sourceTree = "<group>"; };
+		3F911696118B450E00E2E50D /* UIDevice-Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice-Orientation.m"; path = "uidevice-extension/UIDevice-Orientation.m"; sourceTree = "<group>"; };
+		3F911698118B450E00E2E50D /* wwanconnect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = wwanconnect.c; path = "uidevice-extension/Apple Sample Code/wwanconnect.c"; sourceTree = "<group>"; };
+		3F911699118B450E00E2E50D /* wwanconnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wwanconnect.h; path = "uidevice-extension/Apple Sample Code/wwanconnect.h"; sourceTree = "<group>"; };
+		3F9116B7118B454A00E2E50D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3F98A7B11184912C00877969 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		3FA589921185B349009A3D66 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3FA58A831185D732009A3D66 /* JONTUBusStop+location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JONTUBusStop+location.h"; sourceTree = "<group>"; };
@@ -144,6 +158,7 @@
 				3FA589931185B349009A3D66 /* CoreLocation.framework in Frameworks */,
 				00AEC6731186AFD90083D75A /* QuartzCore.framework in Frameworks */,
 				004F5C951187DF4400844FD6 /* MapKit.framework in Frameworks */,
+				3F9116B8118B454A00E2E50D /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +255,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				3F91168E118B44EF00E2E50D /* External */,
 				3FA7B0FF1188881E00638E51 /* IRISQUERY */,
 				00D0CCF21188295600F1D387 /* MapAnnotations */,
 				004F5C3B1187D4FC00844FD6 /* BusView */,
@@ -248,7 +264,6 @@
 				0064105411852C6100D0F9E8 /* BusStopView */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				3F00E82011849EDD00339848 /* JONTUBusCore */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -286,6 +301,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3F9116B7118B454A00E2E50D /* SystemConfiguration.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
@@ -324,6 +340,38 @@
 			name = RegexKitLite;
 			path = JONTUBusCore/JONTUBusCore/RegexKitLite;
 			sourceTree = SOURCE_ROOT;
+		};
+		3F91168D118B44DF00E2E50D /* UIDevice Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3F911697118B450E00E2E50D /* Apple */,
+				3F91168F118B450E00E2E50D /* UIDevice-Hardware.h */,
+				3F911690118B450E00E2E50D /* UIDevice-Hardware.m */,
+				3F911693118B450E00E2E50D /* UIDevice-Reachability.h */,
+				3F911694118B450E00E2E50D /* UIDevice-Reachability.m */,
+				3F911695118B450E00E2E50D /* UIDevice-Orientation.h */,
+				3F911696118B450E00E2E50D /* UIDevice-Orientation.m */,
+			);
+			name = "UIDevice Extensions";
+			sourceTree = "<group>";
+		};
+		3F91168E118B44EF00E2E50D /* External */ = {
+			isa = PBXGroup;
+			children = (
+				3F00E82011849EDD00339848 /* JONTUBusCore */,
+				3F91168D118B44DF00E2E50D /* UIDevice Extensions */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
+		3F911697118B450E00E2E50D /* Apple */ = {
+			isa = PBXGroup;
+			children = (
+				3F911698118B450E00E2E50D /* wwanconnect.c */,
+				3F911699118B450E00E2E50D /* wwanconnect.h */,
+			);
+			name = Apple;
+			sourceTree = "<group>";
 		};
 		3FA7B0FF1188881E00638E51 /* IRISQUERY */ = {
 			isa = PBXGroup;
@@ -434,6 +482,10 @@
 				3FA7B1031188883F00638E51 /* IrisQueryUIViewController.m in Sources */,
 				00CDAF1E118986B300C10F97 /* RHSettings.m in Sources */,
 				00DAB1AA118AA6440090C13A /* StopTableViewCell.m in Sources */,
+				3F91169A118B450E00E2E50D /* UIDevice-Hardware.m in Sources */,
+				3F91169C118B450E00E2E50D /* UIDevice-Reachability.m in Sources */,
+				3F91169D118B450E00E2E50D /* UIDevice-Orientation.m in Sources */,
+				3F91169E118B450E00E2E50D /* wwanconnect.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
