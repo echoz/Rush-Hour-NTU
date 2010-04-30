@@ -21,7 +21,7 @@
 @implementation RootViewController
 
 @synthesize currentLocation, refreshCache, savedSearchTerm, filteredContent, searchWasActive, actualContent, workQueue, irisquery, originalContent;
-
+@synthesize progressLoad;
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -45,14 +45,17 @@
 
 //	self.toolbarItems = [NSArray arrayWithObject:currentLocation]; // for taking of default images
 	
+	genericDisplay = [[UIBarButtonItem alloc] initWithCustomView:lastUpdate];
+	
 	self.toolbarItems = [NSArray arrayWithObjects:currentLocation,
 						 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
-						 [[[UIBarButtonItem alloc] initWithCustomView:lastUpdate] autorelease],
+						 genericDisplay,
 						 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
 						 irisquery,
 						 nil];
 	
 	self.navigationItem.rightBarButtonItem = refreshCache;
+	self.navigationItem.leftBarButtonItem = self.editButtonItem;
 	
 	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil];
     self.navigationItem.backBarButtonItem = backButton;
@@ -73,6 +76,7 @@
 	[manager.manager setDesiredAccuracy:kCLLocationAccuracyBest];
 	
 	proximitySort = NO;
+	fillingCache = NO;
 		
 	workQueue = [[NSOperationQueue alloc] init];
 	
@@ -81,10 +85,34 @@
 		[self.workQueue addOperation:fillCache];
 		[fillCache release];
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-		
+		lastUpdate.text = @"Updating cache...";	
+		fillingCache = YES;
+/*		
+		genericDisplay.customView = progressLoad;
+		progressLoad.progress = 0.0;
+*/		
+
 	} else {
 		[self freshen];		
 	}
+}
+
+-(void)cacheLoadStartNotification:(id)object {
+	progressTotal = [[object object] intValue];
+	progressCurrent = 0;
+}
+
+-(void)cacheLoadEndNotification:(id)object {
+	NSLog(@"cache end");
+	[genericDisplay setCustomView:lastUpdate];
+	progressLoad.progress = 1.0;
+}
+
+-(void)cacheLoadNotification:(id)object {
+	NSLog(@"cache update %f",(progressCurrent+1)/ progressTotal);
+
+	progressCurrent++;
+	[self.progressLoad setProgress:progressCurrent/progressTotal];
 }
 
 -(void)updateLocationProgress {
@@ -121,7 +149,7 @@
 	[currentLocation setStyle:UIBarButtonItemStyleDone];
 	[currentLocation setAction:@selector(stopLocation)];
 	
-	LocationManager *manager = [LocationManager sharedLocationManager];	
+	LocationManager *manager = [LocationManager sharedLocationManager];
 	[manager.manager startUpdatingLocation];
 	proximitySort = YES;
 	[self.tableView reloadData];
@@ -174,6 +202,7 @@
 
 -(void)engineStarted {
 	NSLog(@"Fill Cache complete");
+	fillingCache = NO;
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	[[JONTUBusEngine sharedJONTUBusEngine] setHoldCache:-1];	
 	[self freshen];
@@ -239,7 +268,8 @@
 	if (!favorites)
 		favorites = [[NSMutableArray array] retain];
 
-	[self freshen];
+	if (!fillingCache)
+		[self freshen];
 }
 
 /*
@@ -292,14 +322,13 @@
 
 	if (tableView == self.searchDisplayController.searchResultsTableView) {
 		return [self.filteredContent count];
-	} else {		
+	} else {
 		if ([favorites count] > 0) {
 			if (section == 0) {
 				return [favorites count];
 			}
 		}
-		return [actualContent count];
-		
+		return [actualContent count];					
 	}
 
 //	return 0; // for taking of default images
@@ -332,11 +361,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-		cell.imageView.image = [UIImage imageNamed:@"map-marker.png"];
 		//		cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stop-bg.png"]] autorelease];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		
-		
+		cell.editingAccessoryType = UITableViewCellAccessoryNone;		
 		cell.contentView.opaque = NO;
 		cell.detailTextLabel.opaque = NO;
 		cell.textLabel.opaque = NO;
@@ -368,12 +395,16 @@
 				
 			}
 			
-			cell.tag = [[actualContent objectAtIndex:indexPath.row] busstopid];				
+			cell.tag = [[actualContent objectAtIndex:indexPath.row] busstopid];
+			cell.imageView.bounds = CGRectMake(0, 0, 20, 20);
+			cell.showsReorderControl = NO;				
 		} else {
 			JONTUBusStop *favstop = [[JONTUBusEngine sharedJONTUBusEngine] stopForCode:[favorites objectAtIndex:indexPath.row]];
 			cell.textLabel.text = [favstop desc];
 			cell.detailTextLabel.text = [favstop roadName];
 			cell.tag = [favstop busstopid];
+			cell.imageView.image = [UIImage imageNamed:@"star-icon-filled-dark.png"];
+			cell.showsReorderControl = YES;
 		}
 	}
     
@@ -391,6 +422,19 @@
 }
 */
 
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if ((indexPath.section == 0) && ([favorites count] > 0)) {
+		return UITableViewCellEditingStyleDelete;
+	} else {
+/*		
+		UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+		cell.imageView.image = [UIImage imageNamed:@"star-icon-dark.png"];
+*/		
+		
+		return UITableViewCellEditingStyleNone;
+	}
+	return UITableViewCellEditingStyleInsert;
+}
 
 /*
 // Override to support editing the table view.
@@ -407,20 +451,23 @@
 */
 
 
-/*
+
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
 }
-*/
 
 
-/*
+
+
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+	if ((indexPath.section == 0) && ([favorites count] > 0)) {
+		return YES;
+	} else {
+		return NO;
+	}
 }
-*/
+
 
 
 #pragma mark -
@@ -501,6 +548,8 @@
 	[lastUpdate release];
 	[refreshCache release];
 	[actualContent release];
+	[progressLoad release];
+	[genericDisplay release];
 	[savedSearchTerm release];
 	[filteredContent release];
 	[currentLocation release];

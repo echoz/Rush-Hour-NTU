@@ -13,7 +13,11 @@
 	UIBarButtonItem *currentLocation;
 	UIBarButtonItem *refreshCache;
 	UIBarButtonItem *irisquery;
+	UIBarButtonItem *genericDisplay;
 	UILabel *lastUpdate;
+	UIProgressView *progressLoad;
+	float progressTotal;
+	float progressCurrent;
 	
 	NSMutableArray *filteredContent;
 	NSMutableArray *actualContent;
@@ -22,6 +26,7 @@
 	BOOL searchWasActive;
 	
 	BOOL proximitySort;
+	BOOL fillingCache;
 	
 	NSOperationQueue *workQueue;
 	NSTimer *animationTimer;
@@ -34,6 +39,7 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *currentLocation;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshCache;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *irisquery;
+@property (nonatomic, retain) IBOutlet UIProgressView *progressLoad;
 
 @property (nonatomic, retain) NSMutableArray *filteredContent;
 @property (nonatomic, retain) NSMutableArray *actualContent;
@@ -49,4 +55,8 @@
 -(void)stopLocation;
 -(void)freshen;
 
+-(void)cacheLoadNotification:(id)object;
+-(void)cacheLoadEndNotification:(id)object;																											 
+-(void)cacheLoadStartNotification:(id)object;
+	
 @end

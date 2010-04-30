@@ -27,6 +27,7 @@
 		00D0CC601188211900F1D387 /* NameValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00D0CC5F1188211900F1D387 /* NameValueCell.xib */; };
 		00D0CCF51188298900F1D387 /* BusAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D0CCF41188298900F1D387 /* BusAnnotation.m */; };
 		00D0CD2511882F0D00F1D387 /* StopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D0CD2411882F0D00F1D387 /* StopAnnotation.m */; };
+		00DAB1AA118AA6440090C13A /* StopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DAB1A9118AA6440090C13A /* StopTableViewCell.m */; };
 		1D3623260D0F684500981E51 /* RushHourNTUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* RushHourNTUAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -84,6 +85,8 @@
 		00D0CCF41188298900F1D387 /* BusAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusAnnotation.m; sourceTree = "<group>"; };
 		00D0CD2311882F0D00F1D387 /* StopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAnnotation.h; sourceTree = "<group>"; };
 		00D0CD2411882F0D00F1D387 /* StopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAnnotation.m; sourceTree = "<group>"; };
+		00DAB1A8118AA6440090C13A /* StopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopTableViewCell.h; sourceTree = "<group>"; };
+		00DAB1A9118AA6440090C13A /* StopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopTableViewCell.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* RushHourNTUAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RushHourNTUAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* RushHourNTUAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RushHourNTUAppDelegate.m; sourceTree = "<group>"; };
@@ -151,6 +154,8 @@
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				00471E571186D3F200BAC790 /* CacheOperation.h */,
 				00471E581186D3F200BAC790 /* CacheOperation.m */,
+				00DAB1A8118AA6440090C13A /* StopTableViewCell.h */,
+				00DAB1A9118AA6440090C13A /* StopTableViewCell.m */,
 			);
 			path = RootView;
 			sourceTree = SOURCE_ROOT;
@@ -420,6 +425,7 @@
 				00D0CD2511882F0D00F1D387 /* StopAnnotation.m in Sources */,
 				3FA7B1031188883F00638E51 /* IrisQueryUIViewController.m in Sources */,
 				00CDAF1E118986B300C10F97 /* RHSettings.m in Sources */,
+				00DAB1AA118AA6440090C13A /* StopTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

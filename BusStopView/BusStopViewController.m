@@ -118,6 +118,7 @@
 		[favs removeObject:[stop code]];
 		[[RHSettings sharedRHSettings].stash setObject:favs forKey:@"favorites"];
 	}
+	[[RHSettings sharedRHSettings] saveSettings];
 	
 }
 
