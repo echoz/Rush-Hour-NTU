@@ -1,3 +1,6 @@
 [submodule "JONTUBusCore"]
 	path = JONTUBusCore
 	url = https://echoz@github.com/echoz/JONTUBusCore.git
+[submodule "uidevice-extension"]
+	path = uidevice-extension
+	url = http://github.com/erica/uidevice-extension.git
