@@ -475,6 +475,11 @@
 
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+	if ((fromIndexPath.section == 0) && (toIndexPath.section == 0)) {
+		[favorites exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
+		[[RHSettings sharedRHSettings].stash setObject:favorites forKey:@"favorites"];
+		[[RHSettings sharedRHSettings] saveSettings];		
+	}
 }
 
 
