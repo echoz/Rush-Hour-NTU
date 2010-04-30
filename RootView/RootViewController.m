@@ -348,6 +348,8 @@
 			default:
 				return @"";
 		}
+	} else {
+		return @"";
 	}
 }
 
