@@ -12,7 +12,13 @@
 @implementation JONTUBusStop (JONTUBusStopLocationAdditions)
 -(NSComparisonResult)compareLocation:(JONTUBusStop *)stop {
 	LocationManager *manager = [LocationManager sharedLocationManager];
-	CLLocation *selfLocation = [[CLLocation alloc] initWithLatitude:[[self lat] doubleValue] longitude:[[self lon] doubleValue]];
+#if TARGET_IPHONE_SIMULATOR
+//	CLLocation *selfLocation = [[CLLocation alloc] initWithLatitude:1.348034 longitude:103.680655]; // Lee Wee Nam Library
+	CLLocation *selfLocation = [[CLLocation alloc] initWithLatitude:1.337748 longitude:103.696829]; // Pioneer MRT
+#else
+	CLLocation *selfLocation = [[CLLocation alloc] initWithLatitude:[[self lat] doubleValue] longitude:[[self lon] doubleValue]];	
+#endif
+	
 	CLLocation *otherLocation = [[CLLocation alloc] initWithLatitude:[[stop lat] doubleValue] longitude:[[stop lon] doubleValue]];
 	
 	NSComparisonResult togo;
