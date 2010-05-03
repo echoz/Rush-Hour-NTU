@@ -1,0 +1,135 @@
+body {
+	font-family: Helvetica;
+	margin: 0;
+	padding: 0;
+	background-image: url(bg-blur.jpg);
+	background-size: 100%;
+	background-attachment: scroll;
+	background-position-x: 0;
+	background-position-y: -200px;
+	color: #fff;
+}
+
+a:link, a:visited {
+	color: #000;
+	text-decoration: none;
+	text-shadow: none;
+}
+
+a:hover {
+	text-shadow: #000 0px 1px 1px;
+	color: #fff;
+}
+
+.clear {
+	clear: both;
+}
+
+div.abovecanvas {
+	margin: 0 auto;
+	width: 1000px;
+	margin: 0 auto;
+}
+
+div.abovecanvas div.header{
+	position: absolute;
+	top: 300px;
+	margin-left: 180px;
+	text-shadow: #000 0px 1px 2px;
+
+}
+
+div.header h1 {
+	margin: 0;
+	padding: 0;
+}
+
+.tagline {
+	margin: 0;
+	padding: 0;
+	font-size: 0.8em;
+}
+
+.copyrightline {
+	font-size: 0.75em;
+	font-weight: 700;
+}
+
+div.canvasshadow {
+	height: 10px;
+	background: url(shadow.png) repeat-x top left;
+}
+
+div.ubercanvas {
+	margin-top: 500px;
+
+}
+
+div.canvas {
+	background: #b4b4b4 url(content.bg.jpg) repeat-x top left;
+}
+
+div.canvascontent {
+	padding: 0;
+	margin: 0 auto;
+	width: 1000px;
+}
+
+div.content {
+	float: left;
+	width: 600px;
+	text-shadow: #fff 0px 1px 1px;
+	color: #000;	
+}
+
+div.player {
+	float:right;
+	width: 400px;
+	margin-top: -400px;
+}
+
+ul.bullet-points {
+	list-style-type: none;
+	float: left;
+	margin: 0;
+	padding: 0;
+	width: 270;
+}
+
+ul.bullet-points li {
+	width: 270px;
+	margin: 50px 0;
+}
+
+ul.bullet-points li h2, ul.other-stuff li h2 {
+	font-size: 1em;
+	margin: 0;
+}
+
+ul.bullet-points li p, ul.other-stuff li h2 {
+	font-size: 0.95em;
+	margin: 0;
+}
+
+ul.other-stuff {
+	float:right;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 300px;
+}
+
+ul.other-stuff li {
+	margin: 50px 0;
+}
+
+ul.other-stuff ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul.other-stuff ul li {
+	margin: 10px 0;
+	padding: 0;
+}
