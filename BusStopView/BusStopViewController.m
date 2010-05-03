@@ -159,7 +159,7 @@
 		self.navigationItem.rightBarButtonItem = refreshETA;
 		
 	} else {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"There is currently no internet connection that is needed to retrieve bus timings." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"An active internet connection is needed to retrieve the latest bus timings." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[alert show];
 		[alert release];
 		[self reachabilityChanged];

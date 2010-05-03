@@ -190,7 +190,7 @@
 }
 
 -(void)showNetworkErrorAlert {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"There is currently no internet connection that is needed to retrieve bus timings." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"Traversity needs an active internet connection to reload the cache." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[alert show];
 	[alert release];	
 }

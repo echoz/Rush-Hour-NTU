@@ -31,6 +31,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	self.title = [bus busPlate];
 	[map.layer setCornerRadius:10.0];
+	map.showsUserLocation = YES;
 }
 
 
