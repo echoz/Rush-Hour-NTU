@@ -207,6 +207,8 @@
 			
 			[[UIDevice currentDevice] scheduleReachabilityWatcher:self];
 			scheduleWatcher = YES;
+
+			lastUpdate.text = @"Updating cache...";	
 			
 			[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 			[UIView beginAnimations:nil context:nil];
