@@ -12,9 +12,10 @@
 #import "NSString+htmlentitiesaddition.h"
 #import "RHSettings.h"
 
+
 @implementation BusStopViewController
 
-@synthesize busstopid, etaCell, stopLocation, refreshETA, star, navTitleView, navRoadName, navStopName, loadProgress;
+@synthesize busstopid, etaCell, stopLocation, refreshETA, star, navTitleView, navRoadName, navStopName, loadProgress, refreshError;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -51,6 +52,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
 	self.navigationItem.rightBarButtonItem = refreshETA;
+	
 	//	self.title = [stop code];
 	navStopName.text = [[stop desc] removeHTMLEntities];
 	navRoadName.text = [stop roadName];
@@ -58,6 +60,8 @@
 	
 	self.loadProgress.alpha = 0.0;
 	self.navRoadName.alpha = 1.0;
+	
+	scheduleWatcher = NO;
 	
 	NSMutableArray *favs = [[RHSettings sharedRHSettings].stash valueForKey:@"favorites"];
 	if (!favs)
@@ -102,6 +106,12 @@
 		self.loadProgress.alpha = 0.0;
 		self.navRoadName.alpha = 1.0;
 		[UIView commitAnimations];		
+		if (scheduleWatcher) {
+			[[UIDevice currentDevice] unscheduleReachabilityWatcher];
+			scheduleWatcher = NO;
+		}
+		NSLog(@"uh?");
+		self.navigationItem.rightBarButtonItem = refreshETA;
 	}
 }
 
@@ -126,30 +136,52 @@
 	if ([workQueue operations] > 0)
 		[workQueue cancelAllOperations];
 	
-	ArrivalsOperation *arrivalsop = [[ArrivalsOperation alloc] initWithStop:stop delegate:self];
-	[workQueue addOperation:arrivalsop];
-	[arrivalsop release];
-	arrivalsop = nil;
-	
-	[irisArrivals removeAllObjects];
-	
-	for (int i=0;i<[[stop otherBus] count];i++) {
-		arrivalsop = [[ArrivalsOperation alloc] initWithStop:stop queryIrisForSvcNumber:[[stop otherBus] objectAtIndex:i] delegate:self];
+	if (([[UIDevice currentDevice] hostAvailable:@"campusbus.ntu.edu.sg"]) && ([[UIDevice currentDevice] hostAvailable:@"www.sbstransit.com.sg"])) {
+		ArrivalsOperation *arrivalsop = [[ArrivalsOperation alloc] initWithStop:stop delegate:self];
 		[workQueue addOperation:arrivalsop];
 		[arrivalsop release];
 		arrivalsop = nil;
+		
+		[irisArrivals removeAllObjects];
+		
+		for (int i=0;i<[[stop otherBus] count];i++) {
+			arrivalsop = [[ArrivalsOperation alloc] initWithStop:stop queryIrisForSvcNumber:[[stop otherBus] objectAtIndex:i] delegate:self];
+			[workQueue addOperation:arrivalsop];
+			[arrivalsop release];
+			arrivalsop = nil;
+		}
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+		totalOps = [[workQueue operations] count];
+		self.loadProgress.alpha = 1.0;
+		self.navRoadName.alpha = 0.0;
+		[[UIDevice currentDevice] scheduleReachabilityWatcher:self];
+		scheduleWatcher = YES;
+		self.navigationItem.rightBarButtonItem = refreshETA;
+		
+	} else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"There is currently no internet connection that is needed to retrieve bus timings." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+		[self reachabilityChanged];
 	}
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	totalOps = [[workQueue operations] count];
-	self.loadProgress.alpha = 1.0;
-	self.navRoadName.alpha = 0.0;
+	
+}
+
+-(void)reachabilityChanged {
+	self.navigationItem.rightBarButtonItem = refreshError;
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	[workQueue cancelAllOperations];
+	self.loadProgress.alpha = 0.0;
+	self.navRoadName.alpha = 1.0;
+	if (scheduleWatcher) {
+		[[UIDevice currentDevice] unscheduleReachabilityWatcher];
+		scheduleWatcher = NO;
+	}	
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[self.navigationController setToolbarHidden:NO animated:YES];
-	[super viewDidAppear:animated];
-
-
+	[super viewDidAppear:animated];	
 }
 
 

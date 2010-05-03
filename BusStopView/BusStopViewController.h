@@ -11,8 +11,9 @@
 #import "JONTUBus.h"
 #import "BusETACell.h"
 #import <CoreLocation/CoreLocation.h>
+#import "UIDevice-Reachability.h"
 
-@interface BusStopViewController : UITableViewController {
+@interface BusStopViewController : UITableViewController <ReachabilityWatcher> {
 	NSUInteger busstopid;
 	JONTUBusStop *stop;
 	NSArray *arrivals;
@@ -20,6 +21,7 @@
 	CLLocation *stopLocation;
 	
 	UIBarButtonItem *refreshETA;
+	UIBarButtonItem *refreshError;
 	UIBarButtonItem *star;
 	UIView *navTitleView;
 	UILabel *navStopName;
@@ -30,8 +32,11 @@
 	
 	NSOperationQueue *workQueue;
 	int totalOps;
+	
+	BOOL scheduleWatcher;
 }
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshETA;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshError;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *star;
 @property (nonatomic, retain) IBOutlet UIView *navTitleView;
 @property (nonatomic, retain) IBOutlet UILabel *navStopName;

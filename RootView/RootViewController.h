@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "UIDevice-Reachability.h"
 
-@interface RootViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, CLLocationManagerDelegate, UIAlertViewDelegate> {
+@interface RootViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, CLLocationManagerDelegate, UIAlertViewDelegate, ReachabilityWatcher> {
 	UIBarButtonItem *currentLocation;
 	UIBarButtonItem *refreshCache;
 	UIBarButtonItem *irisquery;
 	UIBarButtonItem *genericDisplay;
+	UIBarButtonItem *refreshError;
 	UILabel *lastUpdate;
 	UIProgressView *progressLoad;
 	float progressTotal;
@@ -27,6 +29,7 @@
 	
 	BOOL proximitySort;
 	BOOL fillingCache;
+	BOOL scheduleWatcher;
 	
 	NSOperationQueue *workQueue;
 	NSTimer *animationTimer;
@@ -38,6 +41,7 @@
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *currentLocation;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshCache;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshError;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *irisquery;
 @property (nonatomic, retain) IBOutlet UIProgressView *progressLoad;
 
@@ -54,6 +58,7 @@
 
 -(void)stopLocation;
 -(void)freshen;
+-(void)showNetworkErrorAlert;
 
 -(void)cacheLoadNotification:(id)object;
 -(void)cacheLoadEndNotification:(id)object;																											 

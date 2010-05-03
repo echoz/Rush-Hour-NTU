@@ -18,6 +18,7 @@
 		004F5CAD1187E22300844FD6 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 004F5CAC1187E22300844FD6 /* spinner.png */; };
 		0064105811852C7200D0F9E8 /* BusStopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0064105611852C7200D0F9E8 /* BusStopViewController.m */; };
 		0064105911852C7200D0F9E8 /* BusStopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0064105711852C7200D0F9E8 /* BusStopViewController.xib */; };
+		007541D5118E9A4D00479CE2 /* alert.png in Resources */ = {isa = PBXBuildFile; fileRef = 007541D4118E9A4D00479CE2 /* alert.png */; };
 		00AEC6571186ADBC0083D75A /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 00AEC6561186ADBC0083D75A /* location.png */; };
 		00AEC6731186AFD90083D75A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AEC6721186AFD90083D75A /* QuartzCore.framework */; };
 		00AEC68B1186B1800083D75A /* stop-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 00AEC68A1186B1800083D75A /* stop-bg.png */; };
@@ -78,6 +79,7 @@
 		0064105511852C7200D0F9E8 /* BusStopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusStopViewController.h; path = BusStopView/BusStopViewController.h; sourceTree = SOURCE_ROOT; };
 		0064105611852C7200D0F9E8 /* BusStopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusStopViewController.m; path = BusStopView/BusStopViewController.m; sourceTree = SOURCE_ROOT; };
 		0064105711852C7200D0F9E8 /* BusStopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BusStopViewController.xib; path = BusStopView/BusStopViewController.xib; sourceTree = SOURCE_ROOT; };
+		007541D4118E9A4D00479CE2 /* alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alert.png; sourceTree = "<group>"; };
 		00AEC6561186ADBC0083D75A /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
 		00AEC6721186AFD90083D75A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		00AEC68A1186B1800083D75A /* stop-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stop-bg.png"; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				00DAB249118AAED80090C13A /* star-icon-filled.png */,
+				007541D4118E9A4D00479CE2 /* alert.png */,
 				00DAB24A118AAED80090C13A /* star-icon.png */,
 				3FA7B10911888BFD00638E51 /* 09-chat2.png */,
 				3F83324511886E8300F3B165 /* star-icon-dark.png */,
@@ -450,6 +453,7 @@
 				00DAB24B118AAED80090C13A /* star-icon-filled.png in Resources */,
 				00DAB24C118AAED80090C13A /* star-icon.png in Resources */,
 				3F550F96118B326300CB9C81 /* Default.png in Resources */,
+				007541D5118E9A4D00479CE2 /* alert.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,7 +22,7 @@
 @implementation RootViewController
 
 @synthesize currentLocation, refreshCache, savedSearchTerm, filteredContent, searchWasActive, actualContent, workQueue, irisquery, originalContent;
-@synthesize progressLoad;
+@synthesize progressLoad,refreshError;
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -76,7 +76,8 @@
 	
 	proximitySort = NO;
 	fillingCache = NO;
-		
+	scheduleWatcher = NO;
+	
 	workQueue = [[NSOperationQueue alloc] init];
 	
 	if ([JONTUBusEngine sharedJONTUBusEngine].brandNew) {
@@ -167,37 +168,59 @@
 	proximitySort = NO;
 	[actualContent release];
 	actualContent = nil;
-//	self.actualContent = [[[JONTUBusEngine sharedJONTUBusEngine] stops] mutableCopy];
-//	[self.tableView reloadData];
 	[self freshen];
 }
 
 -(IBAction)refreshTheCache {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reload Cache" 
-													message:@"Are you sure you want to reload the entire Shuttle Bus Database?" 
-												   delegate:self 
-										  cancelButtonTitle:@"No"
-										  otherButtonTitles:@"Yes",nil];
-	[alert setDelegate:self];
+	if ([[UIDevice currentDevice] hostAvailable:@"campusbus.ntu.edu.sg"]) {
+		self.navigationItem.rightBarButtonItem = refreshCache;
+		
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reload Cache" 
+														message:@"Are you sure you want to reload the entire Shuttle Bus Database?" 
+													   delegate:self 
+											  cancelButtonTitle:@"No"
+											  otherButtonTitles:@"Yes",nil];
+		[alert setDelegate:self];
+		[alert show];
+		[alert release];
+	} else {
+		[self showNetworkErrorAlert];
+		[self reachabilityChanged];
+	}
+}
+
+-(void)showNetworkErrorAlert {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"There is currently no internet connection that is needed to retrieve bus timings." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[alert show];
-	[alert release];
+	[alert release];	
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if ((alertView.title == @"Reload Cache") && ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Yes"])) {
-		NSLog(@"Refreshing Cache");
-		[[JONTUBusEngine sharedJONTUBusEngine] setHoldCache:20];
-		CacheOperation *fillCache = [[CacheOperation alloc] initWithDelegate:self];
-		[self.workQueue addOperation:fillCache];
-		[fillCache release];
-		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-		[UIView beginAnimations:nil context:nil];
-		[UIView setAnimationDuration:0.75];
-		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-		[self.tableView setAlpha:0.5];
-		[self.tableView setScrollEnabled:NO];
-		[self.tableView setAllowsSelection:NO];
-		[UIView commitAnimations];		
+		
+		if ([[UIDevice currentDevice] hostAvailable:@"campusbus.ntu.edu.sg"]) {
+			NSLog(@"Refreshing Cache");
+			[[JONTUBusEngine sharedJONTUBusEngine] setHoldCache:20];
+			CacheOperation *fillCache = [[CacheOperation alloc] initWithDelegate:self];
+			[self.workQueue addOperation:fillCache];
+			[fillCache release];
+			
+			[[UIDevice currentDevice] scheduleReachabilityWatcher:self];
+			scheduleWatcher = YES;
+			
+			[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+			[UIView beginAnimations:nil context:nil];
+			[UIView setAnimationDuration:0.75];
+			[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+			[self.tableView setAlpha:0.5];
+			[self.tableView setScrollEnabled:NO];
+			[self.tableView setAllowsSelection:NO];
+			[UIView commitAnimations];		
+			
+		} else {
+			[self showNetworkErrorAlert];
+			[self reachabilityChanged];
+		}
 	}
 }
 
@@ -205,6 +228,7 @@
 	NSLog(@"Fill Cache complete");
 	fillingCache = NO;
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	self.navigationItem.rightBarButtonItem = refreshCache;
 	[[JONTUBusEngine sharedJONTUBusEngine] setHoldCache:-1];	
 	[self freshen];
 	[UIView beginAnimations:nil context:nil];
@@ -215,6 +239,21 @@
 	[self.tableView setAllowsSelection:YES];
 	[UIView commitAnimations];		
 	
+}
+
+-(void)reachabilityChanged {
+	self.navigationItem.rightBarButtonItem = refreshError;
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	[workQueue cancelAllOperations];
+	
+	[self.tableView setAlpha:1];
+	[self.tableView setScrollEnabled:YES];
+	[self.tableView setAllowsSelection:YES];	
+	
+	if (scheduleWatcher) {
+		[[UIDevice currentDevice] unscheduleReachabilityWatcher];
+		scheduleWatcher = NO;
+	}	
 }
 
 -(void)freshen {
