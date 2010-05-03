@@ -19,6 +19,7 @@
 		0064105811852C7200D0F9E8 /* BusStopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0064105611852C7200D0F9E8 /* BusStopViewController.m */; };
 		0064105911852C7200D0F9E8 /* BusStopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0064105711852C7200D0F9E8 /* BusStopViewController.xib */; };
 		007541D5118E9A4D00479CE2 /* alert.png in Resources */ = {isa = PBXBuildFile; fileRef = 007541D4118E9A4D00479CE2 /* alert.png */; };
+		007BA9C2118EBF0500DEE49B /* libFlurryWithLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007BA9C1118EBF0500DEE49B /* libFlurryWithLocation.a */; };
 		00AEC6571186ADBC0083D75A /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 00AEC6561186ADBC0083D75A /* location.png */; };
 		00AEC6731186AFD90083D75A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AEC6721186AFD90083D75A /* QuartzCore.framework */; };
 		00AEC68B1186B1800083D75A /* stop-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 00AEC68A1186B1800083D75A /* stop-bg.png */; };
@@ -80,6 +81,8 @@
 		0064105611852C7200D0F9E8 /* BusStopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusStopViewController.m; path = BusStopView/BusStopViewController.m; sourceTree = SOURCE_ROOT; };
 		0064105711852C7200D0F9E8 /* BusStopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BusStopViewController.xib; path = BusStopView/BusStopViewController.xib; sourceTree = SOURCE_ROOT; };
 		007541D4118E9A4D00479CE2 /* alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alert.png; sourceTree = "<group>"; };
+		007BA9C0118EBF0500DEE49B /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
+		007BA9C1118EBF0500DEE49B /* libFlurryWithLocation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryWithLocation.a; sourceTree = "<group>"; };
 		00AEC6561186ADBC0083D75A /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
 		00AEC6721186AFD90083D75A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		00AEC68A1186B1800083D75A /* stop-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stop-bg.png"; sourceTree = "<group>"; };
@@ -161,6 +164,7 @@
 				00AEC6731186AFD90083D75A /* QuartzCore.framework in Frameworks */,
 				004F5C951187DF4400844FD6 /* MapKit.framework in Frameworks */,
 				3F9116B8118B454A00E2E50D /* SystemConfiguration.framework in Frameworks */,
+				007BA9C2118EBF0500DEE49B /* libFlurryWithLocation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +212,15 @@
 			);
 			path = BusStopView;
 			sourceTree = SOURCE_ROOT;
+		};
+		007BA9BD118EBEC400DEE49B /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				007BA9C0118EBF0500DEE49B /* FlurryAPI.h */,
+				007BA9C1118EBF0500DEE49B /* libFlurryWithLocation.a */,
+			);
+			path = Flurry;
+			sourceTree = "<group>";
 		};
 		00AEC7511186C4AE0083D75A /* Metadata */ = {
 			isa = PBXGroup;
@@ -361,6 +374,7 @@
 		3F91168E118B44EF00E2E50D /* External */ = {
 			isa = PBXGroup;
 			children = (
+				007BA9BD118EBEC400DEE49B /* Flurry */,
 				3F00E82011849EDD00339848 /* JONTUBusCore */,
 				3F91168D118B44DF00E2E50D /* UIDevice Extensions */,
 			);
@@ -506,6 +520,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RushHourNTU_Prefix.pch;
 				INFOPLIST_FILE = "RushHourNTU-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Flurry\"",
+				);
 				PRODUCT_NAME = RushHourNTU;
 			};
 			name = Debug;
@@ -518,6 +536,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RushHourNTU_Prefix.pch;
 				INFOPLIST_FILE = "RushHourNTU-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Flurry\"",
+				);
 				PRODUCT_NAME = RushHourNTU;
 				VALIDATE_PRODUCT = YES;
 			};

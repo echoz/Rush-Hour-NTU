@@ -8,6 +8,7 @@
 
 #import "IrisQueryUIViewController.h"
 #import "JONTUBusStop.h"
+#import "FlurryAPI.h"
 
 @implementation IrisQueryUIViewController
 @synthesize service, code, eta, next;
@@ -24,6 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[FlurryAPI logEvent:@"IRISQUERY_HIT"];
+	
 }
 
 /*

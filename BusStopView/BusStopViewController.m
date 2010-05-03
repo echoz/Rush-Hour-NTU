@@ -11,7 +11,7 @@
 #import "BusViewController.h"
 #import "NSString+htmlentitiesaddition.h"
 #import "RHSettings.h"
-
+#import "FlurryAPI.h"
 
 @implementation BusStopViewController
 
@@ -72,6 +72,11 @@
 	} else {
 		[star setImage:[UIImage imageNamed:@"star-icon-dark.png"]];
 	}
+	
+	NSMutableDictionary *flurryparms = [NSMutableDictionary dictionary];
+	[flurryparms setObject:[stop code] forKey:@"stop-code"];
+	[FlurryAPI logEvent:@"STOP_HIT" withParameters:flurryparms];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -119,17 +124,25 @@
 	NSMutableArray *favs = [[RHSettings sharedRHSettings].stash valueForKey:@"favorites"];
 	if (!favs)
 		favs = [NSMutableArray array];
+	
+	NSMutableDictionary *flurryparms = [NSMutableDictionary dictionary];
+	[flurryparms setObject:[stop code] forKey:@"stop-code"];
+	
 	if ([favs indexOfObject:[stop code]] == NSNotFound) {
 		[star setImage:[UIImage imageNamed:@"star-icon-filled-dark.png"]];
 		[favs addObject:[stop code]];
 		[[RHSettings sharedRHSettings].stash setObject:favs forKey:@"favorites"];
+		
+		[FlurryAPI logEvent:@"STOP_FAV" withParameters:flurryparms];		
 	} else {
 		[star setImage:[UIImage imageNamed:@"star-icon-dark.png"]];
 		[favs removeObject:[stop code]];
 		[[RHSettings sharedRHSettings].stash setObject:favs forKey:@"favorites"];
+		
+		[FlurryAPI logEvent:@"STOP_UNFAV" withParameters:flurryparms];
 	}
 	[[RHSettings sharedRHSettings] saveSettings];
-	
+
 }
 
 -(IBAction)refresh {

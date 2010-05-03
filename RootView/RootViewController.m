@@ -18,6 +18,7 @@
 #import "IrisQueryUIViewController.h"
 #import "RHSettings.h"
 #import "StopTableViewCell.h"
+#import "FlurryAPI.h"
 
 @implementation RootViewController
 
@@ -147,6 +148,9 @@
 	animationTimer = [[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateLocationProgress) userInfo:nil repeats:YES] retain];
 	
 	[animationTimer fire];
+	
+	[FlurryAPI logEvent:@"LOCATION_USE"];
+	
 
 	[currentLocation setStyle:UIBarButtonItemStyleDone];
 	[currentLocation setAction:@selector(stopLocation)];
@@ -192,7 +196,7 @@
 -(void)showNetworkErrorAlert {
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"Traversity needs an active internet connection to reload the cache." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[alert show];
-	[alert release];	
+	[alert release];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -227,6 +231,8 @@
 }
 
 -(void)engineStarted {
+	[FlurryAPI logEvent:@"CACHE_FILL"];
+	
 	NSLog(@"Fill Cache complete");
 	fillingCache = NO;
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -498,6 +504,12 @@
 		for (int i=0;i<[originalContent count];i++) {
 			if ([[originalContent objectAtIndex:i] busstopid] == idtorestore) {
 				[actualContent insertObject:[originalContent objectAtIndex:i] atIndex:i];
+				
+				NSMutableDictionary *flurryparms = [NSMutableDictionary dictionary];
+				[flurryparms setObject:((JONTUBusStop *)[originalContent objectAtIndex:i]).code forKey:@"stop-code"];
+				
+				[FlurryAPI logEvent:@"STOP_UNFAV" withParameters:flurryparms];
+				
 				[tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:i inSection:1]] 
 								 withRowAnimation:UITableViewRowAnimationFade];
 				break;
@@ -560,8 +572,11 @@
 		[[RHSettings sharedRHSettings] saveSettings];
 		[actualContent removeObject:stop];
 
-		//		[self freshen];
-
+		NSMutableDictionary *flurryparms = [NSMutableDictionary dictionary];
+		[flurryparms setObject:stop.code forKey:@"stop-code"];
+		
+		[FlurryAPI logEvent:@"STOP_FAV" withParameters:flurryparms];
+		
 		[tableView beginUpdates];
 		[tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:[favorites count]-1 inSection:0]]
 						 withRowAnimation:UITableViewRowAnimationFade];

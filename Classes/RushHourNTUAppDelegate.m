@@ -10,20 +10,28 @@
 #import "RootViewController.h"
 #import "JONTUBusEngine.h"
 #import "RHSettings.h"
+#import "FlurryAPI.h"
 
 #define CACH_FILE @"JONTUBusCore.cache"
+#define FLURRY_API_KEY @""
 
 @implementation RushHourNTUAppDelegate
 
 @synthesize window;
 @synthesize navigationController;
 
+void uncaughtExceptionHandler(NSException *exception);
 
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     // Override point for customization after app launch
+	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+	[FlurryAPI startSessionWithLocationServices:FLURRY_API_KEY];
+	
+	[FlurryAPI logEvent:@"APP_HIT"];
+	
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
 	NSString *cachePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:CACH_FILE];
 		
@@ -59,6 +67,9 @@
 
 }
 
+void uncaughtExceptionHandler(NSException *exception) {
+	[FlurryAPI logError:@"Uncaught" message:@"Crash!" exception:exception];
+} 
 
 #pragma mark -
 #pragma mark Memory management
