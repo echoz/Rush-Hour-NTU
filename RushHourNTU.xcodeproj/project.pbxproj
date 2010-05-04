@@ -45,6 +45,7 @@
 		3F00E83411849EF500339848 /* JONTUBusRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F00E82A11849EF500339848 /* JONTUBusRoute.m */; };
 		3F00E83511849EF500339848 /* JONTUBusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F00E82C11849EF500339848 /* JONTUBusStop.m */; };
 		3F00E83611849EF500339848 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F00E83011849EF500339848 /* RegexKitLite.m */; };
+		3F2F5B0711906CB10054ED02 /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F2F5B0611906CB10054ED02 /* 57.png */; };
 		3F550F96118B326300CB9C81 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F550F95118B326300CB9C81 /* Default.png */; };
 		3F83324711886E8300F3B165 /* star-icon-dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F83324511886E8300F3B165 /* star-icon-dark.png */; };
 		3F83324811886E8300F3B165 /* star-icon-filled-dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F83324611886E8300F3B165 /* star-icon-filled-dark.png */; };
@@ -125,6 +126,7 @@
 		3F00E82F11849EF500339848 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = JONTUBusCore/JONTUBusCore/RegexKitLite/RegexKitLite.h; sourceTree = SOURCE_ROOT; };
 		3F00E83011849EF500339848 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = JONTUBusCore/JONTUBusCore/RegexKitLite/RegexKitLite.m; sourceTree = SOURCE_ROOT; };
 		3F00E83111849EF500339848 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SynthesizeSingleton.h; path = JONTUBusCore/JONTUBusCore/SynthesizeSingleton.h; sourceTree = SOURCE_ROOT; };
+		3F2F5B0611906CB10054ED02 /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
 		3F550F95118B326300CB9C81 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3F83324511886E8300F3B165 /* star-icon-dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-icon-dark.png"; sourceTree = "<group>"; };
 		3F83324611886E8300F3B165 /* star-icon-filled-dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-icon-filled-dark.png"; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3F2F5B0611906CB10054ED02 /* 57.png */,
 				00DAB249118AAED80090C13A /* star-icon-filled.png */,
 				007541D4118E9A4D00479CE2 /* alert.png */,
 				00DAB24A118AAED80090C13A /* star-icon.png */,
@@ -468,6 +471,7 @@
 				00DAB24C118AAED80090C13A /* star-icon.png in Resources */,
 				3F550F96118B326300CB9C81 /* Default.png in Resources */,
 				007541D5118E9A4D00479CE2 /* alert.png in Resources */,
+				3F2F5B0711906CB10054ED02 /* 57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
