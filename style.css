@@ -110,7 +110,7 @@ ul.bullet-points li h2, ul.other-stuff li h2 {
 	margin: 0;
 }
 
-ul.bullet-points li p, ul.other-stuff li h2 {
+ul.other-stuff li h2 {
 	font-size: 0.95em;
 	margin: 0;
 }
