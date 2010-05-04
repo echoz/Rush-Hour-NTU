@@ -101,6 +101,10 @@ ul.bullet-points li {
 	margin: 50px 0;
 }
 
+ul.bullet-points li {
+	margin: 0;
+}
+
 ul.bullet-points li h2, ul.other-stuff li h2 {
 	font-size: 1em;
 	margin: 0;
