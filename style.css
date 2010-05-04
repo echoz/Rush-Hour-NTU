@@ -119,6 +119,10 @@ ul.bullet-points li p, ul.bullet-points li ul li {
 	font-size:0.95em;
 }
 
+ul.bullet-points li ul li a {
+	font-size:0.85em;	
+}
+
 ul.other-stuff {
 	float:right;
 	list-style-type: none;
