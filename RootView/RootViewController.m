@@ -237,7 +237,14 @@
 	fillingCache = NO;
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	self.navigationItem.rightBarButtonItem = refreshCache;
-	[[JONTUBusEngine sharedJONTUBusEngine] setHoldCache:-1];	
+	[[JONTUBusEngine sharedJONTUBusEngine] setHoldCache:-1];
+	
+	NSString *matchString = [[NSString alloc] initWithData:[[JONTUBusEngine sharedJONTUBusEngine] indexPageCache] encoding:NSASCIIStringEncoding];
+	
+	if ([matchString rangeOfString:@"Database Error"].location != NSNotFound) {
+		[self promptForPossibleError];
+	}
+	[matchString release];
 	[self freshen];
 	[UIView beginAnimations:nil context:nil];
 	[UIView setAnimationDuration:0.75];
@@ -247,6 +254,12 @@
 	[self.tableView setAllowsSelection:YES];
 	[UIView commitAnimations];		
 	
+}
+
+-(void)promptForPossibleError {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"NTU Web Services" message:@"There is a possiblity that NTU Web Services is down. If you do not see results/data and think that there should be, this is most likely the case. Do a cache refresh when everything is back up." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[alert show];
+	[alert release];
 }
 
 -(void)reachabilityChanged {

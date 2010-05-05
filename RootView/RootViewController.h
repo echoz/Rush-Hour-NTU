@@ -63,5 +63,5 @@
 -(void)cacheLoadNotification:(id)object;
 -(void)cacheLoadEndNotification:(id)object;																											 
 -(void)cacheLoadStartNotification:(id)object;
-	
+-(void)promptForPossibleError;
 @end
