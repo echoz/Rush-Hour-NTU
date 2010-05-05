@@ -16,6 +16,7 @@
 	UIBarButtonItem *irisquery;
 	UIBarButtonItem *genericDisplay;
 	UIBarButtonItem *refreshError;
+	UIBarButtonItem *infoButton;
 	UILabel *lastUpdate;
 	UIProgressView *progressLoad;
 	float progressTotal;
@@ -43,6 +44,7 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshCache;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshError;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *irisquery;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *infoButton;
 @property (nonatomic, retain) IBOutlet UIProgressView *progressLoad;
 
 @property (nonatomic, retain) NSMutableArray *filteredContent;
@@ -55,6 +57,8 @@
 -(IBAction)useLocation;
 -(IBAction)refreshTheCache;
 -(IBAction)showIrisQuery;
+
+-(void) titleTap:(id) sender;
 
 -(void)stopLocation;
 -(void)freshen;

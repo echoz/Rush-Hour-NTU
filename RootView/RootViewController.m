@@ -19,11 +19,12 @@
 #import "RHSettings.h"
 #import "StopTableViewCell.h"
 #import "FlurryAPI.h"
+#import "InfoViewController.h"
 
 @implementation RootViewController
 
 @synthesize currentLocation, refreshCache, savedSearchTerm, filteredContent, searchWasActive, actualContent, workQueue, irisquery, originalContent;
-@synthesize progressLoad,refreshError;
+@synthesize progressLoad,refreshError, infoButton;
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -33,9 +34,19 @@
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-	self.title = @"Traversity";
-	lastUpdate = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
+	UIButton *titleLabel = [UIButton buttonWithType:UIButtonTypeCustom];
+	[titleLabel setTitle:@"Traversity" forState:UIControlStateNormal];
+	titleLabel.frame = CGRectMake(0, 0, 100, 44);
+	titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:19];
+	titleLabel.titleLabel.shadowColor = [UIColor grayColor];
+	titleLabel.titleLabel.shadowOffset = CGSizeMake(0, -1);
+	titleLabel.showsTouchWhenHighlighted = YES;
+	[titleLabel addTarget:self action:@selector(titleTap:) forControlEvents:UIControlEventTouchUpInside];
+	self.navigationItem.titleView = titleLabel;
+	
+	lastUpdate = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 175, 20)];
 	lastUpdate.backgroundColor = [UIColor clearColor];
+	lastUpdate.textAlignment = UITextAlignmentCenter;
 	lastUpdate.textColor = [UIColor whiteColor];
 	lastUpdate.shadowColor = [UIColor grayColor];
 	lastUpdate.shadowOffset = CGSizeMake(0, -1);
@@ -100,6 +111,7 @@
 	[self.searchDisplayController.searchResultsTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 }
 
+
 -(void)cacheLoadStartNotification:(id)object {
 	progressTotal = [[object object] intValue];
 	progressCurrent = 0;
@@ -136,6 +148,12 @@
 	if (spinnerFrame == 10) {
 		spinnerFrame = 0;
 	}
+}
+
+-(void) titleTap:(id) sender {
+	InfoViewController *modalView = [[InfoViewController alloc] initWithNibName:@"InfoViewController" bundle:nil];
+	[self presentModalViewController:modalView animated:YES];
+	[modalView release];	
 }
 
 -(IBAction)showIrisQuery {
@@ -679,6 +697,7 @@
 	[genericDisplay release];
 	[savedSearchTerm release];
 	[filteredContent release];
+	[infoButton release];
 	[currentLocation release];
 	[super dealloc];
 }

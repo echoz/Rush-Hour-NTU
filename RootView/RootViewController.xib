@@ -103,8 +103,8 @@
 				</object>
 				<int key="IBUIStyle">1</int>
 			</object>
-			<object class="IBUIBarButtonItem" id="339621283">
-				<string key="IBUITitle">Item</string>
+			<object class="IBUIBarButtonItem" id="118928689">
+				<string key="IBUITitle">Info</string>
 				<int key="IBUIStyle">1</int>
 			</object>
 		</object>
@@ -263,6 +263,14 @@
 					</object>
 					<int key="connectionID">31</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">infoButton</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="118928689"/>
+					</object>
+					<int key="connectionID">33</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -334,7 +342,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">32</int>
-						<reference key="object" ref="339621283"/>
+						<reference key="object" ref="118928689"/>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">info</string>
 					</object>
@@ -387,7 +395,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">32</int>
+			<int key="maxID">33</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -415,6 +423,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>currentLocation</string>
+							<string>infoButton</string>
 							<string>irisquery</string>
 							<string>progressLoad</string>
 							<string>refreshCache</string>
@@ -422,6 +431,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
 							<string>UIProgressView</string>
