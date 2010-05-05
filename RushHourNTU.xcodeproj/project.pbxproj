@@ -10,6 +10,9 @@
 		000EF1BD118574C10070B458 /* BusETACell.m in Sources */ = {isa = PBXBuildFile; fileRef = 000EF1BC118574C10070B458 /* BusETACell.m */; };
 		000EF207118578DC0070B458 /* BusETACell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 000EF206118578DC0070B458 /* BusETACell.xib */; };
 		000EF28D118582060070B458 /* NSString+htmlentitiesaddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 000EF28C118582060070B458 /* NSString+htmlentitiesaddition.m */; };
+		001FD5F711914091001DEBB2 /* querybutton-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 001FD5F511914091001DEBB2 /* querybutton-bg.png */; };
+		001FD5FE119140D3001DEBB2 /* querybutton-bg-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 001FD5FD119140D3001DEBB2 /* querybutton-bg-on.png */; };
+		001FD61411914233001DEBB2 /* irisbar-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 001FD61311914233001DEBB2 /* irisbar-bg.png */; };
 		00471E591186D3F200BAC790 /* CacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00471E581186D3F200BAC790 /* CacheOperation.m */; };
 		0047DBDC1185923800856AAF /* map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 0047DBDB1185923800856AAF /* map-marker.png */; };
 		004F5C441187D52200844FD6 /* BusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5C421187D52200844FD6 /* BusViewController.m */; };
@@ -70,6 +73,9 @@
 		000EF206118578DC0070B458 /* BusETACell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BusETACell.xib; path = BusStopView/BusETACell.xib; sourceTree = SOURCE_ROOT; };
 		000EF28B118582060070B458 /* NSString+htmlentitiesaddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+htmlentitiesaddition.h"; sourceTree = "<group>"; };
 		000EF28C118582060070B458 /* NSString+htmlentitiesaddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+htmlentitiesaddition.m"; sourceTree = "<group>"; };
+		001FD5F511914091001DEBB2 /* querybutton-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "querybutton-bg.png"; sourceTree = "<group>"; };
+		001FD5FD119140D3001DEBB2 /* querybutton-bg-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "querybutton-bg-on.png"; sourceTree = "<group>"; };
+		001FD61311914233001DEBB2 /* irisbar-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "irisbar-bg.png"; sourceTree = "<group>"; };
 		00471E571186D3F200BAC790 /* CacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CacheOperation.h; path = ../Classes/CacheOperation.h; sourceTree = "<group>"; };
 		00471E581186D3F200BAC790 /* CacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CacheOperation.m; path = ../Classes/CacheOperation.m; sourceTree = "<group>"; };
 		0047DBDB1185923800856AAF /* map-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-marker.png"; sourceTree = "<group>"; };
@@ -273,7 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				3F91168E118B44EF00E2E50D /* External */,
-				3FA7B0FF1188881E00638E51 /* IRISQUERY */,
+				3FA7B0FF1188881E00638E51 /* IrisQuery */,
 				00D0CCF21188295600F1D387 /* MapAnnotations */,
 				004F5C3B1187D4FC00844FD6 /* BusView */,
 				00AEC7511186C4AE0083D75A /* Metadata */,
@@ -300,8 +306,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				001FD61311914233001DEBB2 /* irisbar-bg.png */,
 				3F2F5B0611906CB10054ED02 /* 57.png */,
 				00DAB249118AAED80090C13A /* star-icon-filled.png */,
+				001FD5FD119140D3001DEBB2 /* querybutton-bg-on.png */,
+				001FD5F511914091001DEBB2 /* querybutton-bg.png */,
 				007541D4118E9A4D00479CE2 /* alert.png */,
 				00DAB24A118AAED80090C13A /* star-icon.png */,
 				3FA7B10911888BFD00638E51 /* 09-chat2.png */,
@@ -393,14 +402,14 @@
 			name = Apple;
 			sourceTree = "<group>";
 		};
-		3FA7B0FF1188881E00638E51 /* IRISQUERY */ = {
+		3FA7B0FF1188881E00638E51 /* IrisQuery */ = {
 			isa = PBXGroup;
 			children = (
 				3FA7B1001188883F00638E51 /* IrisQueryUIViewController.h */,
 				3FA7B1011188883F00638E51 /* IrisQueryUIViewController.m */,
 				3FA7B1021188883F00638E51 /* IrisQueryUIViewController.xib */,
 			);
-			name = IRISQUERY;
+			path = IrisQuery;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -472,6 +481,9 @@
 				3F550F96118B326300CB9C81 /* Default.png in Resources */,
 				007541D5118E9A4D00479CE2 /* alert.png in Resources */,
 				3F2F5B0711906CB10054ED02 /* 57.png in Resources */,
+				001FD5F711914091001DEBB2 /* querybutton-bg.png in Resources */,
+				001FD5FE119140D3001DEBB2 /* querybutton-bg-on.png in Resources */,
+				001FD61411914233001DEBB2 /* irisbar-bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
