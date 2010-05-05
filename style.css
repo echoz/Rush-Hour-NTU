@@ -35,15 +35,18 @@ div.abovecanvas div.header{
 	position: absolute;
 	top: 250px;
 	text-shadow: #000 0px 1px 2px;
+	width: 500px;
 }
 
 div.header img {
 	float: left;
+	width: 128px;
 }
 
 div.header div.text {
 	float: right;
-	margin: 35px 20px;
+	margin: 35px 0px;
+	width: 350px;
 }
 
 div.header div.text h1 {
