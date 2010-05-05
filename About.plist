@@ -43,6 +43,35 @@
 		</array>
 	</array>
 	<array>
+		<string>Video Demos</string>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>Search for stops</string>
+				<key>video</key>
+				<string>search.mp4</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Mark stops as favourite</string>
+				<key>video</key>
+				<string>favorite.mp4</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Proximity Search</string>
+				<key>video</key>
+				<string>proximity.mp4</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Use manual Iris Query</string>
+				<key>video</key>
+				<string>iris.mp4</string>
+			</dict>
+		</array>
+	</array>
+	<array>
 		<string>Open Source</string>
 		<array>
 			<dict>

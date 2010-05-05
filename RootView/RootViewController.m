@@ -109,6 +109,17 @@
 	}
 	
 	[self.searchDisplayController.searchResultsTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+	
+	
+	BOOL veteran = [[[RHSettings sharedRHSettings].stash valueForKey:@"veteran"] boolValue];
+	
+	if (!veteran) {
+		[self titleTap:nil];
+		[[RHSettings sharedRHSettings].stash setValue:[NSNumber numberWithBool:YES] forKey:@"veteran"];
+		[[RHSettings sharedRHSettings] saveSettings];
+	}
+		 
+		
 }
 
 
