@@ -111,7 +111,11 @@ div.player div.ui object {
 div.player div.player-content {
 	display: block;
 	margin-top: 140px;
-	padding: 0 0 0 20px;
+	padding: 0 20px;
+}
+
+div.player div.player-content object {
+	margin-left: 40px;
 	
 }
 
