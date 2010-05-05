@@ -26,8 +26,8 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	urlStore = nil;
-	
+	indexPathToLaunch = nil;
+	about = [[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"About" ofType:@"plist"]] retain];
 }
 
 /*
@@ -39,33 +39,15 @@
 */
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 3;
+	return [about count];
 }
 
 -(NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section {
-	switch (section) {
-		case 0:
-			return 2;
-		case 1:
-			return 2;
-		case 2:
-			return 4;
-		default:
-			return 0;
-	}
+	return [[[about objectAtIndex:section] objectAtIndex:1] count];
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	switch (section) {
-		case 0:
-			return @"About";
-		case 1:
-			return @"Credits";
-		case 2:
-			return @"Open Source";
-		default:
-			break;
-	}
+	return [[about objectAtIndex:section] objectAtIndex:0];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -77,76 +59,43 @@
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:MyIdentifier] autorelease];
 	}
 	
-	cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 	
-	if (indexPath.section == 0) {
-		switch (indexPath.row) {
-			case 0:
-				cell.textLabel.text = @"Version";
-				cell.detailTextLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-				cell.selectionStyle = UITableViewCellSelectionStyleNone;
-				break;
-			case 1:
-				cell.textLabel.text = @"URL";
-				cell.detailTextLabel.text = @"the.ornyx.net/traversity";
-				break;
-		}		
-	} else if (indexPath.section == 1) {
-		switch (indexPath.row) {
-			case 0:
-				cell.textLabel.text = @"Development";
-				cell.detailTextLabel.text = @"Jeremy Foo";
-				break;
-			case 1:
-				cell.textLabel.text = @"Graphics";
-				cell.detailTextLabel.text = @"Ian Meyer";
-				break;
-		}		
-	} else if (indexPath.section == 2) {
-		switch (indexPath.row) {
-			case 0:
-				cell.textLabel.text = @"Glyphish";
-				cell.detailTextLabel.text = @"";
-				break;
-			case 1:
-				cell.textLabel.text = @"JONTUBusCore";
-				cell.detailTextLabel.text = @"";
-				break;
-			case 2:
-				cell.textLabel.text = @"RegexKitLite";
-				cell.detailTextLabel.text = @"";
-				break;
-			case 3:
-				cell.textLabel.text = @"UIDevice Additions";
-				cell.detailTextLabel.text = @"";
-				break;
-				
-		}				
+	if ([[[[about objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectForKey:@"url"]) {
+		cell.selectionStyle = UITableViewCellSelectionStyleBlue;		
+	} else {
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
 	
-	
+	cell.textLabel.text = [[[[about objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectForKey:@"name"];
+	cell.detailTextLabel.text = [[[[about objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectForKey:@"value"];		
 	return cell;
 	
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if ((alertView.title == @"Open URL") && ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Yes"])) {
-		[[UIApplication sharedApplication] openURL:urlStore];
+	if ((alertView.title == @"External URL Launch") && ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Yes"])) {
+		NSIndexPath *indexPath = indexPathToLaunch;
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[[[about objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectForKey:@"url"]]];
 	}
 }
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[[tableView cellForRowAtIndexPath:indexPath] setSelected:NO];
-	[urlStore release];
-	//	urlStore = [url retain];
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Open URL"
-													message:[NSString stringWithFormat:@"This action will quit Traversity and launch the %@ in Mobile Safari. Are you sure you want to do that?",[urlStore absoluteURL]]
-												   delegate:self
-										  cancelButtonTitle:@"No"
-										  otherButtonTitles:@"Yes",nil];
-	[alert show];
-	[alert release];
+	
+	if ([[[[about objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectForKey:@"url"]) {
+
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"External URL Launch"
+														message:[NSString stringWithFormat:@"Are you sure you want to launch\n%@\n in Mobile Safari?",[[[[about objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectForKey:@"url"]]
+													   delegate:self
+											  cancelButtonTitle:@"No"
+											  otherButtonTitles:@"Yes",nil];
+		[alert show];
+		[alert release];
+		
+		[indexPathToLaunch release];
+		indexPathToLaunch = [indexPath retain];
+	}
 }
 
 -(IBAction)close {
@@ -167,6 +116,7 @@
 
 
 - (void)dealloc {
+	[about release];
 	[tableView release];
     [super dealloc];
 }

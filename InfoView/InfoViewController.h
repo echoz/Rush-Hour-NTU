@@ -12,7 +12,8 @@
 
 @interface InfoViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate> {
 	UITableView *tableView;
-	NSURL *urlStore;
+	NSArray *about;
+	NSIndexPath *indexPathToLaunch;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
