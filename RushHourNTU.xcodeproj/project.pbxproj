@@ -14,6 +14,8 @@
 		001FD5FE119140D3001DEBB2 /* querybutton-bg-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 001FD5FD119140D3001DEBB2 /* querybutton-bg-on.png */; };
 		001FD61411914233001DEBB2 /* irisbar-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 001FD61311914233001DEBB2 /* irisbar-bg.png */; };
 		001FD6B911915265001DEBB2 /* IrisQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 001FD6B811915265001DEBB2 /* IrisQueryOperation.m */; };
+		001FD766119162C6001DEBB2 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001FD764119162C6001DEBB2 /* InfoViewController.m */; };
+		001FD767119162C6001DEBB2 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 001FD765119162C6001DEBB2 /* InfoViewController.xib */; };
 		00471E591186D3F200BAC790 /* CacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00471E581186D3F200BAC790 /* CacheOperation.m */; };
 		0047DBDC1185923800856AAF /* map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 0047DBDB1185923800856AAF /* map-marker.png */; };
 		004F5C441187D52200844FD6 /* BusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F5C421187D52200844FD6 /* BusViewController.m */; };
@@ -79,6 +81,9 @@
 		001FD61311914233001DEBB2 /* irisbar-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "irisbar-bg.png"; sourceTree = "<group>"; };
 		001FD6B711915265001DEBB2 /* IrisQueryOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IrisQueryOperation.h; sourceTree = "<group>"; };
 		001FD6B811915265001DEBB2 /* IrisQueryOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IrisQueryOperation.m; sourceTree = "<group>"; };
+		001FD763119162C6001DEBB2 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		001FD764119162C6001DEBB2 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		001FD765119162C6001DEBB2 /* InfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
 		00471E571186D3F200BAC790 /* CacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CacheOperation.h; path = ../Classes/CacheOperation.h; sourceTree = "<group>"; };
 		00471E581186D3F200BAC790 /* CacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CacheOperation.m; path = ../Classes/CacheOperation.m; sourceTree = "<group>"; };
 		0047DBDB1185923800856AAF /* map-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-marker.png"; sourceTree = "<group>"; };
@@ -199,8 +204,11 @@
 		001FD6E0119154E4001DEBB2 /* InfoView */ = {
 			isa = PBXGroup;
 			children = (
+				001FD763119162C6001DEBB2 /* InfoViewController.h */,
+				001FD764119162C6001DEBB2 /* InfoViewController.m */,
+				001FD765119162C6001DEBB2 /* InfoViewController.xib */,
 			);
-			name = InfoView;
+			path = InfoView;
 			sourceTree = "<group>";
 		};
 		004F5C3B1187D4FC00844FD6 /* BusView */ = {
@@ -497,6 +505,7 @@
 				001FD5F711914091001DEBB2 /* querybutton-bg.png in Resources */,
 				001FD5FE119140D3001DEBB2 /* querybutton-bg-on.png in Resources */,
 				001FD61411914233001DEBB2 /* irisbar-bg.png in Resources */,
+				001FD767119162C6001DEBB2 /* InfoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +543,7 @@
 				3F91169D118B450E00E2E50D /* UIDevice-Orientation.m in Sources */,
 				3F91169E118B450E00E2E50D /* wwanconnect.c in Sources */,
 				001FD6B911915265001DEBB2 /* IrisQueryOperation.m in Sources */,
+				001FD766119162C6001DEBB2 /* InfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
