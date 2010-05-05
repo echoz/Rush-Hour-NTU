@@ -93,21 +93,30 @@ div.content {
 div.player {
 	float:right;
 	width: 400px;
-	margin-top: -660px;
 }
 
 div.player div.ui {
-	position: relative;
-	top: -631px;
-	left: 47px;
-	z-index: 99;
+	margin-top: -650px;
+}
+
+div.player div.ui object {
+	display: block;
+	margin-top: -631px;
+	margin-left: 47px;
+}
+
+div.player div.player-content {
+	display: block;
+	margin-top: 140px;
+	padding: 0 0 0 20px;
+	
 }
 
 ul.bullet-points {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	width: 650px;
+	width: 650px;	
 }
 
 ul.bullet-points li {
