@@ -10,6 +10,7 @@
 #import "JONTUBusStop.h"
 #import "FlurryAPI.h"
 #import <QuartzCore/QuartzCore.h>
+#import "IrisQueryOperation.h"
 
 @implementation IrisQueryUIViewController
 @synthesize tableView, stopcode, servicenumber, result, eta, next, query, navBar, stopcodeText, servicenumberText;
@@ -44,6 +45,9 @@
 	[query setSelectedBackgroundView:buttonBG];
 	[buttonBG release];
 	
+	workQueue = [[NSOperationQueue alloc] init];
+	[workQueue setMaxConcurrentOperationCount:1];
+	
 }
 
 /*
@@ -54,9 +58,8 @@
 }
 */
 
--(void)doIris {
-	NSLog(@"HERE");
-	NSDictionary *iriseta = [JONTUBusStop irisQueryForService:servicenumberText.text atStop:stopcodeText.text];
+-(void)irisAnswers:(NSDictionary *)iriseta {
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	if ([[[iriseta valueForKey:@"service"] lowercaseString] hasPrefix:@"invalid service"]) {
 		eta.text = [NSString stringWithFormat:@"%@",servicenumberText.text];
 		next.text = @"Invalid service";
@@ -79,7 +82,6 @@
 		}
 		
 	}
-	
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
@@ -174,7 +176,11 @@
 	if (indexPath == [NSIndexPath indexPathForRow:0 inSection:2]) {
 		[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO];
 		[self textFieldShouldReturn:servicenumberText];
-		[self doIris];
+		
+		IrisQueryOperation *op = [[IrisQueryOperation alloc] initWithServiceNumber:servicenumberText.text stopCode:stopcodeText.text delegate:self];
+		[workQueue addOperation:op];
+		[op release];
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	}
 }
 
@@ -193,6 +199,7 @@
 
 
 - (void)dealloc {
+	[workQueue release];
 	[tableView release];
 	[eta release];
 	[next release];

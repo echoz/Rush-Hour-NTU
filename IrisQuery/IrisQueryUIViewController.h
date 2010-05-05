@@ -24,6 +24,8 @@
 	UILabel *eta;
 	UILabel *next;
 	UIButton *queryButton;
+	
+	NSOperationQueue *workQueue;
 }
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet UITableViewCell *stopcode;
@@ -37,5 +39,5 @@
 @property (nonatomic, retain) IBOutlet UITextField *servicenumberText;
 
 -(IBAction)close;
--(void)doIris;
+-(void)irisAnswers:(NSDictionary *)iriseta;
 @end
