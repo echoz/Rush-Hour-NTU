@@ -103,6 +103,10 @@
 				</object>
 				<int key="IBUIStyle">1</int>
 			</object>
+			<object class="IBUIBarButtonItem" id="339621283">
+				<string key="IBUITitle">Item</string>
+				<int key="IBUIStyle">1</int>
+			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -328,6 +332,12 @@
 						<reference key="parent" ref="0"/>
 						<string key="objectName">refresh error</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">32</int>
+						<reference key="object" ref="339621283"/>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">info</string>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -342,6 +352,7 @@
 					<string>23.IBPluginDependency</string>
 					<string>27.IBPluginDependency</string>
 					<string>29.IBPluginDependency</string>
+					<string>32.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
 					<string>9.IBPluginDependency</string>
 				</object>
@@ -350,6 +361,7 @@
 					<string>RootViewController</string>
 					<string>UIResponder</string>
 					<string>{{325, 317}, {320, 247}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -375,7 +387,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">31</int>
+			<int key="maxID">32</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

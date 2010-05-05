@@ -260,7 +260,11 @@
 	if ([[stop otherBus] count] > 0) {
 		switch (section) {
 			case 0:
-				return @"Internal Shuttle";
+				if ([arrivals count] > 0) {
+					return @"Internal Shuttle";					
+				} else {
+					return @"";
+				}
 			case 1:
 				return @"Public Transport";
 		}

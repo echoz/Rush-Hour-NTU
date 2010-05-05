@@ -48,6 +48,8 @@
 	workQueue = [[NSOperationQueue alloc] init];
 	[workQueue setMaxConcurrentOperationCount:1];
 	
+	hasResult = NO;
+	
 }
 
 /*
@@ -60,6 +62,7 @@
 
 -(void)irisAnswers:(NSDictionary *)iriseta {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	hasResult = YES;
 	if ([[[iriseta valueForKey:@"service"] lowercaseString] hasPrefix:@"invalid service"]) {
 		eta.text = [NSString stringWithFormat:@"%@",servicenumberText.text];
 		next.text = @"Invalid service";
@@ -80,8 +83,8 @@
 		} else {
 			next.text = [NSString stringWithFormat:@"The next bus is arriving in %@", [iriseta valueForKey:@"subsequent"]];			
 		}
-		
 	}
+	[self.tableView reloadData];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
@@ -125,7 +128,11 @@
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	switch (section) {
 		case 0:
-			return @"Result";
+			if (hasResult) {
+				return @"Result";				
+			} else {
+				return @"";
+			}
 		case 1:
 			return @"Parameters";
 		default:
@@ -136,7 +143,11 @@
 -(NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section {
 	switch (section) {
 		case 0:
-			return 1;
+			if (hasResult) {
+				return 1;				
+			} else {
+				return 0;
+			}
 		case 1:
 			return 2;
 		case 2:

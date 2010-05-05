@@ -196,6 +196,13 @@
 			path = RootView;
 			sourceTree = SOURCE_ROOT;
 		};
+		001FD6E0119154E4001DEBB2 /* InfoView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = InfoView;
+			sourceTree = "<group>";
+		};
 		004F5C3B1187D4FC00844FD6 /* BusView */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +288,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				001FD6E0119154E4001DEBB2 /* InfoView */,
 				3F91168E118B44EF00E2E50D /* External */,
 				3FA7B0FF1188881E00638E51 /* IrisQuery */,
 				00D0CCF21188295600F1D387 /* MapAnnotations */,
