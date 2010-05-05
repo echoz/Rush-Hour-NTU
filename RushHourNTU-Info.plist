@@ -26,11 +26,6 @@
 	<string>Default.png</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>location-services</string>
-		<string>wifi</string>
-	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
