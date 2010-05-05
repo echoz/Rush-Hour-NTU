@@ -6,7 +6,7 @@ body {
 	background-size: 100%;
 	background-attachment: scroll;
 	background-position-x: 0;
-	background-position-y: -200px;
+	background-position-y: -50px;
 	color: #fff;
 }
 
@@ -33,13 +33,20 @@ div.abovecanvas {
 
 div.abovecanvas div.header{
 	position: absolute;
-	top: 300px;
-	margin-left: 180px;
+	top: 150px;
 	text-shadow: #000 0px 1px 2px;
-
 }
 
-div.header h1 {
+div.header img {
+	float: left;
+}
+
+div.header div.text {
+	float: right;
+	margin: 35px 20px;
+}
+
+div.header div.text h1 {
 	margin: 0;
 	padding: 0;
 }
@@ -61,7 +68,7 @@ div.canvasshadow {
 }
 
 div.ubercanvas {
-	margin-top: 500px;
+	margin-top: 700px;
 
 }
 
@@ -79,39 +86,42 @@ div.content {
 	float: left;
 	width: 600px;
 	text-shadow: #fff 0px 1px 1px;
-	color: #000;	
+	color: #000;
+	margin-top: 30px;
 }
 
 div.player {
 	float:right;
 	width: 400px;
-	margin-top: -400px;
+	margin-top: -660px;
+}
+
+div.player div.ui {
+	position: relative;
+	top: -631px;
+	left: 47px;
+	z-index: 99;
 }
 
 ul.bullet-points {
 	list-style-type: none;
-	float: left;
 	margin: 0;
 	padding: 0;
-	width: 270;
+	width: 650px;
 }
 
 ul.bullet-points li {
 	width: 270px;
-	margin: 50px 0;
+	margin: 20px;
+	float:left;
 }
 
 ul.bullet-points ul li {
 	margin: 0;
 }
 
-ul.bullet-points li h2, ul.other-stuff li h2 {
+ul.bullet-points li h2 {
 	font-size: 1em;
-	margin: 0;
-}
-
-ul.other-stuff li h2 {
-	font-size: 0.95em;
 	margin: 0;
 }
 
@@ -121,27 +131,4 @@ ul.bullet-points li p, ul.bullet-points li ul li {
 
 ul.bullet-points li ul li a {
 	font-size:0.85em;	
-}
-
-ul.other-stuff {
-	float:right;
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	width: 300px;
-}
-
-ul.other-stuff li {
-	margin: 50px 0;
-}
-
-ul.other-stuff ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-
-ul.other-stuff ul li {
-	margin: 10px 0;
-	padding: 0;
 }
