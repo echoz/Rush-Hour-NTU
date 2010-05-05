@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>About</key>
+	<array>
+		<dict>
+			<key>value</key>
+			<string>the.ornyx.net/traversity</string>
+			<key>name</key>
+			<string>URL</string>
+		</dict>
+		<dict>
+			<key>value</key>
+			<string>1.0</string>
+			<key>name</key>
+			<string>Version</string>
+		</dict>
+	</array>
+	<key>Credits</key>
+	<array>
+		<dict>
+			<key>value</key>
+			<string>Jeremy Foo</string>
+			<key>url</key>
+			<string>http://www.twitter.com/echoz</string>
+			<key>name</key>
+			<string>Development</string>
+		</dict>
+		<dict>
+			<key>url</key>
+			<string>http://www.twitter.com/frijole</string>
+			<key>value</key>
+			<string>Ian Meyer</string>
+			<key>name</key>
+			<string>Graphics</string>
+		</dict>
+	</array>
+	<key>Open Source</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>Glyphish</string>
+			<key>url</key>
+			<string>http://www.glyphish.com</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>JONTUBusCore</string>
+			<key>url</key>
+			<string>http://github.com/echoz/JONTUBusCore</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>RegexKitLite</string>
+			<key>url</key>
+			<string>http://regexkit.sourceforge.net/</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>UIDevice Additions</string>
+			<key>url</key>
+			<string>http://github.com/erica/uidevice-extension</string>
+		</dict>
+	</array>
+</dict>
+</plist>

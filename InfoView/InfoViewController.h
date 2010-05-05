@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NameValueCell.h"
 
 
-@interface InfoViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface InfoViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate> {
 	UITableView *tableView;
+	NSURL *urlStore;
 }
 
-@property (nonatomic, retain) UITableView *tableView;
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
 -(IBAction)close;
 @end
