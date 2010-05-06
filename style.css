@@ -26,7 +26,6 @@ a:hover {
 }
 
 div.abovecanvas {
-	margin: 0 auto;
 	width: 1000px;
 	margin: 0 auto;
 }
@@ -36,6 +35,26 @@ div.abovecanvas div.header{
 	top: 250px;
 	text-shadow: #000 0px 1px 2px;
 	width: 500px;
+}
+
+div.abovecanvas div.promo {
+	position: absolute;
+	top:650px;
+	margin-left: 350px;
+}
+
+div.screenshots {
+	margin: 40px;
+}
+
+div.screenshots ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+div.screenshots ul li {
+	float: left;
 }
 
 div.header img {
