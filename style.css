@@ -10,6 +10,10 @@ body {
 	color: #fff;
 }
 
+a:link img, a:visited img, a:hover img {
+	border: none;
+}
+
 a:link, a:visited {
 	color: #000;
 	text-decoration: none;
