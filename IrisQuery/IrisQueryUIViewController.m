@@ -92,8 +92,6 @@
 		[self.tableView setFrame:CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, 200)];
 	}
 	
-	NSLog(@"%f",self.tableView.frame.size.height);
-		
 	if (textField == stopcodeText) {
 		[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 	} else {

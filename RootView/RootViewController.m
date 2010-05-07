@@ -118,10 +118,19 @@
 		[[RHSettings sharedRHSettings].stash setValue:[NSNumber numberWithBool:YES] forKey:@"veteran"];
 		[[RHSettings sharedRHSettings] saveSettings];
 	}
-		 
-		
+	
+	[self.navigationItem.leftBarButtonItem addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
 }
 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	if (object == self.navigationItem.leftBarButtonItem) {
+		if ([[change valueForKey:@"new"] isEqualToString:@"Done"]) {
+			[self.navigationItem.rightBarButtonItem setEnabled:NO];
+		} else {
+			[self.navigationItem.rightBarButtonItem setEnabled:YES];
+		}
+	}
+}
 
 -(void)cacheLoadStartNotification:(id)object {
 	progressTotal = [[object object] intValue];
