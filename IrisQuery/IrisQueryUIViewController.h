@@ -41,4 +41,5 @@
 
 -(IBAction)close;
 -(void)irisAnswers:(NSDictionary *)iriseta;
+-(void)beginQuery;
 @end

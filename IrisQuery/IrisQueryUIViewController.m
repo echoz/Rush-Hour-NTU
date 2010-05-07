@@ -104,6 +104,7 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
 	[self.tableView setFrame:CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, 416)];
 	[textField resignFirstResponder];
+	[self beginQuery];
 	return NO;
 }
 
@@ -187,11 +188,17 @@
 	if (indexPath == [NSIndexPath indexPathForRow:0 inSection:2]) {
 		[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO];
 		[self textFieldShouldReturn:servicenumberText];
-		
+	}
+}
+
+-(void)beginQuery {
+	if (([servicenumberText.text length] > 0) && ([stopcodeText.text length] > 0)) {
 		IrisQueryOperation *op = [[IrisQueryOperation alloc] initWithServiceNumber:servicenumberText.text stopCode:stopcodeText.text delegate:self];
 		[workQueue addOperation:op];
 		[op release];
-		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;			
+	} else {
+		[servicenumberText setSelected:YES];
 	}
 }
 
