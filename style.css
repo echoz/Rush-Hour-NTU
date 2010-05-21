@@ -41,10 +41,28 @@ div.abovecanvas div.header{
 	width: 500px;
 }
 
-div.abovecanvas div.promo {
+a.appstorebadge {
 	position: absolute;
 	top:650px;
 	margin-left: 350px;
+	border: none;
+}
+
+div.abovecanvas div.promo {
+	position: absolute;
+	top:950px;
+	margin-left: 120px;
+}
+
+div.promo ul {
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+
+div.promo ul li {
+	margin-left: -70px;
+	float: left;
 }
 
 div.screenshots {
