@@ -71,6 +71,10 @@
 		eta.text = [NSString stringWithFormat:@"%@",servicenumberText.text];
 		next.text = @"Off Service";
 		
+	} else if (([[iriseta valueForKey:@"eta"] length] == 0) && ([[iriseta valueForKey:@"subsequent"] length] == 0)) {
+		eta.text = [NSString stringWithFormat:@"Service %@",servicenumberText.text];
+		next.text = @"Does not exist in IRIS database";
+		
 	} else {
 		if ([[[iriseta valueForKey:@"eta"] lowercaseString] hasPrefix:@"arriving"]) {
 			eta.text = [NSString stringWithFormat:@"%@ is arriving",servicenumberText.text];			
