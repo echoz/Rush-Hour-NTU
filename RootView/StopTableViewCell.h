@@ -11,9 +11,10 @@
 
 @interface StopTableViewCell : UITableViewCell {
 	UIImageView *fav;
-	
+	BOOL swipe;
 }
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
+-(void)layoutSubviewsWithAnimation:(BOOL)animation;
 @property (nonatomic, readonly, retain) UIImageView *fav;
-
+@property (readwrite) BOOL swipe;
 @end
