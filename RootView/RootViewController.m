@@ -44,7 +44,7 @@
 	[titleLabel addTarget:self action:@selector(titleTap:) forControlEvents:UIControlEventTouchUpInside];
 	self.navigationItem.titleView = titleLabel;
 	
-	lastUpdate = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 175, 20)];
+	lastUpdate = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 180, 20)];
 	lastUpdate.backgroundColor = [UIColor clearColor];
 	lastUpdate.textAlignment = UITextAlignmentCenter;
 	lastUpdate.textColor = [UIColor whiteColor];
@@ -79,6 +79,7 @@
 		self.savedSearchTerm = nil;
 	}
 	self.tableView.scrollEnabled = YES;
+	self.tableView.backgroundColor = [UIColor colorWithRed:0.930 green:0.927 blue:0.926 alpha:1.000];
 	
 	LocationManager *manager = [LocationManager sharedLocationManager];
 	
@@ -477,7 +478,7 @@
 		cell.contentView.backgroundColor = [UIColor clearColor];
 		cell.detailTextLabel.backgroundColor = [UIColor clearColor];
 		cell.textLabel.backgroundColor = [UIColor clearColor];
-
+		
     }
 	
 	if (tableView == self.searchDisplayController.searchResultsTableView) {
@@ -507,7 +508,7 @@
 			cell.showsReorderControl = NO;				
 		} else {
 			JONTUBusStop *favstop = [[JONTUBusEngine sharedJONTUBusEngine] stopForCode:[favorites objectAtIndex:indexPath.row]];
-			cell.textLabel.text = [favstop desc];
+			cell.textLabel.text = [[favstop desc] removeHTMLEntities];
 			cell.detailTextLabel.text = [favstop roadName];
 			cell.tag = [favstop busstopid];
 			cell.fav.image = [UIImage imageNamed:@"star-icon-filled-dark.png"];
@@ -534,6 +535,27 @@
 }
 */
 
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return @"Remove";
+}
+
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == 0) {
+		((StopTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath]).swipe = YES;
+	}
+}
+
+- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == 0) {
+		((StopTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath]).swipe = NO;
+		[self.tableView setEditing:NO animated:NO];
+		
+		for (UITableViewCell *cell in [self.tableView visibleCells]) {
+			[cell setEditing:NO animated:NO];
+		}
+	}	
+}
+
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if ((indexPath.section == 0) && ([favorites count] > 0)) {
 		return UITableViewCellEditingStyleDelete;
@@ -550,17 +572,17 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 		
 		NSUInteger idtorestore = [self.tableView cellForRowAtIndexPath:indexPath].tag;
-
-		[tableView beginUpdates];
+		
 		for (int i=0;i<[originalContent count];i++) {
 			if ([[originalContent objectAtIndex:i] busstopid] == idtorestore) {
-				[actualContent insertObject:[originalContent objectAtIndex:i] atIndex:i];
 				
 				NSMutableDictionary *flurryparms = [NSMutableDictionary dictionary];
 				[flurryparms setObject:((JONTUBusStop *)[originalContent objectAtIndex:i]).code forKey:@"stop-code"];
 				
 				[FlurryAPI logEvent:@"STOP_UNFAV" withParameters:flurryparms];
-				
+
+				[actualContent insertObject:[originalContent objectAtIndex:i] atIndex:i];
+			
 				[tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:i inSection:1]] 
 								 withRowAnimation:UITableViewRowAnimationFade];
 				break;
@@ -569,19 +591,15 @@
 
 		
 		[favorites removeObjectAtIndex:indexPath.row];
+		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+		
+		if ([favorites count] == 0) {
+			[tableView reloadSections:[[[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 2)] autorelease] withRowAnimation:UITableViewRowAnimationFade];
+		}	
+		
 		[[RHSettings sharedRHSettings].stash setObject:favorites forKey:@"favorites"];
 		[[RHSettings sharedRHSettings] saveSettings];
-
-		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-		if ([favorites count] == 0) {
-			[tableView reloadSections:[[[NSIndexSet alloc] initWithIndex:0] autorelease] withRowAnimation:UITableViewRowAnimationFade];
-			[tableView reloadSections:[[[NSIndexSet alloc] initWithIndex:1] autorelease]withRowAnimation:UITableViewRowAnimationFade];			
-		}
-		[tableView endUpdates];
 		
-		if (!tableView.editing) {
-			[[self.tableView cellForRowAtIndexPath:indexPath] setEditing:NO animated:YES];
-		}
 	}
 }
 
@@ -618,10 +636,9 @@
 		StopTableViewCell *cell = (StopTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
 		cell.fav.image = [UIImage imageNamed:@"star-icon-filled-dark.png"];
 		JONTUBusStop *stop = [[JONTUBusEngine sharedJONTUBusEngine] stopForId:cell.tag];
-		[favorites addObject:[stop code]];
-		[[RHSettings sharedRHSettings].stash setObject:favorites forKey:@"favorites"];
-		[[RHSettings sharedRHSettings] saveSettings];
-		[actualContent removeObject:stop];
+		
+		[favorites addObject:stop.code];
+		[actualContent removeObjectAtIndex:indexPath.row];
 
 		NSMutableDictionary *flurryparms = [NSMutableDictionary dictionary];
 		[flurryparms setObject:stop.code forKey:@"stop-code"];
@@ -632,9 +649,14 @@
 		[tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:[favorites count]-1 inSection:0]]
 						 withRowAnimation:UITableViewRowAnimationFade];
 		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-		if ([favorites count] == 1)
-			[tableView reloadSections:[[[NSIndexSet alloc] initWithIndex:0] autorelease] withRowAnimation:UITableViewRowAnimationFade];		
 		[tableView endUpdates];
+		
+		if ([favorites count] == 1)
+			[tableView reloadSections:[[[NSIndexSet alloc] initWithIndex:0] autorelease] withRowAnimation:UITableViewRowAnimationFade];
+
+		[[RHSettings sharedRHSettings].stash setObject:favorites forKey:@"favorites"];
+		[[RHSettings sharedRHSettings] saveSettings];
+
 		
 	} else if (!self.tableView.editing) {
 		
