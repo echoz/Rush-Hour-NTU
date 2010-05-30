@@ -146,6 +146,8 @@
 }
 
 -(IBAction)refresh {
+	self.loadProgress.progress = 0;
+	
 	if ([workQueue operations] > 0)
 		[workQueue cancelAllOperations];
 	
