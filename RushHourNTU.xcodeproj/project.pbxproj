@@ -142,7 +142,6 @@
 		3F00E82A11849EF500339848 /* JONTUBusRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JONTUBusRoute.m; path = JONTUBusCore/JONTUBusCore/JONTUBusRoute.m; sourceTree = SOURCE_ROOT; };
 		3F00E82B11849EF500339848 /* JONTUBusStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JONTUBusStop.h; path = JONTUBusCore/JONTUBusCore/JONTUBusStop.h; sourceTree = SOURCE_ROOT; };
 		3F00E82C11849EF500339848 /* JONTUBusStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JONTUBusStop.m; path = JONTUBusCore/JONTUBusCore/JONTUBusStop.m; sourceTree = SOURCE_ROOT; };
-		3F00E82D11849EF500339848 /* NSXMLParserDelegateFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSXMLParserDelegateFix.h; path = JONTUBusCore/JONTUBusCore/NSXMLParserDelegateFix.h; sourceTree = SOURCE_ROOT; };
 		3F00E82F11849EF500339848 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = JONTUBusCore/JONTUBusCore/RegexKitLite/RegexKitLite.h; sourceTree = SOURCE_ROOT; };
 		3F00E83011849EF500339848 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = JONTUBusCore/JONTUBusCore/RegexKitLite/RegexKitLite.m; sourceTree = SOURCE_ROOT; };
 		3F00E83111849EF500339848 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SynthesizeSingleton.h; path = JONTUBusCore/JONTUBusCore/SynthesizeSingleton.h; sourceTree = SOURCE_ROOT; };
@@ -393,7 +392,6 @@
 				3F00E82A11849EF500339848 /* JONTUBusRoute.m */,
 				3F00E82B11849EF500339848 /* JONTUBusStop.h */,
 				3F00E82C11849EF500339848 /* JONTUBusStop.m */,
-				3F00E82D11849EF500339848 /* NSXMLParserDelegateFix.h */,
 				3F00E82E11849EF500339848 /* RegexKitLite */,
 				3F00E83111849EF500339848 /* SynthesizeSingleton.h */,
 			);
