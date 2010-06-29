@@ -7,7 +7,7 @@
 		<array>
 			<dict>
 				<key>value</key>
-				<string>1.0.1</string>
+				<string>CFBundleVersion</string>
 				<key>name</key>
 				<string>Version</string>
 			</dict>

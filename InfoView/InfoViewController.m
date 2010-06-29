@@ -68,7 +68,16 @@
 	}
 	
 	cell.textLabel.text = [[[[about objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectForKey:@"name"];
-	cell.detailTextLabel.text = [[[[about objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectForKey:@"value"];		
+	
+	NSString *aboutValue = [[[[about objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectForKey:@"value"];
+	
+	if ([[[NSBundle mainBundle] infoDictionary] objectForKey:aboutValue] == nil) {
+		cell.detailTextLabel.text = aboutValue;		
+		
+	} else {
+		cell.detailTextLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:aboutValue];		
+		
+	}
 	return cell;
 	
 }
