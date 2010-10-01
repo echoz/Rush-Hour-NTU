@@ -29,6 +29,7 @@ void uncaughtExceptionHandler(NSException *exception);
     // Override point for customization after app launch
 	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 	[FlurryAPI startSessionWithLocationServices:FLURRY_API_KEY];
+	[FlurryAPI startSession:FLURRY_API_KEY];
 	
 	[FlurryAPI logEvent:@"APP_HIT"];
 	
@@ -54,6 +55,29 @@ void uncaughtExceptionHandler(NSException *exception);
 	return YES;
 }
 
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+	
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application{
+	
+}
+
+- (void)applicationWillResignActive:(UIApplication *)application {
+	if ([self.navigationController.visibleViewController isKindOfClass:[RootViewController class]]) {
+
+		RootViewController *root = (RootViewController *)[self.navigationController visibleViewController];
+		if (root.updatingLocation) {
+			NSLog(@"Stop timer from firing");
+			[root doneLocationAndUpdate];
+		}
+									
+	}
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+	
+}
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 	// Save data if appropriate
