@@ -7,6 +7,7 @@
 //
 
 #import "BusStopViewController.h"
+#import "BusesViewController.h"
 #import "ArrivalsOperation.h"
 #import "BusViewController.h"
 #import "NSString+htmlentitiesaddition.h"
@@ -68,9 +69,9 @@
 		favs = [NSMutableArray array];
 	
 	if ([favs indexOfObject:[stop code]] != NSNotFound) {
-		[star setImage:[UIImage imageNamed:@"star-icon-filled-dark.png"]];
+		[star setImage:[UIImage imageNamed:@"star-icon-filled.png"]];
 	} else {
-		[star setImage:[UIImage imageNamed:@"star-icon-dark.png"]];
+		[star setImage:[UIImage imageNamed:@"star-icon.png"]];
 	}
 	
 	NSMutableDictionary *flurryparms = [NSMutableDictionary dictionary];
@@ -129,13 +130,13 @@
 	[flurryparms setObject:[stop code] forKey:@"stop-code"];
 	
 	if ([favs indexOfObject:[stop code]] == NSNotFound) {
-		[star setImage:[UIImage imageNamed:@"star-icon-filled-dark.png"]];
+		[star setImage:[UIImage imageNamed:@"star-icon-filled.png"]];
 		[favs addObject:[stop code]];
 		[[RHSettings sharedRHSettings].stash setObject:favs forKey:@"favorites"];
 		
 		[FlurryAPI logEvent:@"STOP_FAV" withParameters:flurryparms];		
 	} else {
-		[star setImage:[UIImage imageNamed:@"star-icon-dark.png"]];
+		[star setImage:[UIImage imageNamed:@"star-icon.png"]];
 		[favs removeObject:[stop code]];
 		[[RHSettings sharedRHSettings].stash setObject:favs forKey:@"favorites"];
 		
@@ -302,14 +303,12 @@
 		if ([[arrivals objectAtIndex:indexPath.row] valueForKey:@"err"]) {
 			cell.detailLabel.text = @"";
 			cell.subtextLabel.text = @"Off Service";
-			cell.accessoryType = UITableViewCellAccessoryNone;
-			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		
 		} else {
 			cell.detailLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"eta"];		
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-			cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 		}
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 		[busLocation release];
 	} else if (indexPath.section == 1) {
 		
@@ -363,14 +362,20 @@
 	// [anotherViewController release];
 	
 	if (indexPath.section == 0) {
-		if (![[arrivals objectAtIndex:indexPath.row] valueForKey:@"err"]) {
+		if ([[arrivals objectAtIndex:indexPath.row] valueForKey:@"err"]) {
+			BusesViewController *busesView = [[BusesViewController alloc] initWithNibName:@"BusesViewController" bundle:nil];
+			[self.navigationController pushViewController:busesView animated:YES];
+			[busesView release];
+		} else {
 			JONTUBus *bus = [[JONTUBusEngine sharedJONTUBusEngine] busForPlate:[[arrivals objectAtIndex:indexPath.row] valueForKey:@"plate"]];			
 			BusViewController *busView = [[BusViewController alloc] initWithNibName:@"BusViewController" bundle:nil];
 			busView.bus = bus;
 			busView.stop = stop;
 			[self.navigationController pushViewController:busView animated:YES];
 			[busView release];
+			
 		}
+		
 	}
 	
 }
