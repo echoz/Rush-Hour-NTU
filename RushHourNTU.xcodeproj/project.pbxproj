@@ -61,11 +61,11 @@
 		3F53581C1255DA9500221EA9 /* BusesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F53581A1255DA9500221EA9 /* BusesViewController.m */; };
 		3F53581D1255DA9500221EA9 /* BusesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F53581B1255DA9500221EA9 /* BusesViewController.xib */; };
 		3F5358A81255EBB200221EA9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5358A71255EBB200221EA9 /* Default.png */; };
-		3F71B1BF1191A50200E41581 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F71B1BE1191A50200E41581 /* MediaPlayer.framework */; };
-		3F71B1C81191A8DB00E41581 /* favorite.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F71B1C41191A8DB00E41581 /* favorite.mp4 */; };
-		3F71B1C91191A8DB00E41581 /* iris.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F71B1C51191A8DB00E41581 /* iris.mp4 */; };
-		3F71B1CA1191A8DB00E41581 /* proximity.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F71B1C61191A8DB00E41581 /* proximity.mp4 */; };
-		3F71B1CB1191A8DB00E41581 /* search.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F71B1C71191A8DB00E41581 /* search.mp4 */; };
+		3F5359001255F01500221EA9 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5358FF1255F01500221EA9 /* MediaPlayer.framework */; };
+		3F5359471255F58000221EA9 /* proximity.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F5359461255F58000221EA9 /* proximity.mp4 */; };
+		3F53594F1255F64C00221EA9 /* favorite.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F53594C1255F64B00221EA9 /* favorite.mp4 */; };
+		3F5359501255F64C00221EA9 /* iris.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F53594D1255F64B00221EA9 /* iris.mp4 */; };
+		3F5359511255F64C00221EA9 /* search.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F53594E1255F64C00221EA9 /* search.mp4 */; };
 		3F71B1D11191A9B400E41581 /* 57-masked.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F71B1D01191A9B400E41581 /* 57-masked.png */; };
 		3F91169A118B450E00E2E50D /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F911690118B450E00E2E50D /* UIDevice-Hardware.m */; };
 		3F91169C118B450E00E2E50D /* UIDevice-Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F911694118B450E00E2E50D /* UIDevice-Reachability.m */; };
@@ -162,11 +162,11 @@
 		3F53581A1255DA9500221EA9 /* BusesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusesViewController.m; sourceTree = "<group>"; };
 		3F53581B1255DA9500221EA9 /* BusesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusesViewController.xib; sourceTree = "<group>"; };
 		3F5358A71255EBB200221EA9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		3F71B1BE1191A50200E41581 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		3F71B1C41191A8DB00E41581 /* favorite.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = favorite.mp4; sourceTree = "<group>"; };
-		3F71B1C51191A8DB00E41581 /* iris.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = iris.mp4; sourceTree = "<group>"; };
-		3F71B1C61191A8DB00E41581 /* proximity.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = proximity.mp4; sourceTree = "<group>"; };
-		3F71B1C71191A8DB00E41581 /* search.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = search.mp4; sourceTree = "<group>"; };
+		3F5358FF1255F01500221EA9 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		3F5359461255F58000221EA9 /* proximity.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = proximity.mp4; sourceTree = "<group>"; };
+		3F53594C1255F64B00221EA9 /* favorite.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = favorite.mp4; sourceTree = "<group>"; };
+		3F53594D1255F64B00221EA9 /* iris.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = iris.mp4; sourceTree = "<group>"; };
+		3F53594E1255F64C00221EA9 /* search.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = search.mp4; sourceTree = "<group>"; };
 		3F71B1D01191A9B400E41581 /* 57-masked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "57-masked.png"; sourceTree = "<group>"; };
 		3F91168F118B450E00E2E50D /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice-Hardware.h"; path = "uidevice-extension/UIDevice-Hardware.h"; sourceTree = "<group>"; };
 		3F911690118B450E00E2E50D /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice-Hardware.m"; path = "uidevice-extension/UIDevice-Hardware.m"; sourceTree = "<group>"; };
@@ -206,8 +206,8 @@
 				00AEC6731186AFD90083D75A /* QuartzCore.framework in Frameworks */,
 				004F5C951187DF4400844FD6 /* MapKit.framework in Frameworks */,
 				3F9116B8118B454A00E2E50D /* SystemConfiguration.framework in Frameworks */,
-				3F71B1BF1191A50200E41581 /* MediaPlayer.framework in Frameworks */,
 				3FF11D4211D0D5AE00A89DA6 /* libFlurryWithLocation.a in Frameworks */,
+				3F5359001255F01500221EA9 /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,7 +391,7 @@
 				3FA589921185B349009A3D66 /* CoreLocation.framework */,
 				00AEC6721186AFD90083D75A /* QuartzCore.framework */,
 				004F5C941187DF4400844FD6 /* MapKit.framework */,
-				3F71B1BE1191A50200E41581 /* MediaPlayer.framework */,
+				3F5358FF1255F01500221EA9 /* MediaPlayer.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -426,10 +426,10 @@
 		3F5357F21255D62C00221EA9 /* Videos */ = {
 			isa = PBXGroup;
 			children = (
-				3F71B1C41191A8DB00E41581 /* favorite.mp4 */,
-				3F71B1C51191A8DB00E41581 /* iris.mp4 */,
-				3F71B1C61191A8DB00E41581 /* proximity.mp4 */,
-				3F71B1C71191A8DB00E41581 /* search.mp4 */,
+				3F53594C1255F64B00221EA9 /* favorite.mp4 */,
+				3F53594D1255F64B00221EA9 /* iris.mp4 */,
+				3F53594E1255F64C00221EA9 /* search.mp4 */,
+				3F5359461255F58000221EA9 /* proximity.mp4 */,
 			);
 			name = Videos;
 			sourceTree = "<group>";
@@ -561,10 +561,6 @@
 				001FD61411914233001DEBB2 /* irisbar-bg.png in Resources */,
 				001FD7E9119169B5001DEBB2 /* InfoViewController.xib in Resources */,
 				001FD83311916F9D001DEBB2 /* About.plist in Resources */,
-				3F71B1C81191A8DB00E41581 /* favorite.mp4 in Resources */,
-				3F71B1C91191A8DB00E41581 /* iris.mp4 in Resources */,
-				3F71B1CA1191A8DB00E41581 /* proximity.mp4 in Resources */,
-				3F71B1CB1191A8DB00E41581 /* search.mp4 in Resources */,
 				3F71B1D11191A9B400E41581 /* 57-masked.png in Resources */,
 				3F5357C71255D34C00221EA9 /* star-icon-filled@2x.png in Resources */,
 				3F5357C81255D34C00221EA9 /* star-icon@2x.png in Resources */,
@@ -574,6 +570,10 @@
 				3F5358081255D74900221EA9 /* location@2x.png in Resources */,
 				3F53581D1255DA9500221EA9 /* BusesViewController.xib in Resources */,
 				3F5358A81255EBB200221EA9 /* Default.png in Resources */,
+				3F5359471255F58000221EA9 /* proximity.mp4 in Resources */,
+				3F53594F1255F64C00221EA9 /* favorite.mp4 in Resources */,
+				3F5359501255F64C00221EA9 /* iris.mp4 in Resources */,
+				3F5359511255F64C00221EA9 /* search.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,7 +625,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RushHourNTU_Prefix.pch;
 				INFOPLIST_FILE = "RushHourNTU-Info.plist";
@@ -642,6 +642,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RushHourNTU_Prefix.pch;
 				INFOPLIST_FILE = "RushHourNTU-Info.plist";
@@ -680,6 +681,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RushHourNTU_Prefix.pch;
 				INFOPLIST_FILE = "RushHourNTU-Info.plist";

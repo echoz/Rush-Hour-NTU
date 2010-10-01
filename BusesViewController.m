@@ -8,6 +8,7 @@
 
 #import "BusesViewController.h"
 #import "JONTUBus.h"
+#import <MapKit/MapKit.h>
 
 @implementation BusesViewController
 @synthesize buses;
@@ -88,7 +89,7 @@
 	JONTUBus *bus = [buses objectAtIndex:indexPath.row];
 	cell.textLabel.text = [NSString stringWithFormat:@"%@", bus.busPlate];
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%ikm/h)", bus.route.name, bus.speed];
-
+	cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }

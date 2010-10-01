@@ -111,16 +111,29 @@
 		
 		NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:[filestr stringByDeletingPathExtension] ofType:[filestr pathExtension]]];
 		
+		MPMoviePlayerViewController *mpvc = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
+	
+		[self presentMoviePlayerViewControllerAnimated:mpvc];
+		
+		/*
+		
 		MPMoviePlayerController* theMovie = [[MPMoviePlayerController alloc] initWithContentURL:url];
 		
-		theMovie.scalingMode = MPMovieScalingModeAspectFill;
-		theMovie.movieControlMode = MPMovieControlModeDefault;
+		theMovie.scalingMode = MPMovieScalingModeNone;
+		theMovie.controlStyle = MPMovieControlStyleFullscreen;
+
+
+		[[theMovie view] setFrame:tableView.superview.bounds];
+		[tableView.superview addSubview:[theMovie view]];
+		
+		[theMovie setFullscreen:YES animated:YES];
 		
 		// Register for the playback finished notification
 		[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(doneDemo:) name: MPMoviePlayerPlaybackDidFinishNotification object: theMovie];
 		
 		// Movie playback is asynchronous, so this method returns immediately.
 		[theMovie play];
+		 */
 	}
 }
 
@@ -130,6 +143,8 @@
     MPMoviePlayerController* theMovie = [aNotification object];
 	
     [[NSNotificationCenter defaultCenter] removeObserver: self name: MPMoviePlayerPlaybackDidFinishNotification object: theMovie];
+	
+	[[theMovie view] removeFromSuperview];
 	
     // Release the movie instance created in playMovieAtURL:
     [theMovie release];
