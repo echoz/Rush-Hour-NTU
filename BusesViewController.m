@@ -29,7 +29,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	self.buses = [[JONTUBusEngine sharedJONTUBusEngine] buses];
+	self.buses = [[JONTUBusEngine sharedJONTUBusEngine] busesWithRefresh:YES];
 }
 
 /*

@@ -118,6 +118,13 @@
 		[self titleTap:nil];
 		[[RHSettings sharedRHSettings].stash setValue:[NSNumber numberWithBool:YES] forKey:@"veteran"];
 		[[RHSettings sharedRHSettings] saveSettings];
+		UIAlertView *firstalert = [[UIAlertView alloc] initWithTitle:@"Welcome"
+															 message:@"Traversity works by using data provided by NTU's internal shuttle bus tracking system.\n\n Check out the demo videos to learn more."
+															delegate:nil
+												   cancelButtonTitle:@"Ok" 
+												   otherButtonTitles:nil];
+		[firstalert show];
+		[firstalert release];
 	}
 	
 	[self.navigationItem.leftBarButtonItem addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
