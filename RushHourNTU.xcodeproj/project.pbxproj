@@ -61,7 +61,7 @@
 		3F53594F1255F64C00221EA9 /* favorite.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F53594C1255F64B00221EA9 /* favorite.mp4 */; };
 		3F5359501255F64C00221EA9 /* iris.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F53594D1255F64B00221EA9 /* iris.mp4 */; };
 		3F5359511255F64C00221EA9 /* search.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F53594E1255F64C00221EA9 /* search.mp4 */; };
-		3F5EDFEF12566B5600FF2D80 /* libEdventurous-iOS-Release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5EDF921256696500FF2D80 /* libEdventurous-iOS-Release.a */; };
+		3F6C8DFE125675E6007F8536 /* libEdventurous-Device.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6C8DF7125675CF007F8536 /* libEdventurous-Device.a */; };
 		3F71B1D11191A9B400E41581 /* 57-masked.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F71B1D01191A9B400E41581 /* 57-masked.png */; };
 		3F91169A118B450E00E2E50D /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F911690118B450E00E2E50D /* UIDevice-Hardware.m */; };
 		3F91169C118B450E00E2E50D /* UIDevice-Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F911694118B450E00E2E50D /* UIDevice-Reachability.m */; };
@@ -78,6 +78,37 @@
 		3FF6C61D1185E74300C33707 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FF6C61C1185E74300C33707 /* Entitlements.plist */; };
 		3FFECF6F1256021F00DA1571 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FFECF6E1256021F00DA1571 /* libFlurry.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3F6C8DF6125675CF007F8536 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F6C8DEC125675CF007F8536 /* Edventurous.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F5EDCFB12564C9100FF2D80 /* libEdventurous-Device.a */;
+			remoteInfo = "Edventurous-Device";
+		};
+		3F6C8DF8125675CF007F8536 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F6C8DEC125675CF007F8536 /* Edventurous.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F5EDD1812564D7600FF2D80 /* libEdventurous-OSX.a */;
+			remoteInfo = "Edventurous-OSX";
+		};
+		3F6C8DFA125675CF007F8536 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F6C8DEC125675CF007F8536 /* Edventurous.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F5EDD9512564F8100FF2D80 /* libEdventurous-Simulator.a */;
+			remoteInfo = "Edventurous-Simulator";
+		};
+		3F6C8DFC125675D4007F8536 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F6C8DEC125675CF007F8536 /* Edventurous.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F5EDCFA12564C9100FF2D80 /* Edventurous-Device */;
+			remoteInfo = "Edventurous-Device";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		000EF1BB118574C10070B458 /* BusETACell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusETACell.h; path = BusStopView/BusETACell.h; sourceTree = SOURCE_ROOT; };
@@ -153,6 +184,7 @@
 		3F53594D1255F64B00221EA9 /* iris.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = iris.mp4; sourceTree = "<group>"; };
 		3F53594E1255F64C00221EA9 /* search.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = search.mp4; sourceTree = "<group>"; };
 		3F5EDF921256696500FF2D80 /* libEdventurous-iOS-Release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libEdventurous-iOS-Release.a"; path = "/Users/jeremy/Development/Framework/Edventurous/build/libEdventurous-iOS-Release.a"; sourceTree = "<absolute>"; };
+		3F6C8DEC125675CF007F8536 /* Edventurous.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Edventurous.xcodeproj; path = EdventurousFramework/Edventurous.xcodeproj; sourceTree = "<group>"; };
 		3F71B1D01191A9B400E41581 /* 57-masked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "57-masked.png"; sourceTree = "<group>"; };
 		3F91168F118B450E00E2E50D /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice-Hardware.h"; path = "uidevice-extension/UIDevice-Hardware.h"; sourceTree = "<group>"; };
 		3F911690118B450E00E2E50D /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice-Hardware.m"; path = "uidevice-extension/UIDevice-Hardware.m"; sourceTree = "<group>"; };
@@ -184,6 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F6C8DFE125675E6007F8536 /* libEdventurous-Device.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
@@ -194,7 +227,6 @@
 				3F9116B8118B454A00E2E50D /* SystemConfiguration.framework in Frameworks */,
 				3F5359001255F01500221EA9 /* MediaPlayer.framework in Frameworks */,
 				3FFECF6F1256021F00DA1571 /* libFlurry.a in Frameworks */,
-				3F5EDFEF12566B5600FF2D80 /* libEdventurous-iOS-Release.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +343,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				3F6C8DEC125675CF007F8536 /* Edventurous.xcodeproj */,
 				3F5358181255DA7E00221EA9 /* BusesView */,
 				001FD6E0119154E4001DEBB2 /* InfoView */,
 				3F91168E118B44EF00E2E50D /* External */,
@@ -405,6 +438,16 @@
 			name = BusesView;
 			sourceTree = "<group>";
 		};
+		3F6C8DED125675CF007F8536 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F6C8DF7125675CF007F8536 /* libEdventurous-Device.a */,
+				3F6C8DF9125675CF007F8536 /* libEdventurous-OSX.a */,
+				3F6C8DFB125675CF007F8536 /* libEdventurous-Simulator.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		3F91168D118B44DF00E2E50D /* UIDevice Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -463,6 +506,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3F6C8DFD125675D4007F8536 /* PBXTargetDependency */,
 			);
 			name = RushHourNTU;
 			productName = RushHourNTU;
@@ -487,12 +531,42 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3F6C8DED125675CF007F8536 /* Products */;
+					ProjectRef = 3F6C8DEC125675CF007F8536 /* Edventurous.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* RushHourNTU */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3F6C8DF7125675CF007F8536 /* libEdventurous-Device.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libEdventurous-Device.a";
+			remoteRef = 3F6C8DF6125675CF007F8536 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3F6C8DF9125675CF007F8536 /* libEdventurous-OSX.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libEdventurous-OSX.a";
+			remoteRef = 3F6C8DF8125675CF007F8536 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3F6C8DFB125675CF007F8536 /* libEdventurous-Simulator.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libEdventurous-Simulator.a";
+			remoteRef = 3F6C8DFA125675CF007F8536 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
@@ -572,6 +646,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3F6C8DFD125675D4007F8536 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Edventurous-Device";
+			targetProxy = 3F6C8DFC125675D4007F8536 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
