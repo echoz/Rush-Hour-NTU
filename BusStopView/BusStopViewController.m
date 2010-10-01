@@ -298,7 +298,7 @@
 		//cell.textLabel.textColor = [NSString colorFromHexString:[[engine routeForId:[[[arrivals objectAtIndex:indexPath.row] valueForKey:@"routeid"] integerValue]] color]];
 
 		cell.textLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"routename"];
-		cell.subtextLabel.text = [NSString stringWithFormat:@"%.0fm away (%ikm/h): %@", [stopLocation getDistanceFrom:busLocation], [bus speed], [bus busPlate]];
+		cell.subtextLabel.text = [NSString stringWithFormat:@"%.0fm away (%ikm/h): %@", [stopLocation distanceFromLocation:busLocation], [bus speed], [bus busPlate]];
 		if ([[arrivals objectAtIndex:indexPath.row] valueForKey:@"err"]) {
 			cell.detailLabel.text = @"";
 			cell.subtextLabel.text = @"Off Service";

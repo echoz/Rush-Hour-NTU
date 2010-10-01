@@ -493,7 +493,7 @@
 			
 			if (proximitySort) {
 				CLLocation *stopLocation = [[CLLocation alloc] initWithLatitude:[[[actualContent objectAtIndex:indexPath.row] lat] doubleValue] longitude:[[[actualContent objectAtIndex:indexPath.row] lon] doubleValue]];
-				CLLocationDegrees dist = [[[[LocationManager sharedLocationManager] manager] location] getDistanceFrom:stopLocation];
+				CLLocationDegrees dist = [[[[LocationManager sharedLocationManager] manager] location] distanceFromLocation:stopLocation];
 				
 				cell.detailTextLabel.text = [NSString stringWithFormat:@"%.fm away", dist];
 				[stopLocation release];

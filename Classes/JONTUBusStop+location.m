@@ -27,9 +27,9 @@
 	NSLog(@"%@ / %@", selfLocation, otherLocation);
 */	
 
-	if ([manager.manager.location getDistanceFrom:selfLocation] < [manager.manager.location getDistanceFrom:otherLocation]) {
+	if ([manager.manager.location distanceFromLocation:selfLocation] < [manager.manager.location distanceFromLocation:otherLocation]) {
 		togo = NSOrderedAscending;
-	} else if ([manager.manager.location getDistanceFrom:selfLocation] > [manager.manager.location getDistanceFrom:otherLocation]) {
+	} else if ([manager.manager.location distanceFromLocation:selfLocation] > [manager.manager.location distanceFromLocation:otherLocation]) {
 		togo = NSOrderedDescending;
 	} else {
 		togo = NSOrderedSame;
