@@ -24,7 +24,7 @@
 @implementation RootViewController
 
 @synthesize currentLocation, refreshCache, savedSearchTerm, filteredContent, searchWasActive, actualContent, workQueue, irisquery, originalContent;
-@synthesize progressLoad,refreshError, infoButton;
+@synthesize progressLoad,refreshError, infoButton, updatingLocation;
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -158,26 +158,6 @@
 	[self.progressLoad setProgress:progressCurrent/progressTotal];
 }
 
--(void)updateLocationProgress {
-	
-	UIGraphicsBeginImageContext(CGSizeMake(19, 19));
-	CGContextRef currentContext = UIGraphicsGetCurrentContext();
-	
-	CGContextClipToRect(currentContext, CGRectMake(0, 0, 19, 19));
-
-	CGContextDrawImage(currentContext, CGRectMake(spinnerFrame*-19, 0, 190, 19), spinner.CGImage);
-	
-	UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();	
-	
-	[currentLocation setImage:viewImage];
-	
-	spinnerFrame++;
-	if (spinnerFrame == 10) {
-		spinnerFrame = 0;
-	}
-}
-
 -(void) titleTap:(id) sender {
 	InfoViewController *modalView = [[InfoViewController alloc] initWithNibName:@"InfoViewController" bundle:nil];
 	[self presentModalViewController:modalView animated:YES];
@@ -191,14 +171,17 @@
 }
 
 -(IBAction)useLocation {
-	animationTimer = [[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateLocationProgress) userInfo:nil repeats:YES] retain];
 	
-	[animationTimer fire];
+	if (!animationTimer)
+		animationTimer = [[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateLocationProgress) userInfo:nil repeats:YES] retain];
+	
+	self.updatingLocation = YES;
+	[animationTimer fire];	
 	
 	[FlurryAPI logEvent:@"LOCATION_USE"];
-	
 
 	[currentLocation setStyle:UIBarButtonItemStyleDone];
+	[currentLocation setTarget:self];
 	[currentLocation setAction:@selector(stopLocation)];
 	
 	LocationManager *manager = [LocationManager sharedLocationManager];
@@ -211,7 +194,10 @@
 -(void)stopLocation {
 	
 	[currentLocation setStyle:UIBarButtonItemStyleBordered];
+	[currentLocation setTarget:self];
 	[currentLocation setAction:@selector(useLocation)];
+	
+	self.updatingLocation = NO;
 	
 	LocationManager *manager = [LocationManager sharedLocationManager];	
 	[manager.manager stopUpdatingLocation];
@@ -219,6 +205,54 @@
 	[actualContent release];
 	actualContent = nil;
 	[self freshen];
+}
+
+-(void)updateLocationProgress {
+	if (self.updatingLocation) {
+		UIGraphicsBeginImageContext(CGSizeMake(19, 19));
+		CGContextRef currentContext = UIGraphicsGetCurrentContext();
+		
+		CGContextClipToRect(currentContext, CGRectMake(0, 0, 19, 19));
+		
+		CGContextDrawImage(currentContext, CGRectMake(spinnerFrame*-19, 0, 190, 19), spinner.CGImage);
+		
+		UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();	
+		
+		[currentLocation setImage:viewImage];
+		
+		spinnerFrame++;
+		if (spinnerFrame == 10) {
+			spinnerFrame = 0;
+		}		
+	}
+	
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    NSDate* eventDate = newLocation.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (abs(howRecent) < 5.0)
+    {
+		[self doneLocationAndUpdate];
+    }
+}
+
+-(void)doneLocationAndUpdate {
+	self.updatingLocation = NO;
+
+	[animationTimer invalidate];
+
+	self.actualContent = [[actualContent sortedArrayUsingSelector:@selector(compareLocation:)] mutableCopy];
+	
+	[currentLocation setImage:[UIImage imageNamed:@"location.png"]];
+	
+	[self.tableView reloadData];
+	
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+	
 }
 
 -(IBAction)refreshTheCache {
@@ -348,24 +382,6 @@
 	[self.tableView reloadData];
 }
 
--(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    NSDate* eventDate = newLocation.timestamp;
-    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    if (abs(howRecent) < 5.0)
-    {
-		self.actualContent = [[actualContent sortedArrayUsingSelector:@selector(compareLocation:)] mutableCopy];
-		[animationTimer invalidate];
-		
-		[currentLocation setImage:[UIImage imageNamed:@"location.png"]];
-		
-		[self.tableView reloadData];
-
-    }
-}
-
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-	
-}
 
 
 - (void)viewWillAppear:(BOOL)animated {

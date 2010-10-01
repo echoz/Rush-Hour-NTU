@@ -9,6 +9,7 @@
 #import "BusesViewController.h"
 #import "JONTUBus.h"
 #import <MapKit/MapKit.h>
+#import "CacheOperation.h"
 
 @implementation BusesViewController
 @synthesize buses;
@@ -29,7 +30,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	self.buses = [[JONTUBusEngine sharedJONTUBusEngine] busesWithRefresh:YES];
+	self.buses = [[JONTUBusEngine sharedJONTUBusEngine] buses];
 }
 
 /*
@@ -44,7 +45,9 @@
 */
 /*
 - (void)viewDidDisappear:(BOOL)animated {
+
     [super viewDidDisappear:animated];
+
 }
 */
 /*

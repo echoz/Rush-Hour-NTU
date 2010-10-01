@@ -13,10 +13,14 @@
 }
 
 /*
- optional sdk settings that can be changed before start session
+ optional sdk settings that should be called before start session
  */
++ (void)setAppVersion:(NSString *)version;		// override the app version
++ (NSString *)getFlurryAgentVersion;			// get the Flurry Agent version number
 + (void)setAppCircleEnabled:(BOOL)value;		// default is NO
 + (void)setShowErrorInLogEnabled:(BOOL)value;	// default is NO
++ (void)unlockDebugMode:(NSString*)debugModeKey apiKey:(NSString *)apiKey;	// generate debug logs for Flurry support
++ (void)setPauseSecondsBeforeStartingNewSession:(int)seconds; // default is 10 seconds
 
 /*
  start session, attempt to send saved sessions to server 
@@ -36,7 +40,7 @@
  */
 + (void)logEvent:(NSString *)eventName timed:(BOOL)timed;
 + (void)logEvent:(NSString *)eventName withParameters:(NSDictionary *)parameters timed:(BOOL)timed;
-+ (void)endTimedEvent:(NSString *)eventName;
++ (void)endTimedEvent:(NSString *)eventName withParameters:(NSDictionary *)parameters;	// non-nil parameters will update the parameters
 
 /*
  count page views
@@ -54,7 +58,7 @@
  optional session settings that can be changed after start session
  */
 + (void)setSessionReportsOnCloseEnabled:(BOOL)sendSessionReportsOnClose;	// default is YES
-+ (void)setAppVersion:(NSString *)version;
++ (void)setSessionReportsOnPauseEnabled:(BOOL)setSessionReportsOnPauseEnabled;	// default is YES
 + (void)setEventLoggingEnabled:(BOOL)value;		// default is YES
 
 /* 
@@ -65,7 +69,7 @@
 /* 
  create an AppCircle banner on a hook and view parent using optional parameters 
  */
-+ (UIView *)getHook:(NSString *)hook xLoc:(int)x yLoc:(int)y view:(UIView *)view attachToView:(BOOL)attachToView orientation:(NSString *)orientation canvasOrientation:(NSString *)canvasOrientation autoRefresh:(BOOL)refresh;
++ (UIView *)getHook:(NSString *)hook xLoc:(int)x yLoc:(int)y view:(UIView *)view attachToView:(BOOL)attachToView orientation:(NSString *)orientation canvasOrientation:(NSString *)canvasOrientation autoRefresh:(BOOL)refresh canvasAnimated:(BOOL)canvasAnimated;
 /* 
  update an existing AppCircle banner with a new ad
  */
@@ -78,14 +82,10 @@
 /*
  open the canvas without using a banner
  */
-+ (void)openCatalog:(NSString *)hook canvasOrientation:(NSString *)canvasOrientation;
++ (void)openCatalog:(NSString *)hook canvasOrientation:(NSString *)canvasOrientation canvasAnimated:(BOOL)canvasAnimated;
 /*
  refer to FlurryAdDelegate.h for delegate details
  */
 + (void)setAppCircleDelegate:(id)delegate;
-
-// Only availible if using library with location services
-+ (CLLocationManager *)startSessionWithLocationServices:(NSString *)apiKey;
-+ (void)setLocation:(CLLocation *)location;
 
 @end

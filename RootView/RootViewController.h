@@ -31,6 +31,7 @@
 	BOOL proximitySort;
 	BOOL fillingCache;
 	BOOL scheduleWatcher;
+	BOOL updatingLocation;
 	
 	NSOperationQueue *workQueue;
 	NSTimer *animationTimer;
@@ -54,6 +55,8 @@
 @property (nonatomic) BOOL searchWasActive;
 @property (nonatomic, readonly) NSOperationQueue *workQueue;
 
+@property (readwrite) BOOL updatingLocation;
+
 -(IBAction)useLocation;
 -(IBAction)refreshTheCache;
 -(IBAction)showIrisQuery;
@@ -61,6 +64,7 @@
 -(void) titleTap:(id) sender;
 
 -(void)stopLocation;
+-(void)doneLocationAndUpdate;
 -(void)freshen;
 -(void)showNetworkErrorAlert;
 
