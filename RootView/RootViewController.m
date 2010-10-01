@@ -98,7 +98,7 @@
 		[self.workQueue addOperation:fillCache];
 		[fillCache release];
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-		lastUpdate.text = @"Updating cache...";	
+		lastUpdate.text = @"Updating cache...";	// comment for taking of default images
 		fillingCache = YES;
 /*		
 		genericDisplay.customView = progressLoad;
@@ -414,7 +414,6 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
 	if (tableView == self.searchDisplayController.searchResultsTableView) {
 		return [self.filteredContent count];
 	} else {

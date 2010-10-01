@@ -302,7 +302,7 @@
 		cell.subtextLabel.text = [NSString stringWithFormat:@"%.0fm away (%ikm/h): %@", [stopLocation distanceFromLocation:busLocation], [bus speed], [bus busPlate]];
 		if ([[arrivals objectAtIndex:indexPath.row] valueForKey:@"err"]) {
 			cell.detailLabel.text = @"";
-			cell.subtextLabel.text = @"Off Service";
+			cell.subtextLabel.text = @"Not available";
 		
 		} else {
 			cell.detailLabel.text = [[arrivals objectAtIndex:indexPath.row] valueForKey:@"eta"];		

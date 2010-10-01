@@ -60,7 +60,7 @@
 		3F5358081255D74900221EA9 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5358071255D74900221EA9 /* location@2x.png */; };
 		3F53581C1255DA9500221EA9 /* BusesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F53581A1255DA9500221EA9 /* BusesViewController.m */; };
 		3F53581D1255DA9500221EA9 /* BusesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F53581B1255DA9500221EA9 /* BusesViewController.xib */; };
-		3F550F96118B326300CB9C81 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F550F95118B326300CB9C81 /* Default.png */; };
+		3F5358A81255EBB200221EA9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5358A71255EBB200221EA9 /* Default.png */; };
 		3F71B1BF1191A50200E41581 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F71B1BE1191A50200E41581 /* MediaPlayer.framework */; };
 		3F71B1C81191A8DB00E41581 /* favorite.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F71B1C41191A8DB00E41581 /* favorite.mp4 */; };
 		3F71B1C91191A8DB00E41581 /* iris.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F71B1C51191A8DB00E41581 /* iris.mp4 */; };
@@ -161,7 +161,7 @@
 		3F5358191255DA9500221EA9 /* BusesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusesViewController.h; sourceTree = "<group>"; };
 		3F53581A1255DA9500221EA9 /* BusesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusesViewController.m; sourceTree = "<group>"; };
 		3F53581B1255DA9500221EA9 /* BusesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusesViewController.xib; sourceTree = "<group>"; };
-		3F550F95118B326300CB9C81 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		3F5358A71255EBB200221EA9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3F71B1BE1191A50200E41581 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3F71B1C41191A8DB00E41581 /* favorite.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = favorite.mp4; sourceTree = "<group>"; };
 		3F71B1C51191A8DB00E41581 /* iris.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = iris.mp4; sourceTree = "<group>"; };
@@ -375,7 +375,7 @@
 				00AEC68A1186B1800083D75A /* stop-bg.png */,
 				0047DBDB1185923800856AAF /* map-marker.png */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
-				3F550F95118B326300CB9C81 /* Default.png */,
+				3F5358A71255EBB200221EA9 /* Default.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -554,7 +554,6 @@
 				3FA7B10A11888BFD00638E51 /* 09-chat2.png in Resources */,
 				00DAB24B118AAED80090C13A /* star-icon-filled.png in Resources */,
 				00DAB24C118AAED80090C13A /* star-icon.png in Resources */,
-				3F550F96118B326300CB9C81 /* Default.png in Resources */,
 				007541D5118E9A4D00479CE2 /* alert.png in Resources */,
 				3F2F5B0711906CB10054ED02 /* Icon.png in Resources */,
 				001FD5F711914091001DEBB2 /* querybutton-bg.png in Resources */,
@@ -574,6 +573,7 @@
 				3F5357FF1255D66C00221EA9 /* 09-chat2@2x.png in Resources */,
 				3F5358081255D74900221EA9 /* location@2x.png in Resources */,
 				3F53581D1255DA9500221EA9 /* BusesViewController.xib in Resources */,
+				3F5358A81255EBB200221EA9 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -58,6 +58,10 @@
 #pragma mark -
 #pragma mark Table view data source
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return 60;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
@@ -82,8 +86,8 @@
     
     // Configure the cell...
 	JONTUBus *bus = [buses objectAtIndex:indexPath.row];
-	cell.textLabel.text = bus.busPlate;
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ at %ikm/h", bus.route.name, bus.speed];
+	cell.textLabel.text = [NSString stringWithFormat:@"%@", bus.busPlate];
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%ikm/h)", bus.route.name, bus.speed];
 
     
     return cell;
