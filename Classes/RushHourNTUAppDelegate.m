@@ -13,7 +13,7 @@
 #import "FlurryAPI.h"
 
 #define CACH_FILE @"JONTUBusCore.cache"
-#define FLURRY_API_KEY @"YSKA262EYEKHYRTKY4GY"
+#define FLURRY_API_KEY @""
 
 @implementation RushHourNTUAppDelegate
 
