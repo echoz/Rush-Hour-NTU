@@ -28,7 +28,6 @@ void uncaughtExceptionHandler(NSException *exception);
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     // Override point for customization after app launch
 	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-	[FlurryAPI startSessionWithLocationServices:FLURRY_API_KEY];
 	[FlurryAPI startSession:FLURRY_API_KEY];
 	
 	[FlurryAPI logEvent:@"APP_HIT"];
