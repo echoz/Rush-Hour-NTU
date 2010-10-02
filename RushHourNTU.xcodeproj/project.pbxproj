@@ -681,7 +681,7 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RushHourNTU_Prefix.pch;
-				HEADER_SEARCH_PATHS = "/Users/jeremy/Development/Framework/Edventurous/Classes/**";
+				HEADER_SEARCH_PATHS = "EdventurousFramework/Classes/**";
 				INFOPLIST_FILE = "RushHourNTU-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -701,7 +701,7 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RushHourNTU_Prefix.pch;
-				HEADER_SEARCH_PATHS = "/Users/jeremy/Development/Framework/Edventurous/Classes/**";
+				HEADER_SEARCH_PATHS = "EdventurousFramework/Classes/**";
 				INFOPLIST_FILE = "RushHourNTU-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -743,7 +743,7 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RushHourNTU_Prefix.pch;
-				HEADER_SEARCH_PATHS = "/Users/jeremy/Development/Framework/Edventurous/Classes/**";
+				HEADER_SEARCH_PATHS = "EdventurousFramework/Classes/**";
 				INFOPLIST_FILE = "RushHourNTU-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
