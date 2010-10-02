@@ -128,6 +128,9 @@
 	}
 	
 	[self.navigationItem.leftBarButtonItem addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
+	
+	self.filteredContent = [NSMutableArray arrayWithCapacity:0];
+
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -359,7 +362,6 @@
 
 -(void)freshen {
 	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];	
-	self.filteredContent = [NSMutableArray arrayWithCapacity:[[engine stops] count]];	
 	self.actualContent = [[engine stops] mutableCopy];
 	self.originalContent = [engine stops];
 	
@@ -389,7 +391,7 @@
 	self.navigationController.toolbarHidden = NO;
 	favorites = [[RHSettings sharedRHSettings].stash valueForKey:@"favorites"];
 	if (!favorites)
-		favorites = [[NSMutableArray array] retain];
+		favorites = [[NSMutableArray arrayWithArray:0] retain];
 
 	if (!fillingCache)
 		[self freshen];
@@ -407,9 +409,9 @@
 */
 
 - (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
 	self.searchWasActive = [self.searchDisplayController isActive];
 	self.savedSearchTerm = [self.searchDisplayController.searchBar text];
+	[super viewDidDisappear:animated];
 	
 }
 
@@ -504,6 +506,8 @@
     }
 	
 	if (tableView == self.searchDisplayController.searchResultsTableView) {
+		NSLog(@"%i",[self.filteredContent count]);
+		
 		cell.textLabel.text = [[[self.filteredContent objectAtIndex:indexPath.row] desc] removeHTMLEntities];
 		cell.detailTextLabel.text = [[self.filteredContent objectAtIndex:indexPath.row] roadName];
 		cell.tag = [[self.filteredContent objectAtIndex:indexPath.row] busstopid];
