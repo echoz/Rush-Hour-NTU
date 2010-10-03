@@ -130,6 +130,8 @@
 	[self.navigationItem.leftBarButtonItem addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
 	
 	self.filteredContent = [NSMutableArray arrayWithCapacity:0];
+	animationTimer = [[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateLocationProgress) userInfo:nil repeats:YES] retain];
+
 
 }
 
@@ -174,30 +176,31 @@
 }
 
 -(IBAction)useLocation {
-	
-	if (!animationTimer)
-		animationTimer = [[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateLocationProgress) userInfo:nil repeats:YES] retain];
-	
+		
 	self.updatingLocation = YES;
 	[animationTimer fire];	
-	
+
 	[FlurryAPI logEvent:@"LOCATION_USE"];
 
 	[currentLocation setStyle:UIBarButtonItemStyleDone];
-	[currentLocation setTarget:self];
+//	[currentLocation setTarget:self];
 	[currentLocation setAction:@selector(stopLocation)];
 	
 	LocationManager *manager = [LocationManager sharedLocationManager];
 	[manager.manager startUpdatingLocation];
 	proximitySort = YES;
 	[self.tableView reloadData];
+	
+
 }
 
 
 -(void)stopLocation {
 	
+	[self doneLocationAndUpdate];
+
 	[currentLocation setStyle:UIBarButtonItemStyleBordered];
-	[currentLocation setTarget:self];
+//	[currentLocation setTarget:self];
 	[currentLocation setAction:@selector(useLocation)];
 	
 	self.updatingLocation = NO;
@@ -208,6 +211,7 @@
 	[actualContent release];
 	actualContent = nil;
 	[self freshen];
+		
 }
 
 -(void)updateLocationProgress {
@@ -393,7 +397,7 @@
 	if (!favorites)
 		favorites = [[NSMutableArray arrayWithArray:0] retain];
 
-	if (!fillingCache)
+	if ((!fillingCache) && !(proximitySort))
 		[self freshen];
 }
 
@@ -402,6 +406,7 @@
     [super viewDidAppear:animated];
 }
 */
+
 /*
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
@@ -506,7 +511,6 @@
     }
 	
 	if (tableView == self.searchDisplayController.searchResultsTableView) {
-		NSLog(@"%i",[self.filteredContent count]);
 		
 		cell.textLabel.text = [[[self.filteredContent objectAtIndex:indexPath.row] desc] removeHTMLEntities];
 		cell.detailTextLabel.text = [[self.filteredContent objectAtIndex:indexPath.row] roadName];
