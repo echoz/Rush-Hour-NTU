@@ -571,19 +571,21 @@
 
 - (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == 0) {
+
 		((StopTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath]).swipe = YES;
 	}
 }
 
 - (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == 0) {
-		((StopTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath]).swipe = NO;
-		[self.tableView setEditing:NO animated:NO];
-		
-		for (UITableViewCell *cell in [self.tableView visibleCells]) {
-			[cell setEditing:NO animated:NO];
-		}
-	}	
+
+	[self.tableView setEditing:NO animated:NO];
+
+	for (StopTableViewCell *cell in [self.tableView visibleCells]) {
+		[cell setEditing:NO];
+	}
+	
+//	if ([favorites count] == 0)
+//		[tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 1)] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -612,20 +614,21 @@
 				[FlurryAPI logEvent:@"STOP_UNFAV" withParameters:flurryparms];
 
 				[actualContent insertObject:[originalContent objectAtIndex:i] atIndex:i];
-			
 				[tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:i inSection:1]] 
 								 withRowAnimation:UITableViewRowAnimationFade];
+
+				[favorites removeObjectAtIndex:indexPath.row];			
+				[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+				
+				
 				break;
 			}
 		}
 
-		
-		[favorites removeObjectAtIndex:indexPath.row];
-		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-		
 		if ([favorites count] == 0) {
-			[tableView reloadSections:[[[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 2)] autorelease] withRowAnimation:UITableViewRowAnimationFade];
-		}	
+			[tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationNone];			
+		}
 		
 		[[RHSettings sharedRHSettings].stash setObject:favorites forKey:@"favorites"];
 		[[RHSettings sharedRHSettings] saveSettings];

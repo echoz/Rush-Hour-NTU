@@ -25,23 +25,25 @@ const NSInteger SIDE_PADDING = 5;
 }
 
 -(void)setEditing:(BOOL)editing animated:(BOOL)animated {
-	[super setEditing:editing animated:animated];
-	[self layoutSubviewsWithAnimation:animated];
+	[self layoutSubviews];
 	if (editing) {
 		self.selectionStyle = UITableViewCellSelectionStyleNone;		
 	} else {
-		self.selectionStyle = UITableViewCellSelectionStyleBlue;		
+		self.selectionStyle = UITableViewCellSelectionStyleBlue;
+		self.swipe = NO;
 	}
+	[super setEditing:editing animated:animated];
 }
 
 -(void)setEditing:(BOOL)editing {
-	[super setEditing:editing animated:NO];
-	[self layoutSubviewsWithAnimation:NO];
+	[self layoutSubviews];
 	if (editing) {
 		self.selectionStyle = UITableViewCellSelectionStyleNone;		
 	} else {
 		self.selectionStyle = UITableViewCellSelectionStyleBlue;		
+		self.swipe = NO;
 	}
+	[super setEditing:editing];
 }
 //
 // layoutSubviews
@@ -71,20 +73,6 @@ const NSInteger SIDE_PADDING = 5;
 		}
 	}
 	
-}
-
--(void)layoutSubviewsWithAnimation:(BOOL)animation {
-	if (animation) {
-		[UIView beginAnimations:nil context:nil];
-		[UIView setAnimationBeginsFromCurrentState:YES];
-
-		[self layoutSubviews];
-		
-		[UIView commitAnimations];
-
-	} else {
-		[self layoutSubviews];
-	}
 }
 
 -(void)dealloc {
