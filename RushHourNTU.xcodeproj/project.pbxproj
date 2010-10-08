@@ -268,6 +268,7 @@
 		004F5C3B1187D4FC00844FD6 /* BusView */ = {
 			isa = PBXGroup;
 			children = (
+				00D0CCF21188295600F1D387 /* MapAnnotations */,
 				004F5C411187D52200844FD6 /* BusViewController.h */,
 				004F5C421187D52200844FD6 /* BusViewController.m */,
 				004F5C431187D52200844FD6 /* BusViewController.xib */,
@@ -320,7 +321,8 @@
 				00D0CD2311882F0D00F1D387 /* StopAnnotation.h */,
 				00D0CD2411882F0D00F1D387 /* StopAnnotation.m */,
 			);
-			path = MapAnnotations;
+			name = MapAnnotations;
+			path = ../MapAnnotations;
 			sourceTree = "<group>";
 		};
 		080E96DDFE201D6D7F000001 /* Classes */ = {
@@ -356,7 +358,6 @@
 				001FD6E0119154E4001DEBB2 /* InfoView */,
 				3F91168E118B44EF00E2E50D /* External */,
 				3FA7B0FF1188881E00638E51 /* IrisQuery */,
-				00D0CCF21188295600F1D387 /* MapAnnotations */,
 				004F5C3B1187D4FC00844FD6 /* BusView */,
 				00AEC7511186C4AE0083D75A /* Metadata */,
 				000EF22311857B230070B458 /* RootView */,
@@ -443,9 +444,9 @@
 		3F5358181255DA7E00221EA9 /* BusesView */ = {
 			isa = PBXGroup;
 			children = (
+				3F53581B1255DA9500221EA9 /* BusesViewController.xib */,
 				3F5358191255DA9500221EA9 /* BusesViewController.h */,
 				3F53581A1255DA9500221EA9 /* BusesViewController.m */,
-				3F53581B1255DA9500221EA9 /* BusesViewController.xib */,
 			);
 			name = BusesView;
 			sourceTree = "<group>";
@@ -688,7 +689,10 @@
 					"\"$(SRCROOT)/Flurry\"",
 					"\"$(SRCROOT)/../Framework/Edventurous/build\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
+				);
 				PRODUCT_NAME = RushHourNTU;
 			};
 			name = Debug;
@@ -708,7 +712,10 @@
 					"\"$(SRCROOT)/Flurry\"",
 					"\"$(SRCROOT)/../Framework/Edventurous/build\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
+				);
 				PRODUCT_NAME = RushHourNTU;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -725,9 +732,14 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "EdventurousFramework/Classes/**";
 				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
+				);
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "94524261-F705-4410-BF17-EAE36D59F33C";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "94524261-F705-4410-BF17-EAE36D59F33C";
@@ -750,7 +762,10 @@
 					"\"$(SRCROOT)/Flurry\"",
 					"\"$(SRCROOT)/../Framework/Edventurous/build\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
+				);
 				PRODUCT_NAME = RushHourNTU;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -765,9 +780,14 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "EdventurousFramework/Classes/**";
 				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos4.1;
@@ -785,9 +805,14 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "EdventurousFramework/Classes/**";
 				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
+				);
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "C5365E51-7E3A-497C-84ED-63E0944815B9";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "94524261-F705-4410-BF17-EAE36D59F33C";

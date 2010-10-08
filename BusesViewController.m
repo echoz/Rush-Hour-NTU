@@ -8,8 +8,6 @@
 
 #import "BusesViewController.h"
 #import "JONTUBus.h"
-#import <MapKit/MapKit.h>
-#import "CacheOperation.h"
 
 @implementation BusesViewController
 @synthesize buses;
@@ -31,6 +29,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	self.buses = [[JONTUBusEngine sharedJONTUBusEngine] buses];
+	placemarks = [[NSMutableDictionary dictionaryWithCapacity:[self.buses count]] retain];
 }
 
 /*
@@ -77,6 +76,16 @@
     return [self.buses count];
 }
 
+- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark {
+//	NSUInteger row = [[[placemarks allKeysForObject:geocoder] objectAtIndex:0] intValue];
+	[self.tableView reloadData];
+	NSLog(@"%@",geocoder);
+}
+
+- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error {
+	
+}
+
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -86,13 +95,33 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     }
-    
-    // Configure the cell...
+
 	JONTUBus *bus = [buses objectAtIndex:indexPath.row];
-	cell.textLabel.text = [NSString stringWithFormat:@"%@", bus.busPlate];
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%ikm/h)", bus.route.name, bus.speed];
-	cell.selectionStyle = UITableViewCellSelectionStyleNone;
+	
+	if (![[placemarks allKeys] containsObject:[NSString stringWithFormat:@"%i",indexPath.row]]) {
+		MKReverseGeocoder *geocoder = [[MKReverseGeocoder alloc] initWithCoordinate:CLLocationCoordinate2DMake([[bus lat] doubleValue], [[bus lon] doubleValue])];
+		geocoder.delegate = self;
+		[geocoder start];
+		[placemarks setObject:geocoder forKey:[NSString stringWithFormat:@"%i",indexPath.row]];
+		[geocoder release];
+	}
+	
+    // Configure the cell...
+	
+	MKReverseGeocoder *cachedGeocoder = [placemarks objectForKey:[NSString stringWithFormat:@"%i", indexPath.row]];
+										 
+	if (([[placemarks allKeys] containsObject:[NSString stringWithFormat:@"%i",indexPath.row]]) && (![cachedGeocoder isQuerying])) {
+		cell.textLabel.text = bus.busPlate;
+		cell.detailTextLabel.text = [NSString stringWithFormat:@"%ikm/h near %@ - %@", bus.speed, [cachedGeocoder.placemark thoroughfare], bus.route.name];
+	} else {
+		cell.textLabel.text = bus.busPlate;
+		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%ikm/h)", bus.route.name, bus.speed];
+		
+	}
+	
     
     return cell;
 }
@@ -170,6 +199,7 @@
 
 
 - (void)dealloc {
+	[placemarks release];
 	[buses release];
     [super dealloc];
 }

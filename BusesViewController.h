@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "JONTUBusEngine.h"
+#import <MapKit/MapKit.h>
 
-@interface BusesViewController : UITableViewController {
+@interface BusesViewController : UITableViewController <MKReverseGeocoderDelegate> {
 	NSArray *buses;
+	NSMutableDictionary *placemarks;
 }
 @property (nonatomic, retain) NSArray *buses;
 
