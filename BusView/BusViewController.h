@@ -18,6 +18,8 @@
 	UITableViewCell *mapCell;
 	JONTUBus *bus;
 	JONTUBusStop *stop;
+	MKPolyline *polyline;
+	MKPolylineView *polylineView;
 	
 	NameValueCell *nvCell;
 }

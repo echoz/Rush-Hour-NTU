@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BusAnnotation.h"
 #import "StopAnnotation.h"
+#import "NSString+htmlentitiesaddition.h"
 
 @implementation BusViewController
 @synthesize map, mapCell, bus, stop, nvCell;
@@ -32,6 +33,33 @@
 	self.title = [bus busPlate];
 	[map.layer setCornerRadius:10.0];
 	map.showsUserLocation = YES;
+	
+	// do annotation
+	BusAnnotation *busAnnote = [[BusAnnotation alloc] init];
+	[busAnnote setBus:bus];	
+	StopAnnotation *stopAnnote = [[StopAnnotation alloc] init];
+	[stopAnnote setStop:stop];
+	
+	[map addAnnotations:[NSArray arrayWithObjects:busAnnote, stopAnnote,nil]];
+	[stopAnnote release];
+	[busAnnote release];
+	
+	
+	// lets do routes!
+	CLLocationCoordinate2D *coords = malloc(sizeof(CLLocationCoordinate2D) * [bus.route.polylines count]);
+	
+	for (int i = 0;i<[bus.route.polylines count];i++) {
+		coords[i] = [[bus.route.polylines objectAtIndex:i] coordinate];
+	}
+	polyline = [[MKPolyline polylineWithCoordinates:coords count:[bus.route.polylines count]] retain];
+	free(coords);
+	[map addOverlay:polyline];
+
+	polylineView = [[MKPolylineView alloc] initWithPolyline:polyline];
+	polylineView.fillColor = [bus.route.color UIColorValue];
+	polylineView.strokeColor = [bus.route.color UIColorValue];
+	polylineView.lineWidth = 3;
+	
 }
 
 
@@ -52,15 +80,6 @@
     newRegion.span.longitudeDelta = 0.0109863;
 	[map setRegion:newRegion animated:YES];	
 
-	BusAnnotation *busAnnote = [[BusAnnotation alloc] init];
-	[busAnnote setBus:bus];
-	
-	StopAnnotation *stopAnnote = [[StopAnnotation alloc] init];
-	[stopAnnote setStop:stop];
-
-	[map addAnnotations:[NSArray arrayWithObjects:busAnnote, stopAnnote,nil]];
-	[stopAnnote release];
-	[busAnnote release];
  
 }
 
@@ -233,23 +252,53 @@
 }
 */
 
+-(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
+	if (overlay == polyline) {
+		return polylineView;
+	} else {
+		return nil;
+	}
+}
+
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
-	static NSString* annotationIdentifier = @"annotationIdentifier";
-	MKPinAnnotationView* pinView = (MKPinAnnotationView *)[map dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
-	if (!pinView) {
-		// if an existing pin view was not available, create one
-		MKPinAnnotationView* pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:nil reuseIdentifier:annotationIdentifier] autorelease];
-		pinView.animatesDrop = YES;
-		pinView.canShowCallout = NO;
 
-	}
+	if ([annotation isKindOfClass:[MKUserLocation class]])
+		return nil;		
+	
+	MKPinAnnotationView* pinView;
+	NSString *annotationIdentifier;
 
 	if ([annotation isKindOfClass:[StopAnnotation class]]) {
-		pinView.pinColor = MKPinAnnotationColorGreen;
+		annotationIdentifier = @"StopAnnotation";
+		pinView = (MKPinAnnotationView *)[map dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
+		
+		if (!pinView) {
+			// if an existing pin view was not available, create one
+			MKPinAnnotationView* pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier] autorelease];
+			pinView.animatesDrop = YES;
+			pinView.canShowCallout = YES;
+			pinView.pinColor = MKPinAnnotationColorRed;
+			
+			return pinView;
+		} 
+		
+
 	} else if ([annotation isKindOfClass:[BusAnnotation class]]) {
-		pinView.pinColor = MKPinAnnotationColorRed;
-	}
+		annotationIdentifier = @"BusAnnotation";
+		pinView = (MKPinAnnotationView *)[map dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
+
+		if (!pinView) {
+			// if an existing pin view was not available, create one
+			MKPinAnnotationView* pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier] autorelease];
+			pinView.animatesDrop = YES;
+			pinView.canShowCallout = YES;
+			pinView.pinColor = MKPinAnnotationColorGreen;
+			
+			return pinView;			
+		}
+		
+	} 		 
 	
 	pinView.annotation = annotation;	
 	
@@ -265,6 +314,8 @@
 	[stop release], stop = nil;
 	[map release], map = nil;
 	[mapCell release], mapCell = nil;
+	[polyline release], polyline = nil;
+	[polylineView release], polylineView = nil;
     [super dealloc];
 }
 
