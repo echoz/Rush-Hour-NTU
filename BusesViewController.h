@@ -13,6 +13,7 @@
 @interface BusesViewController : UITableViewController <MKReverseGeocoderDelegate> {
 	NSArray *buses;
 	NSMutableDictionary *placemarks;
+	NSMutableArray *geocoders;
 }
 @property (nonatomic, retain) NSArray *buses;
 

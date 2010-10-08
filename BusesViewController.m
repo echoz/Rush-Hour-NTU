@@ -21,6 +21,7 @@
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	placemarks = [[NSMutableDictionary dictionaryWithCapacity:0] retain];
 
 }
 
@@ -29,7 +30,22 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	self.buses = [[JONTUBusEngine sharedJONTUBusEngine] buses];
-	placemarks = [[NSMutableDictionary dictionaryWithCapacity:[self.buses count]] retain];
+	geocoders = [[NSMutableArray arrayWithCapacity:[self.buses count]] retain];
+	
+	JONTUBus *bus;
+	for (int i=0;i<[self.buses count];i++) {
+		bus = [self.buses objectAtIndex:i];
+		
+		MKReverseGeocoder *geocoder = [[MKReverseGeocoder alloc] initWithCoordinate:CLLocationCoordinate2DMake([[bus lat] doubleValue], [[bus lon] doubleValue])];
+		geocoder.delegate = self;
+		[geocoder start];
+		
+		[geocoders addObject:geocoder];
+		[geocoder release];
+		
+	}
+	
+	[self.tableView reloadData];
 }
 
 /*
@@ -42,13 +58,13 @@
     [super viewWillDisappear:animated];
 }
 */
-/*
+
 - (void)viewDidDisappear:(BOOL)animated {
 
     [super viewDidDisappear:animated];
-
+	[geocoders release], geocoders = nil;
 }
-*/
+
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -77,13 +93,15 @@
 }
 
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark {
-//	NSUInteger row = [[[placemarks allKeysForObject:geocoder] objectAtIndex:0] intValue];
+	NSUInteger idx = [geocoders indexOfObject:geocoder];
+	
+	[placemarks setObject:placemark forKey:[[buses objectAtIndex:idx] busPlate]];
+	
 	[self.tableView reloadData];
-	NSLog(@"%@",geocoder);
 }
 
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error {
-	
+	NSLog(@"ERROR: %@", error);
 }
 
 
@@ -101,21 +119,14 @@
 
 	JONTUBus *bus = [buses objectAtIndex:indexPath.row];
 	
-	if (![[placemarks allKeys] containsObject:[NSString stringWithFormat:@"%i",indexPath.row]]) {
-		MKReverseGeocoder *geocoder = [[MKReverseGeocoder alloc] initWithCoordinate:CLLocationCoordinate2DMake([[bus lat] doubleValue], [[bus lon] doubleValue])];
-		geocoder.delegate = self;
-		[geocoder start];
-		[placemarks setObject:geocoder forKey:[NSString stringWithFormat:@"%i",indexPath.row]];
-		[geocoder release];
-	}
 	
     // Configure the cell...
 	
-	MKReverseGeocoder *cachedGeocoder = [placemarks objectForKey:[NSString stringWithFormat:@"%i", indexPath.row]];
-										 
-	if (([[placemarks allKeys] containsObject:[NSString stringWithFormat:@"%i",indexPath.row]]) && (![cachedGeocoder isQuerying])) {
+	MKPlacemark *placemark = [placemarks objectForKey:bus.busPlate];
+	
+	if (placemark) {
 		cell.textLabel.text = bus.busPlate;
-		cell.detailTextLabel.text = [NSString stringWithFormat:@"%ikm/h near %@ - %@", bus.speed, [cachedGeocoder.placemark thoroughfare], bus.route.name];
+		cell.detailTextLabel.text = [NSString stringWithFormat:@"%ikm/h near %@ - %@", bus.speed, [placemark thoroughfare], bus.route.name];
 	} else {
 		cell.textLabel.text = bus.busPlate;
 		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%ikm/h)", bus.route.name, bus.speed];
@@ -200,6 +211,7 @@
 
 - (void)dealloc {
 	[placemarks release];
+	[geocoders release], geocoders = nil;
 	[buses release];
     [super dealloc];
 }
