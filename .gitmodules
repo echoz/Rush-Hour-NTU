@@ -7,3 +7,6 @@
 [submodule "External/InAppSettingsKit"]
 	path = External/InAppSettingsKit
 	url = http://github.com/futuretap/InAppSettingsKit.git
+[submodule "External/facebook-ios-sdk"]
+	path = External/facebook-ios-sdk
+	url = http://github.com/facebook/facebook-ios-sdk.git
