@@ -46,6 +46,8 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		3F06291B12658D0C0002F131 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3F06291A12658D0C0002F131 /* Settings.bundle */; };
+		3F06294A12658E900002F131 /* libEdventurous-Device.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F06294312658E040002F131 /* libEdventurous-Device.a */; };
 		3F0E16F412567F48009244A9 /* star-icon-dark-filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0E16F212567F48009244A9 /* star-icon-dark-filled.png */; };
 		3F0E16F512567F48009244A9 /* star-icon-dark-filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0E16F312567F48009244A9 /* star-icon-dark-filled@2x.png */; };
 		3F0E16FC12568176009244A9 /* star-icon-dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0E16FA12568176009244A9 /* star-icon-dark@2x.png */; };
@@ -65,7 +67,6 @@
 		3F53594F1255F64C00221EA9 /* favorite.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F53594C1255F64B00221EA9 /* favorite.mp4 */; };
 		3F5359501255F64C00221EA9 /* iris.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F53594D1255F64B00221EA9 /* iris.mp4 */; };
 		3F5359511255F64C00221EA9 /* search.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F53594E1255F64C00221EA9 /* search.mp4 */; };
-		3F6C8DFE125675E6007F8536 /* libEdventurous-Device.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6C8DF7125675CF007F8536 /* libEdventurous-Device.a */; };
 		3F71B1D11191A9B400E41581 /* 57-masked.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F71B1D01191A9B400E41581 /* 57-masked.png */; };
 		3F91169A118B450E00E2E50D /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F911690118B450E00E2E50D /* UIDevice-Hardware.m */; };
 		3F91169C118B450E00E2E50D /* UIDevice-Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F911694118B450E00E2E50D /* UIDevice-Reachability.m */; };
@@ -84,33 +85,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3F6C8DF6125675CF007F8536 /* PBXContainerItemProxy */ = {
+		3F06294212658E040002F131 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3F6C8DEC125675CF007F8536 /* Edventurous.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 3F5EDCFB12564C9100FF2D80;
+			remoteGlobalIDString = 3F5EDCFB12564C9100FF2D80 /* libEdventurous-Device.a */;
 			remoteInfo = "Edventurous-Device";
 		};
-		3F6C8DF8125675CF007F8536 /* PBXContainerItemProxy */ = {
+		3F06294412658E040002F131 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3F6C8DEC125675CF007F8536 /* Edventurous.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 3F5EDD1812564D7600FF2D80;
+			remoteGlobalIDString = 3F5EDD1812564D7600FF2D80 /* libEdventurous-OSX.a */;
 			remoteInfo = "Edventurous-OSX";
 		};
-		3F6C8DFA125675CF007F8536 /* PBXContainerItemProxy */ = {
+		3F06294612658E040002F131 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3F6C8DEC125675CF007F8536 /* Edventurous.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 3F5EDD9512564F8100FF2D80;
+			remoteGlobalIDString = 3F5EDD9512564F8100FF2D80 /* libEdventurous-Simulator.a */;
 			remoteInfo = "Edventurous-Simulator";
-		};
-		3F6C8DFC125675D4007F8536 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3F6C8DEC125675CF007F8536 /* Edventurous.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 3F5EDCFA12564C9100FF2D80;
-			remoteInfo = "Edventurous-Device";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -171,6 +165,7 @@
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = RootView/RootViewController.m; sourceTree = SOURCE_ROOT; };
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RootViewController.xib; path = RootView/RootViewController.xib; sourceTree = SOURCE_ROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3F06291A12658D0C0002F131 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		3F0E16F212567F48009244A9 /* star-icon-dark-filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-icon-dark-filled.png"; sourceTree = "<group>"; };
 		3F0E16F312567F48009244A9 /* star-icon-dark-filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-icon-dark-filled@2x.png"; sourceTree = "<group>"; };
 		3F0E16FA12568176009244A9 /* star-icon-dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-icon-dark@2x.png"; sourceTree = "<group>"; };
@@ -192,16 +187,16 @@
 		3F53594D1255F64B00221EA9 /* iris.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = iris.mp4; sourceTree = "<group>"; };
 		3F53594E1255F64C00221EA9 /* search.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = search.mp4; sourceTree = "<group>"; };
 		3F5EDF921256696500FF2D80 /* libEdventurous-iOS-Release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libEdventurous-iOS-Release.a"; path = "/Users/jeremy/Development/Framework/Edventurous/build/libEdventurous-iOS-Release.a"; sourceTree = "<absolute>"; };
-		3F6C8DEC125675CF007F8536 /* Edventurous.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Edventurous.xcodeproj; path = EdventurousFramework/Edventurous.xcodeproj; sourceTree = "<group>"; };
+		3F6C8DEC125675CF007F8536 /* Edventurous.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Edventurous.xcodeproj; path = External/EdventurousFramework/Edventurous.xcodeproj; sourceTree = SOURCE_ROOT; };
 		3F71B1D01191A9B400E41581 /* 57-masked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "57-masked.png"; sourceTree = "<group>"; };
-		3F91168F118B450E00E2E50D /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice-Hardware.h"; path = "uidevice-extension/UIDevice-Hardware.h"; sourceTree = "<group>"; };
-		3F911690118B450E00E2E50D /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice-Hardware.m"; path = "uidevice-extension/UIDevice-Hardware.m"; sourceTree = "<group>"; };
-		3F911693118B450E00E2E50D /* UIDevice-Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice-Reachability.h"; path = "uidevice-extension/UIDevice-Reachability.h"; sourceTree = "<group>"; };
-		3F911694118B450E00E2E50D /* UIDevice-Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice-Reachability.m"; path = "uidevice-extension/UIDevice-Reachability.m"; sourceTree = "<group>"; };
-		3F911695118B450E00E2E50D /* UIDevice-Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice-Orientation.h"; path = "uidevice-extension/UIDevice-Orientation.h"; sourceTree = "<group>"; };
-		3F911696118B450E00E2E50D /* UIDevice-Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice-Orientation.m"; path = "uidevice-extension/UIDevice-Orientation.m"; sourceTree = "<group>"; };
-		3F911698118B450E00E2E50D /* wwanconnect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = wwanconnect.c; path = "uidevice-extension/Apple Sample Code/wwanconnect.c"; sourceTree = "<group>"; };
-		3F911699118B450E00E2E50D /* wwanconnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wwanconnect.h; path = "uidevice-extension/Apple Sample Code/wwanconnect.h"; sourceTree = "<group>"; };
+		3F91168F118B450E00E2E50D /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice-Hardware.h"; path = "External/uidevice-extension/UIDevice-Hardware.h"; sourceTree = "<group>"; };
+		3F911690118B450E00E2E50D /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice-Hardware.m"; path = "External/uidevice-extension/UIDevice-Hardware.m"; sourceTree = "<group>"; };
+		3F911693118B450E00E2E50D /* UIDevice-Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice-Reachability.h"; path = "External/uidevice-extension/UIDevice-Reachability.h"; sourceTree = "<group>"; };
+		3F911694118B450E00E2E50D /* UIDevice-Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice-Reachability.m"; path = "External/uidevice-extension/UIDevice-Reachability.m"; sourceTree = "<group>"; };
+		3F911695118B450E00E2E50D /* UIDevice-Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice-Orientation.h"; path = "External/uidevice-extension/UIDevice-Orientation.h"; sourceTree = "<group>"; };
+		3F911696118B450E00E2E50D /* UIDevice-Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice-Orientation.m"; path = "External/uidevice-extension/UIDevice-Orientation.m"; sourceTree = SOURCE_ROOT; };
+		3F911698118B450E00E2E50D /* wwanconnect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = wwanconnect.c; path = "External/uidevice-extension/Apple Sample Code/wwanconnect.c"; sourceTree = "<group>"; };
+		3F911699118B450E00E2E50D /* wwanconnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wwanconnect.h; path = "External/uidevice-extension/Apple Sample Code/wwanconnect.h"; sourceTree = "<group>"; };
 		3F9116B7118B454A00E2E50D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3F98A7B11184912C00877969 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		3FA589921185B349009A3D66 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -224,7 +219,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F6C8DFE125675E6007F8536 /* libEdventurous-Device.a in Frameworks */,
+				3F06294A12658E900002F131 /* libEdventurous-Device.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
@@ -353,6 +348,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				3F06291912658CDA0002F131 /* Settings */,
 				3F6C8DEC125675CF007F8536 /* Edventurous.xcodeproj */,
 				3F5358181255DA7E00221EA9 /* BusesView */,
 				001FD6E0119154E4001DEBB2 /* InfoView */,
@@ -430,6 +426,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3F06291912658CDA0002F131 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				3F06291A12658D0C0002F131 /* Settings.bundle */,
+			);
+			name = Settings;
+			path = settings;
+			sourceTree = SOURCE_ROOT;
+		};
+		3F06293C12658E040002F131 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F06294312658E040002F131 /* libEdventurous-Device.a */,
+				3F06294512658E040002F131 /* libEdventurous-OSX.a */,
+				3F06294712658E040002F131 /* libEdventurous-Simulator.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		3F5357F21255D62C00221EA9 /* Videos */ = {
 			isa = PBXGroup;
 			children = (
@@ -449,16 +464,6 @@
 				3F53581A1255DA9500221EA9 /* BusesViewController.m */,
 			);
 			name = BusesView;
-			sourceTree = "<group>";
-		};
-		3F6C8DED125675CF007F8536 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3F6C8DF7125675CF007F8536 /* libEdventurous-Device.a */,
-				3F6C8DF9125675CF007F8536 /* libEdventurous-OSX.a */,
-				3F6C8DFB125675CF007F8536 /* libEdventurous-Simulator.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		3F91168D118B44DF00E2E50D /* UIDevice Extensions */ = {
@@ -519,7 +524,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				3F6C8DFD125675D4007F8536 /* PBXTargetDependency */,
 			);
 			name = RushHourNTU;
 			productName = RushHourNTU;
@@ -546,7 +550,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 3F6C8DED125675CF007F8536 /* Products */;
+					ProductGroup = 3F06293C12658E040002F131 /* Products */;
 					ProjectRef = 3F6C8DEC125675CF007F8536 /* Edventurous.xcodeproj */;
 				},
 			);
@@ -558,25 +562,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		3F6C8DF7125675CF007F8536 /* libEdventurous-Device.a */ = {
+		3F06294312658E040002F131 /* libEdventurous-Device.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libEdventurous-Device.a";
-			remoteRef = 3F6C8DF6125675CF007F8536 /* PBXContainerItemProxy */;
+			remoteRef = 3F06294212658E040002F131 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3F6C8DF9125675CF007F8536 /* libEdventurous-OSX.a */ = {
+		3F06294512658E040002F131 /* libEdventurous-OSX.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libEdventurous-OSX.a";
-			remoteRef = 3F6C8DF8125675CF007F8536 /* PBXContainerItemProxy */;
+			remoteRef = 3F06294412658E040002F131 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3F6C8DFB125675CF007F8536 /* libEdventurous-Simulator.a */ = {
+		3F06294712658E040002F131 /* libEdventurous-Simulator.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libEdventurous-Simulator.a";
-			remoteRef = 3F6C8DFA125675CF007F8536 /* PBXContainerItemProxy */;
+			remoteRef = 3F06294612658E040002F131 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -625,6 +629,7 @@
 				3F0E16F512567F48009244A9 /* star-icon-dark-filled@2x.png in Resources */,
 				3F0E16FC12568176009244A9 /* star-icon-dark@2x.png in Resources */,
 				3F0E171B125682CF009244A9 /* star-icon-dark.png in Resources */,
+				3F06291B12658D0C0002F131 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,14 +669,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		3F6C8DFD125675D4007F8536 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Edventurous-Device";
-			targetProxy = 3F6C8DFC125675D4007F8536 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -682,7 +679,7 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RushHourNTU_Prefix.pch;
-				HEADER_SEARCH_PATHS = "EdventurousFramework/Classes/**";
+				HEADER_SEARCH_PATHS = "External/EdventurousFramework/Classes/**";
 				INFOPLIST_FILE = "RushHourNTU-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -705,7 +702,7 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RushHourNTU_Prefix.pch;
-				HEADER_SEARCH_PATHS = "EdventurousFramework/Classes/**";
+				HEADER_SEARCH_PATHS = "External/EdventurousFramework/Classes/**";
 				INFOPLIST_FILE = "RushHourNTU-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -732,13 +729,14 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "EdventurousFramework/Classes/**";
+				HEADER_SEARCH_PATHS = "External/EdventurousFramework/Classes/**";
 				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
 					"-force_load",
-					"EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
+					"External/EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
 				);
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "94524261-F705-4410-BF17-EAE36D59F33C";
@@ -755,7 +753,7 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RushHourNTU_Prefix.pch;
-				HEADER_SEARCH_PATHS = "EdventurousFramework/Classes/**";
+				HEADER_SEARCH_PATHS = "External/EdventurousFramework/Classes/**";
 				INFOPLIST_FILE = "RushHourNTU-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -780,13 +778,13 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "EdventurousFramework/Classes/**";
+				HEADER_SEARCH_PATHS = "External/EdventurousFramework/Classes/**";
 				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = (
 					"-force_load",
-					"EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
+					"External/EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
 				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -805,13 +803,14 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "EdventurousFramework/Classes/**";
+				HEADER_SEARCH_PATHS = "External/EdventurousFramework/Classes/**";
 				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
 					"-force_load",
-					"EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
+					"External/EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
 				);
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "C5365E51-7E3A-497C-84ED-63E0944815B9";

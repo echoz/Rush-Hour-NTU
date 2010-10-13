@@ -1,6 +1,9 @@
-[submodule "uidevice-extension"]
+[submodule "External/uidevice-extension"]
 	path = uidevice-extension
 	url = http://github.com/erica/uidevice-extension.git
-[submodule "EdventurousFramework"]
+[submodule "External/EdventurousFramework"]
 	path = EdventurousFramework
 	url = http://github.com/echoz/EdventurousFramework.git
+[submodule "External/InAppSettingsKit"]
+	path = External/InAppSettingsKit
+	url = http://github.com/futuretap/InAppSettingsKit.git
