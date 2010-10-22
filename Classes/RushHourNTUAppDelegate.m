@@ -70,24 +70,29 @@ void uncaughtExceptionHandler(NSException *exception);
 			NSLog(@"Stop timer from firing");
 			[root doneLocationAndUpdate];
 		}
-									
 	}
+	
+	[self saveState];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
 	
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
-	// Save data if appropriate
+-(void)saveState {
 	NSLog(@"Writing to cache");
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
 	NSString *cachePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:CACH_FILE];
-
+	
 	[JONTUBusEngine saveState:cachePath];
 	
-	[[RHSettings sharedRHSettings] saveSettings];
+	[[RHSettings sharedRHSettings] saveSettings];	
+	
+}
 
+- (void)applicationWillTerminate:(UIApplication *)application {
+	// Save data if appropriate
+	[self saveState];
 }
 
 void uncaughtExceptionHandler(NSException *exception) {
