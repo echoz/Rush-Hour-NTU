@@ -47,7 +47,6 @@
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
 		3F06291B12658D0C0002F131 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3F06291A12658D0C0002F131 /* Settings.bundle */; };
-		3F0629B61265914A0002F131 /* libEdventurous-Device.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0629B1126591440002F131 /* libEdventurous-Device.a */; };
 		3F0E16F412567F48009244A9 /* star-icon-dark-filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0E16F212567F48009244A9 /* star-icon-dark-filled.png */; };
 		3F0E16F512567F48009244A9 /* star-icon-dark-filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0E16F312567F48009244A9 /* star-icon-dark-filled@2x.png */; };
 		3F0E16FC12568176009244A9 /* star-icon-dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0E16FA12568176009244A9 /* star-icon-dark@2x.png */; };
@@ -80,6 +79,7 @@
 		3FA7B1031188883F00638E51 /* IrisQueryUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7B1011188883F00638E51 /* IrisQueryUIViewController.m */; };
 		3FA7B1041188883F00638E51 /* IrisQueryUIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FA7B1021188883F00638E51 /* IrisQueryUIViewController.xib */; };
 		3FA7B10A11888BFD00638E51 /* 09-chat2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA7B10911888BFD00638E51 /* 09-chat2.png */; };
+		3FC2A39C1271A5CC005DF858 /* libEdventurous-Device.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0629B1126591440002F131 /* libEdventurous-Device.a */; };
 		3FDCB53E1265946600C63F4D /* IASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDCB5211265946600C63F4D /* IASKAppSettingsViewController.m */; };
 		3FDCB53F1265946600C63F4D /* IASKSpecifierValuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDCB5231265946600C63F4D /* IASKSpecifierValuesViewController.m */; };
 		3FDCB5401265946600C63F4D /* IASKSettingsReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDCB5261265946600C63F4D /* IASKSettingsReader.m */; };
@@ -269,7 +269,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F0629B61265914A0002F131 /* libEdventurous-Device.a in Frameworks */,
+				3FC2A39C1271A5CC005DF858 /* libEdventurous-Device.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
@@ -817,12 +817,12 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RushHourNTU_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "External/EdventurousFramework/Classes/**";
 				INFOPLIST_FILE = "RushHourNTU-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Flurry\"",
-					"\"$(SRCROOT)/../Framework/Edventurous/build\"",
 				);
 				OTHER_LDFLAGS = (
 					"-force_load",
@@ -840,12 +840,12 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RushHourNTU_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "External/EdventurousFramework/Classes/**";
 				INFOPLIST_FILE = "RushHourNTU-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Flurry\"",
-					"\"$(SRCROOT)/../Framework/Edventurous/build\"",
 				);
 				OTHER_LDFLAGS = (
 					"-force_load",
@@ -864,7 +864,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jeremy Foo";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jeremy Foo";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "External/EdventurousFramework/Classes/**";
@@ -891,12 +891,12 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RushHourNTU_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "External/EdventurousFramework/Classes/**";
 				INFOPLIST_FILE = "RushHourNTU-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Flurry\"",
-					"\"$(SRCROOT)/../Framework/Edventurous/build\"",
 				);
 				OTHER_LDFLAGS = (
 					"-force_load",
@@ -913,7 +913,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "External/EdventurousFramework/Classes/**";
@@ -938,7 +938,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jeremy Foo";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jeremy Foo";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "External/EdventurousFramework/Classes/**";
