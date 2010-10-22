@@ -1,12 +1,3 @@
 [submodule "External/uidevice-extension"]
 	path = External/uidevice-extension
 	url = http://github.com/erica/uidevice-extension.git
-[submodule "External/EdventurousFramework"]
-	path = External/EdventurousFramework
-	url = http://github.com/echoz/EdventurousFramework.git
-[submodule "External/InAppSettingsKit"]
-	path = External/InAppSettingsKit
-	url = http://github.com/futuretap/InAppSettingsKit.git
-[submodule "External/facebook-ios-sdk"]
-	path = External/facebook-ios-sdk
-	url = http://github.com/facebook/facebook-ios-sdk.git
