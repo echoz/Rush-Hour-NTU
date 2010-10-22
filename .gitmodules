@@ -1,8 +1,8 @@
 [submodule "External/uidevice-extension"]
-	path = uidevice-extension
+	path = External/uidevice-extension
 	url = http://github.com/erica/uidevice-extension.git
 [submodule "External/EdventurousFramework"]
-	path = EdventurousFramework
+	path = External/EdventurousFramework
 	url = http://github.com/echoz/EdventurousFramework.git
 [submodule "External/InAppSettingsKit"]
 	path = External/InAppSettingsKit
