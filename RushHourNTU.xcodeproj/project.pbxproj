@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		000EF1BD118574C10070B458 /* BusETACell.m in Sources */ = {isa = PBXBuildFile; fileRef = 000EF1BC118574C10070B458 /* BusETACell.m */; };
 		000EF207118578DC0070B458 /* BusETACell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 000EF206118578DC0070B458 /* BusETACell.xib */; };
-		000EF28D118582060070B458 /* NSString+htmlentitiesaddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 000EF28C118582060070B458 /* NSString+htmlentitiesaddition.m */; };
+		000EF28D118582060070B458 /* NSString+StringToUIColorConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 000EF28C118582060070B458 /* NSString+StringToUIColorConversion.m */; };
 		001FD5F711914091001DEBB2 /* querybutton-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 001FD5F511914091001DEBB2 /* querybutton-bg.png */; };
 		001FD5FE119140D3001DEBB2 /* querybutton-bg-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 001FD5FD119140D3001DEBB2 /* querybutton-bg-on.png */; };
 		001FD61411914233001DEBB2 /* irisbar-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 001FD61311914233001DEBB2 /* irisbar-bg.png */; };
@@ -135,8 +135,8 @@
 		000EF1BB118574C10070B458 /* BusETACell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusETACell.h; path = BusStopView/BusETACell.h; sourceTree = SOURCE_ROOT; };
 		000EF1BC118574C10070B458 /* BusETACell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusETACell.m; path = BusStopView/BusETACell.m; sourceTree = SOURCE_ROOT; };
 		000EF206118578DC0070B458 /* BusETACell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BusETACell.xib; path = BusStopView/BusETACell.xib; sourceTree = SOURCE_ROOT; };
-		000EF28B118582060070B458 /* NSString+htmlentitiesaddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+htmlentitiesaddition.h"; sourceTree = "<group>"; };
-		000EF28C118582060070B458 /* NSString+htmlentitiesaddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+htmlentitiesaddition.m"; sourceTree = "<group>"; };
+		000EF28B118582060070B458 /* NSString+StringToUIColorConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+StringToUIColorConversion.h"; sourceTree = "<group>"; };
+		000EF28C118582060070B458 /* NSString+StringToUIColorConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+StringToUIColorConversion.m"; sourceTree = "<group>"; };
 		001FD5F511914091001DEBB2 /* querybutton-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "querybutton-bg.png"; sourceTree = "<group>"; };
 		001FD5FD119140D3001DEBB2 /* querybutton-bg-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "querybutton-bg-on.png"; sourceTree = "<group>"; };
 		001FD61311914233001DEBB2 /* irisbar-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "irisbar-bg.png"; sourceTree = "<group>"; };
@@ -375,8 +375,8 @@
 			children = (
 				1D3623240D0F684500981E51 /* RushHourNTUAppDelegate.h */,
 				1D3623250D0F684500981E51 /* RushHourNTUAppDelegate.m */,
-				000EF28B118582060070B458 /* NSString+htmlentitiesaddition.h */,
-				000EF28C118582060070B458 /* NSString+htmlentitiesaddition.m */,
+				000EF28B118582060070B458 /* NSString+StringToUIColorConversion.h */,
+				000EF28C118582060070B458 /* NSString+StringToUIColorConversion.m */,
 				3FA58A831185D732009A3D66 /* JONTUBusStop+location.h */,
 				3FA58A841185D732009A3D66 /* JONTUBusStop+location.m */,
 				3FA58AF41185E1D3009A3D66 /* LocationManager.h */,
@@ -764,7 +764,7 @@
 				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
 				0064105811852C7200D0F9E8 /* BusStopViewController.m in Sources */,
 				000EF1BD118574C10070B458 /* BusETACell.m in Sources */,
-				000EF28D118582060070B458 /* NSString+htmlentitiesaddition.m in Sources */,
+				000EF28D118582060070B458 /* NSString+StringToUIColorConversion.m in Sources */,
 				3FA58A851185D732009A3D66 /* JONTUBusStop+location.m in Sources */,
 				3FA58AF61185E1D3009A3D66 /* LocationManager.m in Sources */,
 				00AEC6D01186BCC50083D75A /* ArrivalsOperation.m in Sources */,
@@ -817,17 +817,18 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RushHourNTU_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = "External/EdventurousFramework/Classes/**";
 				INFOPLIST_FILE = "RushHourNTU-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Flurry\"",
 				);
-				OTHER_LDFLAGS = (
-					"-force_load",
-					"External/EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
+				OTHER_CFLAGS = (
+					"-DTARGET_OS_IPHONE",
+					"-D__IPHONE_OS_VERSION_MIN_REQUIRED=040000",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = RushHourNTU;
 			};
 			name = Debug;
@@ -840,17 +841,18 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RushHourNTU_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = "External/EdventurousFramework/Classes/**";
 				INFOPLIST_FILE = "RushHourNTU-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Flurry\"",
 				);
-				OTHER_LDFLAGS = (
-					"-force_load",
-					"External/EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
+				OTHER_CFLAGS = (
+					"-D__IPHONE_OS_VERSION_MIN_REQUIRED=040000",
+					"-DNS_BLOCK_ASSERTIONS=1",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = RushHourNTU;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -891,17 +893,18 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RushHourNTU_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = "External/EdventurousFramework/Classes/**";
 				INFOPLIST_FILE = "RushHourNTU-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Flurry\"",
 				);
-				OTHER_LDFLAGS = (
-					"-force_load",
-					"External/EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
+				OTHER_CFLAGS = (
+					"-D__IPHONE_OS_VERSION_MIN_REQUIRED=040000",
+					"-DNS_BLOCK_ASSERTIONS=1",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = RushHourNTU;
 				VALIDATE_PRODUCT = YES;
 			};
