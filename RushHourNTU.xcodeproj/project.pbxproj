@@ -47,6 +47,8 @@
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
 		3F06291B12658D0C0002F131 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3F06291A12658D0C0002F131 /* Settings.bundle */; };
+		3F0AE5001272BEDD000CEAE2 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0AE4FE1272BEDD000CEAE2 /* 19-gear.png */; };
+		3F0AE5011272BEDD000CEAE2 /* 19-gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0AE4FF1272BEDD000CEAE2 /* 19-gear@2x.png */; };
 		3F0E16F412567F48009244A9 /* star-icon-dark-filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0E16F212567F48009244A9 /* star-icon-dark-filled.png */; };
 		3F0E16F512567F48009244A9 /* star-icon-dark-filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0E16F312567F48009244A9 /* star-icon-dark-filled@2x.png */; };
 		3F0E16FC12568176009244A9 /* star-icon-dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0E16FA12568176009244A9 /* star-icon-dark@2x.png */; };
@@ -190,6 +192,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3F06291A12658D0C0002F131 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = settings/Settings.bundle; sourceTree = "<group>"; };
 		3F0629771265909A0002F131 /* Edventurous.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Edventurous.xcodeproj; path = External/EdventurousFramework/Edventurous.xcodeproj; sourceTree = "<group>"; };
+		3F0AE4FE1272BEDD000CEAE2 /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear.png"; sourceTree = "<group>"; };
+		3F0AE4FF1272BEDD000CEAE2 /* 19-gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear@2x.png"; sourceTree = "<group>"; };
 		3F0E16F212567F48009244A9 /* star-icon-dark-filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-icon-dark-filled.png"; sourceTree = "<group>"; };
 		3F0E16F312567F48009244A9 /* star-icon-dark-filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-icon-dark-filled@2x.png"; sourceTree = "<group>"; };
 		3F0E16FA12568176009244A9 /* star-icon-dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-icon-dark@2x.png"; sourceTree = "<group>"; };
@@ -437,6 +441,8 @@
 				3F5357EB1255D5A800221EA9 /* 57-masked@2x.png */,
 				001FD5FD119140D3001DEBB2 /* querybutton-bg-on.png */,
 				001FD5F511914091001DEBB2 /* querybutton-bg.png */,
+				3F0AE4FE1272BEDD000CEAE2 /* 19-gear.png */,
+				3F0AE4FF1272BEDD000CEAE2 /* 19-gear@2x.png */,
 				007541D4118E9A4D00479CE2 /* alert.png */,
 				3F0E171A125682CF009244A9 /* star-icon-dark.png */,
 				3F0E16FA12568176009244A9 /* star-icon-dark@2x.png */,
@@ -749,6 +755,8 @@
 				3FDCB54B1265946600C63F4D /* IASKPSTextFieldSpecifierViewCell.xib in Resources */,
 				3FDCB54C1265946600C63F4D /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */,
 				3FDCB54D1265946600C63F4D /* IASKSpecifierValuesView.xib in Resources */,
+				3F0AE5001272BEDD000CEAE2 /* 19-gear.png in Resources */,
+				3F0AE5011272BEDD000CEAE2 /* 19-gear@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
