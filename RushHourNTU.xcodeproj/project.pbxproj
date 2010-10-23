@@ -828,7 +828,10 @@
 					"-DTARGET_OS_IPHONE",
 					"-D__IPHONE_OS_VERSION_MIN_REQUIRED=040000",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"External/EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
+				);
 				PRODUCT_NAME = RushHourNTU;
 			};
 			name = Debug;
@@ -852,7 +855,10 @@
 					"-D__IPHONE_OS_VERSION_MIN_REQUIRED=040000",
 					"-DNS_BLOCK_ASSERTIONS=1",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"External/EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
+				);
 				PRODUCT_NAME = RushHourNTU;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -904,7 +910,10 @@
 					"-D__IPHONE_OS_VERSION_MIN_REQUIRED=040000",
 					"-DNS_BLOCK_ASSERTIONS=1",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"External/EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
+				);
 				PRODUCT_NAME = RushHourNTU;
 				VALIDATE_PRODUCT = YES;
 			};

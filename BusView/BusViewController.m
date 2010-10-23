@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BusAnnotation.h"
 #import "StopAnnotation.h"
-#import "NSString+htmlentitiesaddition.h"
+#import "NSString+StringToUIColorConversion.h"
 
 @implementation BusViewController
 @synthesize map, mapCell, bus, stop, nvCell;
