@@ -367,7 +367,7 @@
 -(void)freshen {
 	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];	
 	self.actualContent = [[engine stops] mutableCopy];
-	self.originalContent = [engine stops];
+	self.originalContent = [[engine stops] copy];
 	
 	NSMutableArray *toremove = [NSMutableArray array];
 	
