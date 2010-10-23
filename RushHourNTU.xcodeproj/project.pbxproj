@@ -837,8 +837,8 @@
 					"-D__IPHONE_OS_VERSION_MIN_REQUIRED=040000",
 				);
 				OTHER_LDFLAGS = (
-					"-force_load",
-					"External/EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
+					"-ObjC",
+					"-all_load",
 				);
 				PRODUCT_NAME = RushHourNTU;
 			};
@@ -859,13 +859,10 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Flurry\"",
 				);
-				OTHER_CFLAGS = (
-					"-D__IPHONE_OS_VERSION_MIN_REQUIRED=040000",
-					"-DNS_BLOCK_ASSERTIONS=1",
-				);
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
-					"-force_load",
-					"External/EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
+					"-ObjC",
+					"-all_load",
 				);
 				PRODUCT_NAME = RushHourNTU;
 				VALIDATE_PRODUCT = YES;
@@ -919,8 +916,8 @@
 					"-DNS_BLOCK_ASSERTIONS=1",
 				);
 				OTHER_LDFLAGS = (
-					"-force_load",
-					"External/EdventurousFramework/build/${BUILD_STYLE}/libEdventurous-Device.a",
+					"-ObjC",
+					"-all_load",
 				);
 				PRODUCT_NAME = RushHourNTU;
 				VALIDATE_PRODUCT = YES;

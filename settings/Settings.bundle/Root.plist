@@ -8,53 +8,147 @@
 	<array>
 		<dict>
 			<key>Type</key>
-			<string>PSGroupSpecifier</string>
+			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Group</string>
+			<string>Facebook Integration</string>
+			<key>Key</key>
+			<string>fb_integration</string>
+			<key>DefaultValue</key>
+			<false/>
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
+			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Name</string>
-			<key>Key</key>
-			<string>name_preference</string>
-			<key>DefaultValue</key>
-			<string></string>
-			<key>IsSecure</key>
-			<false/>
-			<key>KeyboardType</key>
-			<string>Alphabet</string>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
+			<string>Bus Route</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Enabled</string>
+			<string>Advanced Timing</string>
 			<key>Key</key>
-			<string>enabled_preference</string>
+			<string>expr_timing_calc</string>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSSliderSpecifier</string>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Live Updating</string>
 			<key>Key</key>
-			<string>slider_preference</string>
+			<string>bus_liveupdate</string>
 			<key>DefaultValue</key>
-			<real>0.5</real>
-			<key>MinimumValue</key>
-			<integer>0</integer>
-			<key>MaximumValue</key>
-			<integer>1</integer>
-			<key>MinimumValueImage</key>
-			<string></string>
-			<key>MaximumValueImage</key>
-			<string></string>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>System</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Rotate for Live Maps</string>
+			<key>Key</key>
+			<string>live_maps</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Application Information</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Version</string>
+			<key>Key</key>
+			<string>version</string>
+			<key>DefaultValue</key>
+			<string>1.0.5</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>URL</string>
+			<key>DefaultValue</key>
+			<string>http://the.ornyx.net/traversity</string>
+			<key>Key</key>
+			<string>url</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Development</string>
+			<key>DefaultValue</key>
+			<string>Jeremy Foo</string>
+			<key>Key</key>
+			<string>developer</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Graphics</string>
+			<key>DefaultValue</key>
+			<string>Ian Meyer</string>
+			<key>Key</key>
+			<string>graphics</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Open Source</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Glyphish</string>
+			<key>DefaultValue</key>
+			<string>glyphish.com</string>
+			<key>Key</key>
+			<string>glyphish</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>EdventurousFramework</string>
+			<key>DefaultValue</key>
+			<string>github.com/echoz/EdventurousFramework</string>
+			<key>Key</key>
+			<string>ef</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>RegexKitLite</string>
+			<key>DefaultValue</key>
+			<string>regexkit.sourceforge.net</string>
+			<key>Key</key>
+			<string>regexkit</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>UIDevice Additions</string>
+			<key>DefaultValue</key>
+			<string>github.com/erica/uidevice-extension</string>
+			<key>Key</key>
+			<string>uidevice-extension</string>
 		</dict>
 	</array>
 </dict>

@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "UIDevice-Reachability.h"
+#import "IASKAppSettingsViewController.h"
 
-@interface RootViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, CLLocationManagerDelegate, UIAlertViewDelegate, ReachabilityWatcher> {
+@interface RootViewController : UITableViewController <IASKSettingsDelegate, UISearchBarDelegate, UISearchDisplayDelegate, CLLocationManagerDelegate, UIAlertViewDelegate, ReachabilityWatcher> {
 	UIBarButtonItem *currentLocation;
 	UIBarButtonItem *refreshCache;
-	UIBarButtonItem *irisquery;
+	UIBarButtonItem *settings;
 	UIBarButtonItem *genericDisplay;
 	UIBarButtonItem *refreshError;
 	UIBarButtonItem *infoButton;
@@ -39,12 +40,16 @@
 	int spinnerFrame;
 	
 	NSMutableArray *favorites;
+
+    IASKAppSettingsViewController *appSettingsViewController;
 }
+
+@property (nonatomic, retain) IASKAppSettingsViewController *appSettingsViewController;
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *currentLocation;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshCache;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshError;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *irisquery;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *settings;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *infoButton;
 @property (nonatomic, retain) IBOutlet UIProgressView *progressLoad;
 
@@ -56,6 +61,9 @@
 @property (nonatomic, readonly) NSOperationQueue *workQueue;
 
 @property (readwrite) BOOL updatingLocation;
+
+- (IASKAppSettingsViewController*)appSettingsViewController;
+- (IBAction)showSettingsModal:(id)sender;
 
 -(IBAction)useLocation;
 -(IBAction)refreshTheCache;

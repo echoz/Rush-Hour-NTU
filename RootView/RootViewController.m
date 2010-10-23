@@ -23,10 +23,37 @@
 
 @implementation RootViewController
 
-@synthesize currentLocation, refreshCache, savedSearchTerm, filteredContent, searchWasActive, actualContent, workQueue, irisquery, originalContent;
+@synthesize currentLocation, refreshCache, savedSearchTerm, filteredContent, searchWasActive, actualContent, workQueue, settings, originalContent;
 @synthesize progressLoad,refreshError, infoButton, updatingLocation;
 #pragma mark -
 #pragma mark View lifecycle
+
+@synthesize appSettingsViewController;
+
+- (IASKAppSettingsViewController*)appSettingsViewController {
+	if (!appSettingsViewController) {
+		appSettingsViewController = [[IASKAppSettingsViewController alloc] initWithNibName:@"IASKAppSettingsView" bundle:nil];
+		appSettingsViewController.delegate = self;
+	}
+	return appSettingsViewController;
+}
+
+- (IBAction)showSettingsModal:(id)sender {
+	
+	
+    UINavigationController *aNavController = [[UINavigationController alloc] initWithRootViewController:self.appSettingsViewController];
+    //[viewController setShowCreditsFooter:NO];   // Uncomment to not display InAppSettingsKit credits for creators.
+    // But we encourage you not to uncomment. Thank you!
+    self.appSettingsViewController.showDoneButton = YES;
+    [self presentModalViewController:aNavController animated:YES];
+    [aNavController release];
+}
+
+- (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController*)sender {
+    [self dismissModalViewControllerAnimated:YES];
+	
+	// your code here to reconfigure the app for changed settings
+}
 
 
 - (void)viewDidLoad {
@@ -62,7 +89,7 @@
 						 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
 						 genericDisplay,
 						 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
-						 irisquery,
+						 settings,
 						 nil];
 	
 	self.navigationItem.rightBarButtonItem = refreshCache;
@@ -164,9 +191,13 @@
 }
 
 -(void) titleTap:(id) sender {
+	/*
 	InfoViewController *modalView = [[InfoViewController alloc] initWithNibName:@"InfoViewController" bundle:nil];
 	[self presentModalViewController:modalView animated:YES];
-	[modalView release];	
+	[modalView release];
+	 */
+	
+	[self showIrisQuery];
 }
 
 -(IBAction)showIrisQuery {
@@ -760,10 +791,13 @@
 
 
 - (void)dealloc {
+	
+	[appSettingsViewController release], appSettingsViewController = nil;
+
 	[favorites release];
 	[animationTimer release];
 	[spinner release];
-	[irisquery release];
+	[settings release];
 	[workQueue release];
 	[lastUpdate release];
 	[refreshCache release];
