@@ -17,48 +17,6 @@
 			<false/>
 		</dict>
 		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>Title</key>
-			<string>Bus Route</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>Advanced Timing</string>
-			<key>Key</key>
-			<string>expr_timing_calc</string>
-			<key>DefaultValue</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>Live Updating</string>
-			<key>Key</key>
-			<string>bus_liveupdate</string>
-			<key>DefaultValue</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>Title</key>
-			<string>System</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>Rotate for Live Maps</string>
-			<key>Key</key>
-			<string>live_maps</string>
-			<key>DefaultValue</key>
-			<false/>
-		</dict>
-		<dict>
 			<key>Title</key>
 			<string>Application Information</string>
 			<key>Type</key>
