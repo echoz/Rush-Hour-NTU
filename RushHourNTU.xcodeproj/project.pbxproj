@@ -68,6 +68,7 @@
 		3F53594F1255F64C00221EA9 /* favorite.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F53594C1255F64B00221EA9 /* favorite.mp4 */; };
 		3F5359501255F64C00221EA9 /* iris.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F53594D1255F64B00221EA9 /* iris.mp4 */; };
 		3F5359511255F64C00221EA9 /* search.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F53594E1255F64C00221EA9 /* search.mp4 */; };
+		3F7098B51276FE7900EA10D0 /* Friendly.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7098B41276FE7900EA10D0 /* Friendly.m */; };
 		3F71B1D11191A9B400E41581 /* 57-masked.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F71B1D01191A9B400E41581 /* 57-masked.png */; };
 		3F91169A118B450E00E2E50D /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F911690118B450E00E2E50D /* UIDevice-Hardware.m */; };
 		3F91169C118B450E00E2E50D /* UIDevice-Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F911694118B450E00E2E50D /* UIDevice-Reachability.m */; };
@@ -215,6 +216,8 @@
 		3F53594D1255F64B00221EA9 /* iris.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = iris.mp4; sourceTree = "<group>"; };
 		3F53594E1255F64C00221EA9 /* search.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = search.mp4; sourceTree = "<group>"; };
 		3F5EDF921256696500FF2D80 /* libEdventurous-iOS-Release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libEdventurous-iOS-Release.a"; path = "/Users/jeremy/Development/Framework/Edventurous/build/libEdventurous-iOS-Release.a"; sourceTree = "<absolute>"; };
+		3F7098B31276FE7900EA10D0 /* Friendly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friendly.h; sourceTree = "<group>"; };
+		3F7098B41276FE7900EA10D0 /* Friendly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friendly.m; sourceTree = "<group>"; };
 		3F71B1D01191A9B400E41581 /* 57-masked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "57-masked.png"; sourceTree = "<group>"; };
 		3F91168F118B450E00E2E50D /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice-Hardware.h"; path = "External/uidevice-extension/UIDevice-Hardware.h"; sourceTree = "<group>"; };
 		3F911690118B450E00E2E50D /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice-Hardware.m"; path = "External/uidevice-extension/UIDevice-Hardware.m"; sourceTree = "<group>"; };
@@ -533,6 +536,8 @@
 				3FDCB51E1265946600C63F4D /* InAppSettingsKit */,
 				007BA9BD118EBEC400DEE49B /* Flurry */,
 				3F91168D118B44DF00E2E50D /* UIDevice Extensions */,
+				3F7098B31276FE7900EA10D0 /* Friendly.h */,
+				3F7098B41276FE7900EA10D0 /* Friendly.m */,
 			);
 			name = External;
 			sourceTree = "<group>";
@@ -802,6 +807,7 @@
 				3FDCB5461265946600C63F4D /* IASKSlider.m in Sources */,
 				3FDCB5471265946600C63F4D /* IASKSwitch.m in Sources */,
 				3FDCB5481265946600C63F4D /* IASKTextField.m in Sources */,
+				3F7098B51276FE7900EA10D0 /* Friendly.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

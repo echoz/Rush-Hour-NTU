@@ -20,6 +20,7 @@
 #import "StopTableViewCell.h"
 #import "FlurryAPI.h"
 #import "InfoViewController.h"
+#import "Friendly.h"
 
 @implementation RootViewController
 
@@ -556,7 +557,7 @@
 				CLLocation *stopLocation = [[CLLocation alloc] initWithLatitude:[[[actualContent objectAtIndex:indexPath.row] lat] doubleValue] longitude:[[[actualContent objectAtIndex:indexPath.row] lon] doubleValue]];
 				CLLocationDegrees dist = [[[[LocationManager sharedLocationManager] manager] location] distanceFromLocation:stopLocation];
 				
-				cell.detailTextLabel.text = [NSString stringWithFormat:@"%.fm away", dist];
+				cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ away", [Friendly distanceString:dist]];
 				[stopLocation release];
 				
 			} else {
