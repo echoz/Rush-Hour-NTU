@@ -13,7 +13,7 @@
 #import "JONTUBusStop.h"
 #import "NameValueCell.h"
 
-@interface BusViewController : UITableViewController {
+@interface BusViewController : UITableViewController <MKMapViewDelegate> {
 	MKMapView *map;
 	UITableViewCell *mapCell;
 	JONTUBus *bus;

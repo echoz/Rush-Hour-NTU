@@ -33,6 +33,7 @@
 	self.title = [bus busPlate];
 	[map.layer setCornerRadius:10.0];
 	map.showsUserLocation = YES;
+	map.delegate = self;
 	
 	// do annotation
 	BusAnnotation *busAnnote = [[BusAnnotation alloc] init];
@@ -58,8 +59,8 @@
 	polylineView = [[MKPolylineView alloc] initWithPolyline:polyline];
 	polylineView.fillColor = [bus.route.color UIColorValue];
 	polylineView.strokeColor = [bus.route.color UIColorValue];
-	polylineView.lineWidth = 3;
-	
+	polylineView.lineWidth = 5;
+
 }
 
 
@@ -72,15 +73,26 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
  	[self.navigationController setToolbarHidden:YES animated:YES];
-	
-	MKCoordinateRegion newRegion;
-    newRegion.center.latitude = [[stop lat] doubleValue];
-    newRegion.center.longitude = [[stop lon] doubleValue];
-    newRegion.span.latitudeDelta = 0.0112872;
-    newRegion.span.longitudeDelta = 0.0109863;
-	[map setRegion:newRegion animated:YES];	
 
- 
+	MKCoordinateRegion newRegion;
+	newRegion.center.latitude = [[bus lat] doubleValue];
+	newRegion.center.longitude = [[bus lon] doubleValue];
+	newRegion.span.latitudeDelta = 0.015;
+	newRegion.span.longitudeDelta = 0.015;
+	[map setRegion:newRegion animated:YES];	
+	
+	[self performSelector:@selector(selectBus) withObject:nil afterDelay:2];
+}
+
+
+-(void)selectBus {
+	for (id<MKAnnotation> currentAnnotation in map.annotations) {
+		if ([currentAnnotation isKindOfClass:[BusAnnotation class]]) {
+			[map selectAnnotation:currentAnnotation animated:YES];
+		}
+	}		
+	
+	
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -294,7 +306,7 @@
 			pinView.animatesDrop = YES;
 			pinView.canShowCallout = YES;
 			pinView.pinColor = MKPinAnnotationColorGreen;
-			[pinView setSelected:YES animated:YES];
+			
 			return pinView;			
 		}
 		
