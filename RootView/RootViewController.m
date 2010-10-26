@@ -573,7 +573,7 @@
 			cell.textLabel.text = [[favstop desc] removeHTMLEntities];
 			cell.detailTextLabel.text = [favstop roadName];
 			cell.tag = [favstop busstopid];
-			cell.fav.image = [UIImage imageNamed:@"star-icon-filled-dark.png"];
+			cell.fav.image = [UIImage imageNamed:@"star-icon-dark-filled.png"];
 			cell.showsReorderControl = YES;
 		}
 	}
@@ -603,7 +603,6 @@
 
 - (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == 0) {
-
 		((StopTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath]).swipe = YES;
 	}
 }
