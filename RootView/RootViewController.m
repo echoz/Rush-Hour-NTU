@@ -72,7 +72,7 @@
 	[titleLabel addTarget:self action:@selector(titleTap:) forControlEvents:UIControlEventTouchUpInside];
 	self.navigationItem.titleView = titleLabel;
 	
-	lastUpdate = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 180, 20)];
+	lastUpdate = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 190, 20)];
 	lastUpdate.backgroundColor = [UIColor clearColor];
 	lastUpdate.textAlignment = UITextAlignmentCenter;
 	lastUpdate.textColor = [UIColor whiteColor];
