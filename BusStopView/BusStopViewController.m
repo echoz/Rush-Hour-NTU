@@ -19,7 +19,7 @@
 @implementation BusStopViewController
 
 @synthesize busstopid, etaCell, stopLocation, refreshETA, star, navTitleView, navRoadName, navStopName, loadProgress, refreshError;
-
+@synthesize arrivals,irisArrivals;
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -33,12 +33,13 @@
 	[super viewDidLoad];
 
 	JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
+	iris = [[JOIris alloc] initWithTimeout:10];
 	
 	stop = [[engine stopForId:self.busstopid] retain];
 	stopLocation = [[CLLocation alloc] initWithLatitude:[[stop lat] doubleValue] longitude:[[stop lon] doubleValue]];
 	
-	arrivals = nil;
-	irisArrivals = [[NSMutableArray arrayWithCapacity:[[stop otherBus] count]] retain];
+	arrivals = [[NSMutableArray arrayWithCapacity:0] retain];
+	irisArrivals = [[NSMutableArray arrayWithCapacity:0] retain];
 	workQueue = [[NSOperationQueue alloc] init];
 	[workQueue setMaxConcurrentOperationCount:5];
 	
@@ -80,32 +81,58 @@
 	[flurryparms setObject:[stop code] forKey:@"stop-code"];
 	[FlurryAPI logEvent:@"STOP_HIT" withParameters:flurryparms];
 
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+	[self addObserver:self forKeyPath:@"irisArrivals" options:0 context:NULL];
+	[self addObserver:self forKeyPath:@"arrivals" options:0 context:NULL];
+	
 	[self refresh];
 }
 
 -(void)gotArrivals:(id)object {
-	[arrivals release];
-	arrivals = [object retain];
-	if ([[workQueue operations] count] == 1) {
-		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	
+
+	for (NSDictionary *bus in object) {
+		[self willChangeValueForKey:@"arrivals"];
+		[self insertObject:bus inArrivalsAtIndex:0];
 	}
-	[self updateProgressBar];	
-	[self.tableView reloadData];
+	
+	
+	[self updateProgressBar];
+}
+
+-(void)gotIrisBuses:(id)object {
+	
+	ArrivalsOperation *arrivalsop = nil;
+	NSArray *buses = nil;
+	
+	if (object) 
+		buses = [object valueForKey:@"buses"];
+
+	for (int i=0;i<[buses count];i++) {
+		arrivalsop = [[ArrivalsOperation alloc] initWithStop:stop queryIris:iris forSvcNumber:[buses objectAtIndex:i] delegate:self];
+		[workQueue addOperation:arrivalsop];
+		totalOps++;
+		[arrivalsop release], arrivalsop = nil;
+	}
+	
+	[self updateProgressBar];
+	
 }
 
 -(void)gotIrisResult:(id)object {
-	[irisArrivals addObject:object];
+	if (object) {
+		[self willChangeValueForKey:@"irisArrivals"];	
+		[self insertObject:object inIrisArrivalsAtIndex:0];
+	}
+
 	[self updateProgressBar];
-	[self.tableView reloadData];
+	
 }
 
 -(void)updateProgressBar {
-	[self.loadProgress setProgress:(float)(totalOps - [[workQueue operations] count] + 1)/totalOps];
-	if ([[workQueue operations] count] == 1) {
+	completedOps++;
+	[self.loadProgress setProgress:((float)completedOps-1)/(float)totalOps];
+	
+	if (completedOps-1 == totalOps) {
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 		
 		[UIView beginAnimations:nil context:nil];
@@ -113,13 +140,108 @@
 		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 		self.loadProgress.alpha = 0.0;
 		self.navRoadName.alpha = 1.0;
-		[UIView commitAnimations];		
+		[UIView commitAnimations];
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+		
 		if (scheduleWatcher) {
 			[[UIDevice currentDevice] unscheduleReachabilityWatcher];
 			scheduleWatcher = NO;
 		}
-		NSLog(@"uh?");
 		self.navigationItem.rightBarButtonItem = refreshETA;
+	}
+}
+
+- (NSUInteger)countOfArrivals {
+    return [arrivals count];
+}
+
+- (id)objectInArrivalsAtIndex:(NSUInteger)idx {
+    return [arrivals objectAtIndex:idx];
+}
+
+- (void)insertObject:(id)anObject inArrivalsAtIndex:(NSUInteger)idx {
+    [arrivals insertObject:anObject atIndex:idx];
+}
+
+- (void)removeObjectFromArrivalsAtIndex:(NSUInteger)idx { 
+    [arrivals removeObjectAtIndex:idx];
+}
+
+- (NSUInteger)countOfIrisArrivals {
+    return [irisArrivals count];
+}
+
+- (id)objectInIrisArrivalsAtIndex:(NSUInteger)idx {
+    return [irisArrivals objectAtIndex:idx];
+}
+
+- (void)insertObject:(id)anObject inIrisArrivalsAtIndex:(NSUInteger)idx {
+    [irisArrivals insertObject:anObject atIndex:idx];
+}
+
+- (void)removeObjectFromIrisArrivalsAtIndex:(NSUInteger)idx { 
+    [irisArrivals removeObjectAtIndex:idx];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+	
+    NSIndexSet *indices = [change objectForKey:NSKeyValueChangeIndexesKey];
+    if (indices == nil)
+        return; // Nothing to do
+    
+    
+    // Build index paths from index sets
+    NSUInteger indexCount = [indices count];
+    NSUInteger buffer[indexCount];
+    [indices getIndexes:buffer maxCount:indexCount inIndexRange:nil];
+	
+    NSMutableArray *indexPathArray = [NSMutableArray array];
+    for (int i = 0; i < indexCount; i++) {
+        NSUInteger indexPathIndices[2];
+
+		if ([keyPath isEqualToString:@"arrivals"]) {
+			indexPathIndices[0] = 0;
+			
+		} else if ([keyPath isEqualToString:@"irisArrivals"]) {
+			indexPathIndices[0] = 1;
+			
+		}
+	
+        indexPathIndices[1] = buffer[i];
+        NSIndexPath *newPath = [NSIndexPath indexPathWithIndexes:indexPathIndices length:2];
+        [indexPathArray addObject:newPath];
+    }
+    
+    NSNumber *kind = [change objectForKey:NSKeyValueChangeKindKey];
+    if ([kind integerValue] == NSKeyValueChangeInsertion) { // Rows were added
+		[self.tableView beginUpdates];
+		if (([keyPath isEqualToString:@"arrivals"]) && (!shuttleSectionHeaderUpdate)) {
+			[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+			shuttleSectionHeaderUpdate = YES;
+			
+		} else if (([keyPath isEqualToString:@"irisArrivals"]) && (!busSectionHeaderUpdate)){
+			[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+			busSectionHeaderUpdate = YES;
+			
+		}
+        [self.tableView insertRowsAtIndexPaths:indexPathArray withRowAnimation:UITableViewRowAnimationFade];
+		[self.tableView endUpdates];
+		
+	} else if ([kind integerValue] == NSKeyValueChangeRemoval) { // Rows were removed
+		[self.tableView beginUpdates];
+        [self.tableView deleteRowsAtIndexPaths:indexPathArray withRowAnimation:UITableViewRowAnimationFade];
+
+		if (([keyPath isEqualToString:@"arrivals"]) && ([arrivals count] == 0)) {
+			[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+	
+		} else if (([keyPath isEqualToString:@"irisArrivals"]) && ([irisArrivals count] == 0)){
+			[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+		}
+		[self.tableView endUpdates];
 	}
 }
 
@@ -150,26 +272,35 @@
 
 -(IBAction)refresh {
 	self.loadProgress.progress = 0;
+	totalOps = 0;
+	completedOps = 0;
+	busSectionHeaderUpdate = NO;
+	shuttleSectionHeaderUpdate = NO;
 	
 	if ([workQueue operations] > 0)
 		[workQueue cancelAllOperations];
 	
 	if (([[UIDevice currentDevice] hostAvailable:@"campusbus.ntu.edu.sg"]) && ([[UIDevice currentDevice] hostAvailable:@"www.sbstransit.com.sg"])) {
-		ArrivalsOperation *arrivalsop = [[ArrivalsOperation alloc] initWithStop:stop delegate:self];
-		[workQueue addOperation:arrivalsop];
-		[arrivalsop release];
-		arrivalsop = nil;
+
+		int arrivalCount = [arrivals count];
 		
-		[irisArrivals removeAllObjects];
-		
-		for (int i=0;i<[[stop otherBus] count];i++) {
-			arrivalsop = [[ArrivalsOperation alloc] initWithStop:stop queryIrisForSvcNumber:[[stop otherBus] objectAtIndex:i] delegate:self];
-			[workQueue addOperation:arrivalsop];
-			[arrivalsop release];
-			arrivalsop = nil;
+		for (int i=0;i<arrivalCount;i++) {
+			[self removeObjectFromArrivalsAtIndex:0];
 		}
+		
+		
+		int irisArrivalCount = [irisArrivals count];
+		
+		for (int i=0;i<irisArrivalCount;i++) {
+			[self removeObjectFromIrisArrivalsAtIndex:0];
+		}		
+		
+		ArrivalsOperation *arrivalsop = [[ArrivalsOperation alloc] initWithStop:stop iris:iris delegate:self];
+		[workQueue addOperation:arrivalsop];
+		totalOps++;
+		[arrivalsop release], arrivalsop = nil;
+		
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-		totalOps = [[workQueue operations] count];
 		self.loadProgress.alpha = 1.0;
 		self.navRoadName.alpha = 0.0;
 		[[UIDevice currentDevice] scheduleReachabilityWatcher:self];
@@ -238,11 +369,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if ([[stop otherBus] count] > 0) {
-		return 2;		
-	} else {
-		return 1;
-	}
+	return 2;		
 }
 
 
@@ -252,7 +379,7 @@
 		case 0:
 			return [arrivals count];
 		case 1:
-			return [[stop otherBus] count];				
+			return [irisArrivals count];				
 	}
 	return 0;
 }
@@ -262,19 +389,21 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	if ([[stop otherBus] count] > 0) {
-		switch (section) {
-			case 0:
-				if ([arrivals count] > 0) {
-					return @"Internal Shuttle";					
-				} else {
-					return @"";
-				}
-			case 1:
+	switch (section) {
+		case 0:
+			if ([arrivals count] > 0) {
+				return @"Internal Shuttle";					
+			} else {
+				return @"";
+			}
+		case 1:
+			if ([irisArrivals count] > 0) {
 				return @"Public Transport";
-		}
+			} else {
+				return @"";
+			}
 	}
-	return @"Internal Shuttle";
+	return @"";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -314,47 +443,25 @@
 		[busLocation release];
 	} else if (indexPath.section == 1) {
 		
-		NSDictionary *irisbus = [self irisArrivalFromService:[[stop otherBus] objectAtIndex:indexPath.row]];
+		NSDictionary *irisbus = [irisArrivals objectAtIndex:indexPath.row];
 		
-		if (!irisbus) {
-			if ([irisArrivals count] == [[stop otherBus] count]) {
-				cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
-				cell.subtextLabel.text = @"Invalid Service";
-				cell.detailLabel.text = @"";
-				
-			} else {
-				cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
-				cell.subtextLabel.text = @"";
-				cell.detailLabel.text = @"";
-				
-			}
-			
-		} else if ([[[irisbus valueForKey:@"eta"] lowercaseString] hasPrefix:@"not operating"]) {
-			cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
-			cell.subtextLabel.text = @"Off Service";
-			cell.detailLabel.text = @"";
+		cell.textLabel.text = [irisbus valueForKey:@"service"];
+		
+		if ([[[irisbus valueForKey:@"eta"] lowercaseString] hasPrefix:@"not operating"]) {
+			cell.subtextLabel.text = [NSString stringWithFormat:@"Off Service"];
+			cell.detailLabel.text = [irisbus valueForKey:@""];
 			
 		} else {
-			cell.textLabel.text = [[stop otherBus] objectAtIndex:indexPath.row];
 			cell.subtextLabel.text = [NSString stringWithFormat:@"Next bus: %@", [irisbus valueForKey:@"subsequent"]];
 			cell.detailLabel.text = [irisbus valueForKey:@"eta"];
 			
-		}
+		}		
 		cell.accessoryType = UITableViewCellAccessoryNone;
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		
 	}
 		
     return cell;
-}
-
--(NSDictionary *)irisArrivalFromService:(NSString *)service {
-	for (int i=0;i<[irisArrivals count];i++) {
-		if ([[[irisArrivals objectAtIndex:i] valueForKey:@"service"] isEqualToString:service]) {
-			return [irisArrivals objectAtIndex:i];
-		}
-	}
-	return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -435,6 +542,7 @@
 	[stopLocation release];
 	[etaCell release];
 	[workQueue release];
+	[iris release];
 	[super dealloc];
 }
 

@@ -12,11 +12,12 @@
 #import "BusETACell.h"
 #import <CoreLocation/CoreLocation.h>
 #import "UIDevice-Reachability.h"
+#import "JOIris.h"
 
 @interface BusStopViewController : UITableViewController <ReachabilityWatcher> {
 	NSUInteger busstopid;
 	JONTUBusStop *stop;
-	NSArray *arrivals;
+	NSMutableArray *arrivals;
 	NSMutableArray *irisArrivals;
 	CLLocation *stopLocation;
 	
@@ -30,11 +31,19 @@
 	
 	BusETACell *etaCell;
 	
+	JOIris *iris;
+	
 	NSOperationQueue *workQueue;
 	int totalOps;
+	int completedOps;
 	
 	BOOL scheduleWatcher;
+
+	BOOL shuttleSectionHeaderUpdate;
+	BOOL busSectionHeaderUpdate;
 }
+@property (readonly) NSMutableArray *arrivals;
+@property (readonly) NSMutableArray *irisArrivals;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshETA;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshError;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *star;
@@ -45,8 +54,16 @@
 @property (nonatomic, assign) IBOutlet BusETACell *etaCell;
 @property (readonly) CLLocation *stopLocation;
 @property (readwrite) NSUInteger busstopid;
--(NSDictionary *)irisArrivalFromService:(NSString *)service;
 -(void)updateProgressBar;
 -(IBAction)refresh;
 -(IBAction)favorite;
+
+// KVO - array accessors
+- (id)objectInArrivalsAtIndex:(NSUInteger)idx;
+- (void)insertObject:(id)anObject inArrivalsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromArrivalsAtIndex:(NSUInteger)idx;
+
+- (id)objectInIrisArrivalsAtIndex:(NSUInteger)idx;
+- (void)insertObject:(id)anObject inIrisArrivalsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromIrisArrivalsAtIndex:(NSUInteger)idx;
 @end
