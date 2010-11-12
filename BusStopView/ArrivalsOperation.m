@@ -8,13 +8,15 @@
 
 #import "ArrivalsOperation.h"
 #import "JONTUBusEngine.h"
+#import "RegexKitLite.h"
 
 @implementation ArrivalsOperation
-@synthesize stop, delegate, irisquery;
+@synthesize stop, delegate, irisquery, iris;
 
--(id)initWithStop:(JONTUBusStop *)bstop delegate:(id)dgate {
+-(id)initWithStop:(JONTUBusStop *)bstop iris:(JOIris *)irs delegate:(id)dgate {
 	if (self = [super init]) {
 		self.stop = bstop;
+		self.iris = irs;
 		self.delegate = dgate;
 		self.irisquery = NO;
 		serviceNumber = nil;
@@ -23,8 +25,9 @@
 	return self;
 }
 
--(id)initWithStop:(JONTUBusStop *)bstop queryIrisForSvcNumber:(NSString *)svcnumber delegate:(id)dgate {
+-(id)initWithStop:(JONTUBusStop *)bstop queryIris:(JOIris *) irs forSvcNumber:(NSString *)svcnumber delegate:(id)dgate {
 	if (self = [super init]) {
+		self.iris = irs;
 		self.stop = bstop;
 		self.delegate = dgate;
 		self.irisquery = YES;
@@ -41,10 +44,27 @@
 -(void)main {
 	
 	if (irisquery) {
-		NSDictionary *irisQueryResult = [stop irisQueryForService:serviceNumber];
+		NSArray *iriseta = [iris arrivalsForService:serviceNumber atBusStop:self.stop.code];
+		
+		NSDictionary *service = nil;
+		
+		for (NSDictionary *dict in iriseta) {
+			if ([[[dict valueForKey:@"service"] stringByReplacingOccurrencesOfRegex:@"^0*" withString:@""] isEqualToString:[serviceNumber stringByReplacingOccurrencesOfRegex:@"^0*" withString:@""]]) {
+				service = dict;
+				break;
+			}
+		}
+
 		if (!cancel)
-			[delegate performSelectorOnMainThread:@selector(gotIrisResult:) withObject:irisQueryResult waitUntilDone:YES];
+			[delegate performSelectorOnMainThread:@selector(gotIrisResult:) withObject:service waitUntilDone:YES];
+		
 	} else {
+		
+		NSDictionary *irisbuses = [iris busesAtBusStop:self.stop.code];
+
+		if (!cancel) 
+			[delegate performSelectorOnMainThread:@selector(gotIrisBuses:) withObject:irisbuses waitUntilDone:YES];
+		
 		JONTUBusEngine *engine = [JONTUBusEngine sharedJONTUBusEngine];
 		[engine busesWithRefresh:YES];
 		NSArray *arrivals = [stop arrivals];
@@ -56,9 +76,10 @@
 }
 
 -(void)dealloc {
-	[delegate release];
-	[serviceNumber release];
-	[stop release];
+	[delegate release], delegate = nil;
+	[serviceNumber release], serviceNumber = nil;
+	[stop release], stop = nil;
+	[iris release], iris = nil;
 	[super dealloc];
 }
 

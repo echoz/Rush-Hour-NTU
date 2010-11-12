@@ -7,7 +7,8 @@
 //
 
 #import "IrisQueryOperation.h"
-#import "JONTUBusEngine.h"
+#import "JOIris.h"
+#import "RegexKitLite.h"
 
 @implementation IrisQueryOperation
 
@@ -28,10 +29,23 @@
 }
 
 -(void)main {
-	NSDictionary *iriseta = [JONTUBusStop irisQueryForService:serviceNumber atStop:busStopCode];
+	JOIris *iris = [[JOIris alloc] initWithTimeout:10];
+	
+	NSArray *iriseta = [iris arrivalsForService:serviceNumber atBusStop:busStopCode];
+
+	NSDictionary *service = nil;
+	
+	for (NSDictionary *dict in iriseta) {
+		if ([[[dict valueForKey:@"service"] stringByReplacingOccurrencesOfRegex:@"^0*" withString:@""] isEqualToString:[serviceNumber stringByReplacingOccurrencesOfRegex:@"^0*" withString:@""]]) {
+			service = dict;
+			break;
+		}
+	}
+	
+	[iris release];
 
 	if (!cancel)
-		[delegate performSelectorOnMainThread:@selector(irisAnswers:) withObject:iriseta waitUntilDone:YES];
+		[delegate performSelectorOnMainThread:@selector(irisAnswers:) withObject:service waitUntilDone:YES];
 }
 
 -(void)dealloc {

@@ -11,6 +11,7 @@
 #import "FlurryAPI.h"
 #import <QuartzCore/QuartzCore.h>
 #import "IrisQueryOperation.h"
+#import "RegexKitLite.h"
 
 @implementation IrisQueryUIViewController
 @synthesize tableView, stopcode, servicenumber, result, eta, next, query, navBar, stopcodeText, servicenumberText;
@@ -63,31 +64,39 @@
 -(void)irisAnswers:(NSDictionary *)iriseta {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	hasResult = YES;
-	if ([[[iriseta valueForKey:@"service"] lowercaseString] hasPrefix:@"invalid service"]) {
-		eta.text = [NSString stringWithFormat:@"%@",servicenumberText.text];
-		next.text = @"Invalid service";
+	
+	if (iriseta) {
+		if ([[[iriseta valueForKey:@"service"] lowercaseString] hasPrefix:@"invalid service"]) {
+			eta.text = [iriseta valueForKey:@"service"];
+			next.text = @"Invalid service";
+			
+		} else if ([[[iriseta valueForKey:@"eta"] lowercaseString] hasPrefix:@"not operating"]) {
+			eta.text = [iriseta valueForKey:@"service"];
+			next.text = @"Off Service";
+			
+		} else {
+			if ([[[iriseta valueForKey:@"eta"] lowercaseString] hasPrefix:@"arriving"]) {
+				eta.text = [NSString stringWithFormat:@"%@ is arriving",[iriseta valueForKey:@"service"]];			
+			} else {
+				eta.text = [NSString stringWithFormat:@"%@ is arriving in %@",[iriseta valueForKey:@"service"], [iriseta valueForKey:@"eta"]];			
+			}
+			
+			if ([[[iriseta valueForKey:@"eta"] lowercaseString] hasPrefix:@"arriving"]) {
+				next.text = @"The next bus is arriving";			
+			} else {
+				next.text = [NSString stringWithFormat:@"The next bus is arriving in %@", [iriseta valueForKey:@"subsequent"]];			
+			}
+		}
 		
-	} else if ([[[iriseta valueForKey:@"eta"] lowercaseString] hasPrefix:@"not operating"]) {
-		eta.text = [NSString stringWithFormat:@"%@",servicenumberText.text];
-		next.text = @"Off Service";
-		
-	} else if (([[iriseta valueForKey:@"eta"] length] == 0) && ([[iriseta valueForKey:@"subsequent"] length] == 0)) {
-		eta.text = [NSString stringWithFormat:@"Service %@",servicenumberText.text];
-		next.text = @"Does not exist in IRIS database";
 		
 	} else {
-		if ([[[iriseta valueForKey:@"eta"] lowercaseString] hasPrefix:@"arriving"]) {
-			eta.text = [NSString stringWithFormat:@"%@ is arriving",servicenumberText.text];			
-		} else {
-			eta.text = [NSString stringWithFormat:@"%@ is arriving in %@",servicenumberText.text, [iriseta valueForKey:@"eta"]];			
-		}
-		
-		if ([[[iriseta valueForKey:@"eta"] lowercaseString] hasPrefix:@"arriving"]) {
-			next.text = @"The next bus is arriving";			
-		} else {
-			next.text = [NSString stringWithFormat:@"The next bus is arriving in %@", [iriseta valueForKey:@"subsequent"]];			
-		}
+		eta.text = [NSString stringWithFormat:@"Service %@",servicenumberText.text];
+		next.text = @"Does not exist in IRIS database";
+
 	}
+	
+	
+
 	[self.tableView reloadData];
 }
 
@@ -194,6 +203,7 @@
 }
 
 -(void)beginQuery {
+		
 	if (([servicenumberText.text length] > 0) && ([stopcodeText.text length] > 0)) {
 		IrisQueryOperation *op = [[IrisQueryOperation alloc] initWithServiceNumber:servicenumberText.text stopCode:stopcodeText.text delegate:self];
 		[workQueue addOperation:op];
