@@ -81,21 +81,32 @@
 	[flurryparms setObject:[stop code] forKey:@"stop-code"];
 	[FlurryAPI logEvent:@"STOP_HIT" withParameters:flurryparms];
 
-	[self addObserver:self forKeyPath:@"irisArrivals" options:0 context:NULL];
-	[self addObserver:self forKeyPath:@"arrivals" options:0 context:NULL];
+	if ([[[UIDevice currentDevice] systemVersion] floatValue] >= (float)4.2) {
+
+		[self addObserver:self forKeyPath:@"irisArrivals" options:0 context:NULL];
+		[self addObserver:self forKeyPath:@"arrivals" options:0 context:NULL];
+	}	
 	
 	[self refresh];
 }
 
 -(void)gotArrivals:(id)object {
 	
-
-	for (NSDictionary *bus in object) {
-		[self willChangeValueForKey:@"arrivals"];
-		[self insertObject:bus inArrivalsAtIndex:0];
+	if ([[[UIDevice currentDevice] systemVersion] floatValue] >= (float)4.2) {
+		for (NSDictionary *bus in object) {
+			[self willChangeValueForKey:@"arrivals"];
+			[self insertObject:bus inArrivalsAtIndex:0];
+		}
+		
+	} else {
+		for (NSDictionary *bus in object) {
+			[arrivals addObject:bus];
+		}
+		[self.tableView reloadData];
+		
 	}
-	
-	
+
+
 	[self updateProgressBar];
 }
 
@@ -120,8 +131,19 @@
 
 -(void)gotIrisResult:(id)object {
 	if (object) {
-		[self willChangeValueForKey:@"irisArrivals"];	
-		[self insertObject:object inIrisArrivalsAtIndex:0];
+		
+//		NSLog(@"%@", ([[[UIDevice currentDevice] systemVersion] floatValue] >= (float)4.2)?@"YES":@"NO");
+		
+		if ([[[UIDevice currentDevice] systemVersion] floatValue] >= (float)4.2) {
+			[self willChangeValueForKey:@"irisArrivals"];	
+			[self insertObject:object inIrisArrivalsAtIndex:0];
+			
+		} else {
+			[irisArrivals addObject:object];
+			[self.tableView reloadData];
+			
+		}
+		
 	}
 
 	[self updateProgressBar];
@@ -282,18 +304,25 @@
 	
 	if (([[UIDevice currentDevice] hostAvailable:@"campusbus.ntu.edu.sg"]) && ([[UIDevice currentDevice] hostAvailable:@"www.sbstransit.com.sg"])) {
 
-		int arrivalCount = [arrivals count];
-		
-		for (int i=0;i<arrivalCount;i++) {
-			[self removeObjectFromArrivalsAtIndex:0];
-		}
-		
-		
-		int irisArrivalCount = [irisArrivals count];
-		
-		for (int i=0;i<irisArrivalCount;i++) {
-			[self removeObjectFromIrisArrivalsAtIndex:0];
+		if ([[[UIDevice currentDevice] systemVersion] floatValue] >= (float)4.2) {
+
+			int arrivalCount = [arrivals count];		
+			for (int i=0;i<arrivalCount;i++) {
+				[self removeObjectFromArrivalsAtIndex:0];
+			}
+			
+			int irisArrivalCount = [irisArrivals count];		
+			for (int i=0;i<irisArrivalCount;i++) {
+				[self removeObjectFromIrisArrivalsAtIndex:0];
+			}
+			
+		} else {
+			[irisArrivals removeAllObjects];
+			[arrivals removeAllObjects];
+			[self.tableView reloadData];			
 		}		
+		
+		
 		
 		ArrivalsOperation *arrivalsop = [[ArrivalsOperation alloc] initWithStop:stop iris:iris delegate:self];
 		[workQueue addOperation:arrivalsop];
