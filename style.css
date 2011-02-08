@@ -143,14 +143,19 @@ div.player div.ui {
 	margin-top: -650px;
 }
 
+
+@media screen and (-webkit-min-device-pixel-ratio:0) 
+{ 
+	div.player div.ui object { 
+		display: block; 
+		margin-top: -661px;
+		margin-left: 47px;
+	}
+}
+
 div.player div.ui object {
 	display: block;
-	position: relative;
 	margin-top: -631px;
-	
-/*
-	margin-top: -631px;
-*/	
 	margin-left: 47px;
 
 }
