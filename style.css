@@ -137,10 +137,11 @@ div.content {
 div.player {
 	float:right;
 	width: 400px;
+	margin-top: -650px;
 }
 
 div.player div.ui {
-	top: -650px;
+
 }
 
 div.player div.ui object {
@@ -153,6 +154,7 @@ div.player div.ui object {
 div.player div.player-content {
 	display: block;
 	position: relative
+	margin-top: -631px;
 	padding: 0 20px;
 }
 
