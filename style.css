@@ -141,7 +141,7 @@ div.player {
 }
 
 div.player div.ui {
-
+	height: 650px;
 }
 
 div.player div.ui object {
