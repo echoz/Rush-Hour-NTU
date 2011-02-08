@@ -146,14 +146,14 @@ div.player div.ui {
 div.player div.ui object {
 	display: block;
 	position: relative;
-	top: -631px;
+	margin-top: -631px;
 	left: 47px;	
 }
 
 div.player div.player-content {
 	display: block;
 	position: relative
-	margin-top: -1262px;
+	margin-top: -631px;
 	padding: 0 20px;
 }
 
