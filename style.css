@@ -141,7 +141,7 @@ div.player {
 }
 
 div.player div.ui {
-	height: 650px;
+	height: 750px;
 }
 
 div.player div.ui object {
@@ -154,7 +154,6 @@ div.player div.ui object {
 div.player div.player-content {
 	display: block;
 	position: relative
-	top: -631px;
 	padding: 0 20px;
 }
 
